@@ -1,0 +1,62 @@
+@model CaptureTheIsland.Models.LandingViewModel
+@{ ViewData["Title"] = "Capture The Island"; }
+
+<section class="text-center mb-5">
+    <h1 class="display-5 fw-bold mb-3">Capture The Island</h1>
+    <p class="lead mb-2">A Capture‑the‑Flag (CTF) cybersecurity training site</p>
+</section>
+
+<section class="mb-5">
+    <h2 class="h3 mb-3">What is a CTF?</h2>
+    <p>
+        A <strong>Capture‑the‑Flag (CTF)</strong> is a hands‑on cybersecurity competition where participants solve
+        practical challenges to uncover hidden “flags.” CTFs simulate real‑world analyst and penetration‑testing tasks,
+        encouraging problem‑solving, methodical investigation, and safe experimentation.
+    </p>
+</section>
+
+<section class="mb-5">
+    <h2 class="h3 mb-3">Skills You’ll Practice</h2>
+    <ul class="row row-cols-1 row-cols-md-2 g-2 list-unstyled">
+        <li class="col">• Password cracking & hash analysis</li>
+        <li class="col">• Log analysis & incident triage</li>
+        <li class="col">• Cryptography basics & cipher tools</li>
+        <li class="col">• Forensics (files, memory, metadata)</li>
+        <li class="col">• OSINT (Open‑Source Intelligence)</li>
+        <li class="col">• Networking & protocols (HTTP, DNS, PCAPs)</li>
+        <li class="col">• Scripting & automation (Python, bash)</li>
+    </ul>
+</section>
+
+<section class="mb-5">
+    <h2 class="h3 mb-3">Modules Offered</h2>
+    <div class="table-responsive">
+        <table class="table table-dark table-striped table-bordered align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Module</th>
+                    <th scope="col">What You’ll Do</th>
+                </tr>
+            </thead>
+            <tbody>
+@foreach (var m in Model.Modules) {
+    <tr><td>@m.Name</td><td>@m.Description</td></tr>
+}
+</tbody>
+        </table>
+    </div>
+</section>
+
+<section id="challenges" class="mb-5">
+    <h2 class="h3 mb-3">Sample Challenges</h2>
+    <div class="table-responsive">
+        <table class="table table-dark table-striped table-bordered align-middle">
+            <thead><tr><th>Title</th><th>Type</th><th>Difficulty</th></tr></thead>
+            <tbody>
+            @foreach (var c in Model.Challenges) {
+                <tr><td>@c.Title</td><td>@c.Type</td><td>@c.Difficulty</td></tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</section>

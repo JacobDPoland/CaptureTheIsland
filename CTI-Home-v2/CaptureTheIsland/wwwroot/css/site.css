@@ -1,0 +1,6 @@
+:root{--bg:#0b0c10;--fg:#f5f7fa;--focus:#ffd43b}
+body{background:var(--bg);color:var(--fg)}
+:focus{outline:3px solid var(--focus)!important;outline-offset:2px!important}
+.btn,.nav-link{min-height:44px;display:inline-flex;align-items:center}
+.table{border-color:#444}
+.table th,.table td{border-color:#444}
