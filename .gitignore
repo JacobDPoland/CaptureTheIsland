@@ -1,1 +1,4 @@
 *.zip
+.vs/
+CaptureTheIsland/
+CaptureTheIsland/obj/

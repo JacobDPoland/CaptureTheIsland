@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jacob\\Documents\\TAMUCC\\25 Fall\\Internet-Programming\\CTI-code\\CaptureTheIsland\\CTI-Home-v16\\CTI-Home-v14\\CaptureTheIsland\\CaptureTheIsland.csproj",
+      "projectUniqueName": "C:\\Users\\Jacob\\Documents\\TAMUCC\\25 Fall\\Internet-Programming\\Assignments\\CTI-code\\CaptureTheIsland\\CTI-Home\\CaptureTheIsland\\CaptureTheIsland.csproj",
       "projectName": "CaptureTheIsland",
-      "projectPath": "C:\\Users\\Jacob\\Documents\\TAMUCC\\25 Fall\\Internet-Programming\\CTI-code\\CaptureTheIsland\\CTI-Home-v16\\CTI-Home-v14\\CaptureTheIsland\\CaptureTheIsland.csproj",
+      "projectPath": "C:\\Users\\Jacob\\Documents\\TAMUCC\\25 Fall\\Internet-Programming\\Assignments\\CTI-code\\CaptureTheIsland\\CTI-Home\\CaptureTheIsland\\CaptureTheIsland.csproj",
       "packagesPath": "C:\\Users\\Jacob\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jacob\\Documents\\TAMUCC\\25 Fall\\Internet-Programming\\CTI-code\\CaptureTheIsland\\CTI-Home-v16\\CTI-Home-v14\\CaptureTheIsland\\obj\\",
+      "outputPath": "C:\\Users\\Jacob\\Documents\\TAMUCC\\25 Fall\\Internet-Programming\\Assignments\\CTI-code\\CaptureTheIsland\\CTI-Home\\CaptureTheIsland\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
