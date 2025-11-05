@@ -48,15 +48,12 @@
                 </tr>
             </thead>
             <tbody>
-@foreach (var m in Model.Modules) {
-    <tr><td>@m.Name</td><td>@m.Description</td></tr>
-}
-</tbody>
+                @foreach (var m in Model.Modules) {
+                    <tr><td>@m.Name</td><td>@m.Description</td></tr>
+                }
+            </tbody>
         </table>
     </div>
-    <p class="small text-secondary mb-0">
-        Note: Challenge data shown below is sample content to illustrate the MVC pattern.
-    </p>
 </section>
 
 <section id="challenges" class="mb-5">

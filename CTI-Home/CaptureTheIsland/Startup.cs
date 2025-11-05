@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using CaptureTheIsland.Models;
 
 namespace CaptureTheIsland
 {
@@ -14,6 +16,9 @@ namespace CaptureTheIsland
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<ResourceContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("ResourceContext")));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
