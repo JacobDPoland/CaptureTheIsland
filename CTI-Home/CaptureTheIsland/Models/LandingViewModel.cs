@@ -6,5 +6,7 @@ namespace CaptureTheIsland.Models
     {
         public IEnumerable<ModuleInfo> Modules { get; set; } = new List<ModuleInfo>();
         public IEnumerable<ChallengeSummary> Challenges { get; set; } = new List<ChallengeSummary>();
+        public List<Resource> Resources { get; set; } = new List<Resource>();
+
     }
 }
