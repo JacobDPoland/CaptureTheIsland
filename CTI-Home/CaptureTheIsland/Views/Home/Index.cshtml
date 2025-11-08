@@ -75,15 +75,36 @@
 {
     <section>
         <h2>Resources</h2>
-        <ul>
-            @foreach (var resource in Model.Resources)
-            {
-                <li>
-                    <strong>@resource.Name</strong> –
-                    <a href="@resource.Link" target="_blank">@resource.Link</a><br />
-                    @resource.Description
-                </li>
-            }
-        </ul>
+        <a asp-controller="Resource" asp-action="Add">Add New Resource</a> 
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Resource</th> 
+                    <th>Link</th>
+                    <th>Description</th> 
+                    <th></th>
+                </tr> 
+            </thead>
+            <tbody>
+                @foreach (var res in Model.Resources)
+                {
+
+                    <tr>
+                        <td>@res.Name</td>
+                    <td><a href="@res.Link">@res.Link</a></td>
+                    <td>@res.Description</td>
+                    <td>
+                        <a asp-controller="Resource" asp-action="Edit"
+                            asp-route-id="@res.ResourceId">Edit</a>
+                        <a asp-controller="Resource" asp-action="Delete"
+                            asp-route-id="@res.ResourceId">Delete</a>
+                    </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </section>
-}
+
+
+
+}   
