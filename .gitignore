@@ -1,4 +1,4 @@
 *.zip
 .vs/
-CaptureTheIsland/
+CaptureTheIsland/Debug/
 CaptureTheIsland/obj/

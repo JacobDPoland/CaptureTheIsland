@@ -91,14 +91,16 @@
 
                     <tr>
                         <td>@res.Name</td>
-                    <td><a href="@res.Link">@res.Link</a></td>
-                    <td>@res.Description</td>
-                    <td>
-                        <a asp-controller="Resource" asp-action="Edit"
-                            asp-route-id="@res.ResourceId">Edit</a>
-                        <a asp-controller="Resource" asp-action="Delete"
-                            asp-route-id="@res.ResourceId">Delete</a>
-                    </td>
+                        <td><a href="@res.Link">@res.Link</a></td>
+                        <td>@res.Description</td>
+                        <td>
+                            <a asp-controller="Resource" asp-action="Edit"
+                                asp-route-id="@res.ResourceId"
+                                asp-route-slug="@res.Slug">Edit</a>
+                            <a asp-controller="Resource" asp-action="Delete"
+                                asp-route-id="@res.ResourceId"
+                                asp-route-slug="@res.Slug">Delete</a>
+                        </td>
                     </tr>
                 }
             </tbody>

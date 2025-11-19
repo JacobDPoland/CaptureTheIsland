@@ -19,6 +19,10 @@ namespace CaptureTheIsland
             services.AddDbContext<ResourceContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("ResourceContext")));
+            services.AddRouting(options => {
+                options.LowercaseUrls = true;
+                options.AppendTrailingSlash = true;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,7 +41,7 @@ namespace CaptureTheIsland
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
             });
         }
     }
