@@ -1,0 +1,59 @@
+﻿@model CaptureTheIsland.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
+            <div class="card-body">
+
+                <h2 class="text-center mb-4" style="color:white !important;">
+                    Create Account
+                </h2>
+
+                <form method="post">
+
+                    <!--  Validation Summary to show Identity password errors -->
+                    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label class="form-label" style="color:white !important;">Email</label>
+                        <input asp-for="Email" class="form-control bg-dark text-light border-secondary" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" style="color:white !important;">Password</label>
+                        <input asp-for="Password" type="password" class="form-control bg-dark text-light border-secondary" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" style="color:white !important;">Confirm Password</label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control bg-dark text-light border-secondary" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-light w-100">
+                        Register
+                    </button>
+
+                    <hr class="border-secondary">
+
+                    <div class="text-center">
+                        <a href="@Url.Action("Login", "Account")" class="text-info">
+                            Already have an account? Sign in
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

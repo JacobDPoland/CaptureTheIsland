@@ -1,11 +1,12 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using CaptureTheIsland.Models;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace CaptureTheIsland.Controllers
 {
+    [Authorize]   // 🔒 THIS PROTECTS THE ENTIRE HOME CONTROLLER
     public class HomeController : Controller
     {
         private ResourceContext context { get; set; }
@@ -14,7 +15,8 @@ namespace CaptureTheIsland.Controllers
         {
             context = ctx;
         }
-        public  IActionResult Index()
+
+        public IActionResult Index()
         {
             var vm = new LandingViewModel
             {
