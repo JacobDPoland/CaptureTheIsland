@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Challenges";
+}
+
+<div class="container">
+
+    <!-- 🔥 Intro Card -->
+    <div class="card bg-secondary bg-opacity-25 border-light shadow-lg mb-4">
+        <div class="card-body text-light">
+
+            <h2 class="text-center mb-3" style="color:white;">Before You Begin</h2>
+
+            <p>
+                Capture The Flag (CTF) challenges often require cybersecurity tools and
+                penetration testing utilities that are best available in
+                <strong>Kali Linux</strong>.
+                Using Kali ensures that you have proper access to:
+            </p>
+
+            <ul>
+                <li>Hash-cracking tools (Hashcat, John the Ripper)</li>
+                <li>Network analysis utilities (Nmap, Wireshark)</li>
+                <li>Forensics tools</li>
+                <li>OSINT frameworks</li>
+                <li>Linux command-line environment used in real cybersecurity work</li>
+            </ul>
+
+            <p class="mt-3">
+                If you do not already have Kali installed, follow this official guide:
+            </p>
+
+            <a href="https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/"
+               target="_blank"
+               class="btn btn-outline-info">
+                🔗 How to Download & Install Kali Linux on VirtualBox
+            </a>
+        </div>
+    </div>
+
+
+    <!-- 🔥 Challenge Categories -->
+    <div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
+        <div class="card-body">
+
+            <h2 class="text-center mb-4" style="color:white;">Challenge Categories</h2>
+
+            <div class="list-group">
+
+                <!-- Sample Challenges -->
+                <a href="/Challenges/Sample" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>🔥 Sample Challenges</strong>
+                    <br />
+                    Cipher Warm-up, Apache Access Sleuth, Hash Stretch, PNG Oddities
+                </a>
+
+                <!-- Password Cracking -->
+                <a href="/Challenges/PasswordCracking" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>🔐 Password Cracking</strong>
+                </a>
+
+                <!-- Log Analysis -->
+                <a href="/Challenges/LogAnalysis" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>📄 Log Analysis</strong>
+                </a>
+
+                <!-- Cryptography -->
+                <a href="/Challenges/Cryptography" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>🔑 Cryptography</strong>
+                </a>
+
+                <!-- Forensics -->
+                <a href="/Challenges/Forensics" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>🧪 Forensics</strong>
+                </a>
+
+                <!-- OSINT -->
+                <a href="/Challenges/OSINT" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>🌍 OSINT</strong>
+                </a>
+
+                <!-- Networking -->
+                <a href="/Challenges/Networking" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>🌐 Networking</strong>
+                </a>
+
+                <!-- Scripting -->
+                <a href="/Challenges/Scripting" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>⚙️ Scripting</strong>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
