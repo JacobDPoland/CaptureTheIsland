@@ -66,6 +66,52 @@ namespace CaptureTheIsland.Controllers
             return RedirectToAction("CipherWarmup");
         }
 
+        [HttpGet]
+        public IActionResult HashStretch()
+        {
+            return View();
+        }
+
+        // 🟩 Hash Stretch — POST (Flag validator)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitHashStretch(string flag)
+        {
+            // SECRET correct answer — DO NOT display this publicly
+            string correctFlag = "123456"; // example MD5 crack result
+
+            if (!string.IsNullOrWhiteSpace(flag) &&
+                flag.Trim().Equals(correctFlag, StringComparison.OrdinalIgnoreCase))
+            {
+                TempData["Message"] = "✔ Correct! Weak passwords make MD5 easy to break.";
+                return RedirectToAction("HashStretch");
+            }
+
+            TempData["Error"] = "❌ Incorrect result. Try again — use the Resources table for help!";
+            return RedirectToAction("HashStretch");
+        }
+
+        public IActionResult PNGOddities()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitPNGOddities(string flag)
+        {
+            string correctFlag = "CTI{you_found_the_flag}";
+
+            if (flag != null && flag.Trim().Equals(correctFlag, StringComparison.OrdinalIgnoreCase))
+            {
+                TempData["Message"] = "✔ Correct! You uncovered the hidden metadata flag.";
+                return RedirectToAction("PNGOddities");
+            }
+
+            TempData["Error"] = "❌ Incorrect flag. Keep investigating!";
+            return RedirectToAction("PNGOddities");
+        }
+
         // 📚 Categories for navigation
         public IActionResult PasswordCracking()
         {
