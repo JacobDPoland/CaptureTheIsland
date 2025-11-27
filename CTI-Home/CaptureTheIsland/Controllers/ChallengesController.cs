@@ -352,6 +352,75 @@ namespace CaptureTheIsland.Controllers
             return View();
         }
 
+        // =====================
+        // OSINT EASY — Metadata
+        // =====================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitOSINTEasy(string q1, string q2, string q3, string q4, string q5, string q6)
+        {
+            bool correct =
+                q1?.Trim() == "2015-05-15 02:14" &&
+                q2?.Trim().ToLower() == "1024x768" &&
+                q3?.Trim().ToLower() == "apple" &&
+                q4?.Trim().ToLower() == "iphone 5" &&
+                q5?.Trim().ToLower() == "1/640" &&
+                q6?.Trim().Replace(" ", "") == "39.8750,20.0100".Replace(" ", "");
+
+            if (correct)
+                TempData["Success"] = "✔ All answers correct! Great job analyzing metadata.";
+            else
+                TempData["Error"] = "❌ One or more answers are incorrect. Check the metadata again.";
+
+            return RedirectToAction("OSINT_Easy");
+        }
+
+
+        // =====================
+        // OSINT MEDIUM — Threat Intel
+        // =====================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitOSINTMedium(string q1, string q2, string q3, string q4, string q5, string q6)
+        {
+            bool correct =
+                q1?.Trim().ToUpper() == "CVE-2014-3566" &&
+                q2?.Trim().ToLower() == "vsftpd 2.3.4" &&
+                q3?.Trim().ToLower() == "1.0.1g" &&
+                q4?.Trim().ToLower() == "854" ||
+                q4?.Trim().ToLower() == "rfc 854" &&
+                q5?.Trim() == "376" ||
+                q5?.Trim().ToLower() == "376 bytes" &&
+                q6?.Trim().ToLower() == "hero";
+
+            if (correct)
+                TempData["Success"] = "✔ All threat analysis answers correct!";
+            else
+                TempData["Error"] = "❌ Some answers are wrong. Verify using multiple sources.";
+
+            return RedirectToAction("OSINT_Medium");
+        }
+
+
+        // =====================
+        // OSINT HARD — Barcode
+        // =====================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitOSINTHard(string format, string flag)
+        {
+            bool correct =
+                format?.Trim().ToUpper() == "CODE-39" &&
+                flag?.Trim().ToUpper() == "CTI-UZLU-5369";
+
+            if (correct)
+                TempData["Success"] = "✔ Correct! You decoded the barcode.";
+            else
+                TempData["Error"] = "❌ Incorrect. Try another barcode reader.";
+
+            return RedirectToAction("OSINT_Hard");
+        }
+
         public IActionResult Networking()
         {
             return View();
