@@ -283,6 +283,65 @@ namespace CaptureTheIsland.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult CryptoEasy()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SubmitCryptoEasy(string hexAnswer, string b64Answer, string binAnswer, string bigBinAnswer)
+        {
+            string correctHex = "scorpion";
+            string correctB64 = "scribble";
+            string correctBin = "securely";
+            string correctBigBin = "lollipop";
+
+            if (hexAnswer?.ToLower() == correctHex &&
+                b64Answer?.ToLower() == correctB64 &&
+                binAnswer?.ToLower() == correctBin &&
+                bigBinAnswer?.ToLower() == correctBigBin)
+            {
+                TempData["Success"] = "✔ All answers are correct! Great job.";
+            }
+            else
+            {
+                TempData["Error"] = "❌ One or more answers are incorrect. Check your conversions.";
+            }
+
+            return RedirectToAction("CryptoEasy");
+        }
+
+        [HttpGet]
+        public IActionResult CryptoMedium()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SubmitCryptoMedium(string answer)
+        {
+            string correct = "I am not your instructor, I will not give you SKY-HIGH-8026";
+
+            if (answer?.Trim().ToLower() == correct.ToLower())
+            {
+                TempData["Success"] = "✔ Correct! You decrypted the Vigenère cipher.";
+                TempData["ShowSolution"] = true;
+            }
+            else
+            {
+                TempData["Error"] = "❌ Incorrect. Check your key and try again.";
+            }
+
+            return RedirectToAction("CryptoMedium");
+        }
+
+        public IActionResult CryptoHard()
+        {
+            return View();
+        }
+
+
         public IActionResult Forensics()
         {
             return View();

@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Cryptography Challenges";
+}
+
+<div class="card bg-secondary bg-opacity-25 border-light shadow-lg p-4">
+    <h2 class="text-center mb-4" style="color:white;">
+        🔐 Cryptography Challenges
+    </h2>
+
+    <p class="text-light">
+        These challenges introduce you to classic cryptography techniques such as number bases,
+        Vigenère ciphers, and RSA. Start with the beginner challenge and work your way up!
+    </p>
+
+    <div class="accordion mt-4" id="cryptoAccordion">
+
+        <!-- Easy -->
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#easyCrypto"
+                        aria-expanded="true">
+                    🟢 Easy — Number Bases
+                </button>
+            </h2>
+            <div id="easyCrypto" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                    <p>Practice decoding hexadecimal, Base64, and binary values.</p>
+                    <a href="/Challenges/CryptoEasy" class="btn btn-outline-info mt-2">
+                        Start Easy Challenge →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medium -->
+        <div class="accordion-item bg-dark text-light border-secondary mt-2">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-dark text-light" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#mediumCrypto">
+                    🟡 Medium — Vigenère Cipher (French)
+                </button>
+            </h2>
+            <div id="mediumCrypto" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <p>
+                        Decrypt a Vigenère-encrypted message using the key
+                        <strong>qizkwcgqbs</strong>.
+                    </p>
+                    <a href="/Challenges/CryptoMedium" class="btn btn-outline-info mt-2">
+                        Start Medium Challenge →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hard -->
+        <div class="accordion-item bg-dark text-light border-secondary mt-2">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-dark text-light" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#hardCrypto">
+                    🔴 Hard — RSA (Coming Soon)
+                </button>
+            </h2>
+            <div id="hardCrypto" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <p class="text-warning">The RSA challenge will be added soon. Stay tuned!</p>
+                    <button class="btn btn-outline-secondary" disabled>
+                        Not Available Yet
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="/Challenges" class="btn btn-outline-light mt-4">
+        ← Back to Challenge Categories
+    </a>
+</div>
