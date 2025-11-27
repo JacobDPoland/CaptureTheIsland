@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Networking – DNS (Easy)";
+}
+
+<h2 class="mb-3">🟢 Networking — DNS Challenge (Easy)</h2>
+
+<p>Analyze the <strong>DNS.pcap</strong> file to answer the questions below. Use Wireshark or CloudShark.</p>
+
+<a href="~/files/DNS.pcap" class="btn btn-outline-info mb-4" download>
+    ⬇ Download DNS.pcap
+</a>
+
+<hr class="border-secondary" />
+
+<h3>📘 Walk-Through</h3>
+
+<div class="accordion mb-4" id="dnsWalkthrough">
+    <div class="accordion-item bg-dark text-light">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed bg-secondary text-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#dnsWT">
+                Click to View Full Walkthrough
+            </button>
+        </h2>
+
+        <div id="dnsWT" class="accordion-collapse collapse" data-bs-parent="#dnsWalkthrough">
+            <div class="accordion-body">
+
+                <p>This challenge evaluates the user’s ability to understand a packet capture containing network traffic using the DNS protocol. Use Wireshark or, if provided, the web-based CloudShark tool to solve the challenge.</p>
+
+                <h4>Background</h4>
+                <p>
+                    The DNS (Domain Name Service) protocol enables a system that allows devices to lookup the IP address of a domain name.
+                    All of the questions and answers in this challenge are specific to the DNS protocol.
+                </p>
+
+                <h4>Guide</h4>
+                <p>Questions 1 and 2 can be solved by looking for a packet with “Standard query” in packet #4. Expand DNS in the packet details.</p>
+
+                <p>Questions 3 – 5 can be solved by looking at the “Standard query response” in packet #5.</p>
+
+                <p>Other Resources:</p>
+                <ul>
+                    <li><a href="https://www.cloudflare.com/learning/dns/what-is-dns/" target="_blank">Cloudflare – What is DNS?</a></li>
+                    <li><a href="https://aws.amazon.com/route53/what-is-dns/" target="_blank">AWS DNS Overview</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=8dWL3wF_OMw" target="_blank">CyberSkyline Live — DNS</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="border-secondary" />
+
+<h3>🧠 Questions</h3>
+
+<form method="post" asp-action="SubmitNetworkingEasy">
+
+    <div class="mb-3">
+        <label class="form-label text-light">1. What is the type of the DNS query requested?</label>
+        <input name="q1" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-light">2. What domain was requested?</label>
+        <input name="q2" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-light">3. How many items were in the response?</label>
+        <input name="q3" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-light">4. What is the TTL for all of the DNS records?</label>
+        <input name="q4" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-light">5. What is the IP address for the "welcome" subdomain?</label>
+        <input name="q5" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <button class="btn btn-outline-light w-100" type="submit">Submit Answers</button>
+</form>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success mt-3">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger mt-3">@TempData["Error"]</div>
+}
+
+<hr class="border-secondary" />
+
+<a href="/Challenges/Networking" class="btn btn-secondary me-2">⬅ Back to Networking</a>
+<a href="/Challenges/NetworkingMedium" class="btn btn-primary">Next Challenge ➡</a>
+
+<p class="mt-4 text-center text-info">Created by Mohammed Asad Khan</p>
+

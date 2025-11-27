@@ -347,6 +347,47 @@ namespace CaptureTheIsland.Controllers
             return View();
         }
 
+        public IActionResult ForensicsEasy()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult SubmitForensicsEasy(string q1, string q2, string q3, string q4)
+        {
+            // Correct answers
+            string a1 = "gpeterson@mpd.hacknet.cityinthe.cloud";
+            string a2 = "CTI-LRHX-4910";
+            string a3 = "facebook";
+            string a4 = "waffles85";
+
+            if (q1?.Trim().ToLower() == a1.ToLower() &&
+                q2?.Trim().ToUpper() == a2 &&
+                q3?.Trim().ToLower() == a3 &&
+                q4?.Trim() == a4)
+            {
+                TempData["Success"] = "✔ All answers correct! Great job.";
+            }
+            else
+            {
+                TempData["Error"] = "❌ One or more answers were incorrect. Try again!";
+            }
+
+            return RedirectToAction("ForensicsEasy");
+        }
+
+        public IActionResult ForensicsMedium()
+        {
+            return View();
+        }
+
+        public IActionResult ForensicsHard()
+        {
+            return View();
+        }
+
+
         public IActionResult OSINT()
         {
             return View();
@@ -426,9 +467,127 @@ namespace CaptureTheIsland.Controllers
             return View();
         }
 
+        public IActionResult NetworkingEasy()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult SubmitNetworkingEasy(string q1, string q2, string q3, string q4, string q5)
+        {
+            string a1 = "AXFR";
+            string a2 = "etas.com";
+            string a3 = "4";
+            string a4 = "3600";
+            string a5 = "1.1.1.1";
+
+            if (q1?.Trim().ToUpper() == a1 &&
+                q2?.Trim().ToLower() == a2 &&
+                q3?.Trim() == a3 &&
+                q4?.Trim() == a4 &&
+                q5?.Trim() == a5)
+            {
+                TempData["Success"] = "✔ All answers correct!";
+            }
+            else
+            {
+                TempData["Error"] = "❌ One or more answers were incorrect.";
+            }
+
+            return RedirectToAction("NetworkingEasy");
+        }
+
+        [HttpGet]
+        public IActionResult NetworkingMedium()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitNetworkingMedium(string q1, string q2, string q3, string q4, string q5)
+        {
+            bool correct =
+                q1?.Trim().ToLower() == "wget" &&
+                q2?.Trim().ToLower() == "nginx" &&
+                q3?.Trim() == "174.143.213.184" &&
+                q4?.Trim() == "192.168.1.140" &&
+                q5?.Trim().ToUpper() == "966007C476E0C200FBA8B28B250A6379";
+
+            if (correct)
+            {
+                TempData["Success"] = "✔ All answers correct! Great job analyzing HTTP traffic.";
+            }
+            else
+            {
+                TempData["Error"] = "❌ One or more answers are incorrect. Re-check the PCAP in Wireshark.";
+            }
+
+            return RedirectToAction("NetworkingMedium");
+        }
+
+
+        public IActionResult NetworkingHard()
+        {
+            return View();
+        }
+
+
         public IActionResult Scripting()
         {
             return View();
+        }
+
+        public IActionResult PythonEasy()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SubmitPythonEasy(string answer)
+        {
+            string correct = "mSeeeeeeee"; // your solution
+
+            if (answer != null && answer.Trim() == correct)
+            {
+                TempData["Success"] = "✔ Correct! Nice job analyzing the Python script.";
+            }
+            else
+            {
+                TempData["Error"] = "❌ Incorrect. Try reverse-engineering the script again!";
+            }
+
+            return RedirectToAction("PythonEasy");
+        }
+
+        // GET — Medium Python Challenge
+        public IActionResult PythonMedium()
+        {
+            return View();
+        }
+
+        // POST — Validate Medium Python Answer
+        [HttpPost]
+        public IActionResult SubmitPythonMedium(string answer)
+        {
+            string correct = "mysupersecretpassword";
+
+            if (answer?.Trim() == correct)
+            {
+                TempData["Success"] = "✔ Correct! Great job reversing the compiled Python logic.";
+            }
+            else
+            {
+                TempData["Error"] = "❌ Incorrect. Try reversing the shift cipher in vals.";
+            }
+
+            return RedirectToAction("PythonMedium");
+        }
+
+        public IActionResult PythonHard()
+        {
+            return View(); // Coming soon page if you want
         }
     }
 }

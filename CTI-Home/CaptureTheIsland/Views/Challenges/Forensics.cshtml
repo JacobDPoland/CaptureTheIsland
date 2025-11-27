@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Forensics Challenges";
+}
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="card bg-secondary bg-opacity-25 border-light shadow-lg mb-4">
+        <div class="card-body text-light">
+            <h2 class="text-center mb-3" style="color:white;">🔍 Forensics Challenges</h2>
+
+            <p>
+                Digital forensics challenges test your ability to recover evidence, analyze artifacts,
+                investigate hidden information, and decode what happened behind the scenes.
+            </p>
+
+            <p>
+                These tasks simulate real-world investigations including deleted files, hidden data,
+                metadata analysis, and version tracking.
+            </p>
+        </div>
+    </div>
+
+    <!-- Challenge Levels -->
+    <div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
+        <div class="card-body">
+
+            <h3 class="text-center mb-4" style="color:white;">Choose a Difficulty</h3>
+
+            <div class="list-group">
+
+                <!-- EASY -->
+                <a href="/Challenges/ForensicsEasy" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>🟢 Easy — Version Control</strong>
+                    <br />
+                    Recover hidden or overwritten information in versioned files.
+                </a>
+
+                <!-- MEDIUM -->
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-light disabled">
+                    <strong>🟡 Medium — Coming Soon</strong>
+                </a>
+
+                <!-- HARD -->
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-light disabled">
+                    <strong>🔴 Hard — Coming Soon</strong>
+                </a>
+
+            </div>
+
+            <!-- Back button -->
+            <div class="mt-4 text-center">
+                <a href="/Challenges" class="btn btn-outline-light">⬅ Back to Challenges</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>

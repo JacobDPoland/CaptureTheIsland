@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Networking – HTTP (Medium)";
+}
+
+<h2 class="mb-3">🟡 Networking — HTTP Traffic Analysis (Medium)</h2>
+
+<p>Analyze the <strong>HTTP2.pcap</strong> file to answer the questions below. Use Wireshark or CloudShark.</p>
+
+<a href="~/files/HTTP2.pcap" class="btn btn-outline-info mb-4" download>
+    ⬇ Download HTTP2.pcap
+</a>
+
+<hr class="border-secondary" />
+
+<h3>📘 Walk-Through</h3>
+
+<div class="accordion mb-4" id="httpWalkthrough">
+    <div class="accordion-item bg-dark text-light">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed bg-secondary text-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#httpWT">
+                Click to View Full Walkthrough
+            </button>
+        </h2>
+
+        <div id="httpWT" class="accordion-collapse collapse" data-bs-parent="#httpWalkthrough">
+            <div class="accordion-body">
+
+                <p>This challenge evaluates the user's ability to understand HTTP communication inside a packet capture.</p>
+
+                <p>Use Wireshark or CloudShark to inspect the packets. HTTP is a clear-text, request–response protocol that runs over TCP.</p>
+
+                <h4>Guide</h4>
+                <p>To find the answers:</p>
+
+                <ul>
+                    <li><strong>Question 1:</strong> Look at the User-Agent or method in the GET request. It shows the tool used to download the file.</li>
+                    <li><strong>Question 2:</strong> Inspect the HTTP response headers to find the <code>Server:</code> value.</li>
+                    <li><strong>Question 3:</strong> Check the destination IP of the GET request.</li>
+                    <li><strong>Question 4:</strong> Check the source IP of the GET request.</li>
+                    <li>
+                        <strong>Question 5:</strong> Reassemble the downloaded file and run:
+                        <pre>md5sum filename</pre>
+                    </li>
+                </ul>
+
+                <p>Useful Resources:</p>
+
+                <ul>
+                    <li><a href="https://www.cloudflare.com/learning/ddos/glossary/hypertext-transfer-protocol-http/" target="_blank">What is HTTP?</a></li>
+                    <li><a href="https://www.wireshark.org/docs/" target="_blank">Wireshark Documentation</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="border-secondary" />
+
+<h3>🧠 Questions</h3>
+
+<form method="post" asp-action="SubmitNetworkingMedium">
+
+    <div class="mb-3">
+        <label class="form-label text-light">1. What Linux tool was used to execute the file download?</label>
+        <input name="q1" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-light">2. What is the name of the web server software that handled the request?</label>
+        <input name="q2" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-light">3. What is the IP address of the server?</label>
+        <input name="q3" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-light">4. What IP address initiated the request?</label>
+        <input name="q4" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-light">5. What is the MD5 sum of the downloaded file?</label>
+        <input name="q5" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <button class="btn btn-outline-light w-100" type="submit">Submit Answers</button>
+</form>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success mt-3">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger mt-3">@TempData["Error"]</div>
+}
+
+<hr class="border-secondary" />
+
+<a href="/Challenges/NetworkingEasy" class="btn btn-secondary me-2">⬅ Back to Easy</a>
+<a href="/Challenges/NetworkingHard" class="btn btn-primary">Next Challenge ➡</a>
+
+<p class="mt-4 text-center text-info">Created by Mohammed Asad Khan</p>

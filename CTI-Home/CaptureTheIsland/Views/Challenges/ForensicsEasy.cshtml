@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Forensics – Version Control (Easy)";
+}
+
+<h2 class="mb-3">🔍 Forensics – Version Control (Easy)</h2>
+
+<p>
+    One of our employee's computers was compromised and we saw this backup file leave the network,
+    but we couldn't find anything inside except a simple <strong>README.md</strong>.
+    Use your forensic skills to determine what was stolen.
+</p>
+
+<!-- Download Button -->
+<a href="~/files/CTI_git_challenge.zip" class="btn btn-outline-info mb-4" download>
+    ⬇ Download git_backup.zip
+</a>
+
+<hr class="border-secondary" />
+
+<h3>📝 Walk-Through</h3>
+
+<div class="accordion mb-4" id="walkthrough">
+    <div class="accordion-item bg-dark text-light">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed bg-secondary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#wt1">
+                Click to View Full Walkthrough
+            </button>
+        </h2>
+        <div id="wt1" class="accordion-collapse collapse" data-bs-parent="#walkthrough">
+            <div class="accordion-body">
+
+                <p>
+                    This challenge involves using git version control. Once you’ve downloaded the git_backup.zip file, you can unzip the directory using your favorite tool.
+                    You can unzip using Linux command line utility called <strong>unzip</strong> like this:
+                </p>
+
+<pre>unzip git_backup.zip</pre>
+
+                <p>
+                    Once unzipped and inside the <strong>git_backup</strong> directory, you will see only a README.md — nothing interesting.
+                    But if we use <strong>ls -a</strong>, we see more:
+                </p>
+
+                <img src="~/img/forensics/git_hidden.png" class="img-fluid mb-3" />
+
+                <p>
+                    The presence of the <strong>.git</strong> folder means this is a Git repository.
+                    We can query the commit history:
+                </p>
+
+<pre>git log</pre>
+
+                <img src="~/img/forensics/git_log.png" class="img-fluid mb-3" />
+
+                <p>
+                    We see commits from a user named <strong>Greg Peterson</strong> (and his email).
+                    Each commit has a SHA1 hash. We can view individual commits like this:
+                </p>
+
+<pre>git show 438fa54ba62144ad84376635d957e5e73d89066e</pre>
+
+                <img src="~/img/forensics/git_flag.png" class="img-fluid mb-3" />
+
+                <p>
+                    The output shows that a <strong>FLAG.txt</strong> file was added in this commit. The next commit removes it.
+                    To see if more information exists, check all branches:
+                </p>
+
+<pre>git branch</pre>
+
+                <img src="~/img/forensics/git_branch.png" class="img-fluid mb-3" />
+
+                <p>
+                    We see another branch named <strong>next</strong>.
+                    Switch to it:
+                </p>
+
+<pre>git checkout next</pre>
+
+                <img src="~/img/forensics/git_next.png" class="img-fluid mb-3" />
+
+                <p>
+                    Inside this branch, we find a <strong>passwords.txt</strong> file.
+                    It contains additional compromised credentials.
+                </p>
+
+                <p><strong>This is all the data needed to answer the challenge questions.</strong></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="border-secondary" />
+
+<h3>🧠 Questions</h3>
+
+<!-- Question 1 -->
+<form method="post" asp-action="SubmitForensicsEasy" class="mb-4">
+    <div class="mb-3">
+        <label class="form-label text-light">1. What is the email address of the employee who was compromised?</label>
+        <input type="text" name="q1" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-light">2. What flag was compromised?</label>
+        <input type="text" name="q2" class="form-control bg-dark text-light border-secondary" placeholder="CTI-XXXX-1234" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-light">3. What service provider had additional compromised credentials?</label>
+        <input type="text" name="q3" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label text-light">4. What was the password for that compromised account?</label>
+        <input type="text" name="q4" class="form-control bg-dark text-light border-secondary" />
+    </div>
+
+    <button type="submit" class="btn btn-outline-light w-100">Submit Answers</button>
+</form>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<hr class="border-secondary" />
+
+<a href="/Challenges/Forensics" class="btn btn-secondary me-2">⬅ Back to Forensics</a>
+<a href="/Challenges/ForensicsMedium" class="btn btn-primary">Next Challenge ➡</a>
+
+<p class="mt-4 text-center text-info">Created by Mohammed Asad Khan</p>
