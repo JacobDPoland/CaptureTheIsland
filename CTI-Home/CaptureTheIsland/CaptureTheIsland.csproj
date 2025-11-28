@@ -7,7 +7,14 @@
     <AssemblyName>CaptureTheIsland</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Views\NewFolder1\**" />
+    <Content Remove="Views\NewFolder1\**" />
+    <EmbeddedResource Remove="Views\NewFolder1\**" />
+    <None Remove="Views\NewFolder1\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Remove="Views\Shared\Index.cshtml" />
+    <Content Remove="wwwroot\images\Mohammed.JPG" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.22" />
