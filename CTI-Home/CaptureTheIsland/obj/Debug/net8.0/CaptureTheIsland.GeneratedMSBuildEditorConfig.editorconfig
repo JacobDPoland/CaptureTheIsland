@@ -17,189 +17,189 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CaptureTheIsland
 build_property.RootNamespace = CaptureTheIsland
-build_property.ProjectDir = C:\Users\david\source\repos\JacobDPoland\CaptureTheIsland\CTI-Home\CaptureTheIsland\
+build_property.ProjectDir = C:\Users\moham\Documents\GitHub\CaptureTheIsland\CTI-Home\CaptureTheIsland\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\david\source\repos\JacobDPoland\CaptureTheIsland\CTI-Home\CaptureTheIsland
+build_property.MSBuildProjectDirectory = C:\Users\moham\Documents\GitHub\CaptureTheIsland\CTI-Home\CaptureTheIsland
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Account/Login.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Account/Register.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/ApacheAccessSleuth.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/ApacheAccessSleuth.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xBcGFjaGVBY2Nlc3NTbGV1dGguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/CipherWarmup.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/CipherWarmup.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xDaXBoZXJXYXJtdXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/CryptoEasy.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/CryptoEasy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xDcnlwdG9FYXN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Cryptography.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Cryptography.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xDcnlwdG9ncmFwaHkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/CryptoHard.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/CryptoHard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xDcnlwdG9IYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/CryptoMedium.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/CryptoMedium.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xDcnlwdG9NZWRpdW0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Forensics.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Forensics.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xGb3JlbnNpY3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/ForensicsEasy.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/ForensicsEasy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xGb3JlbnNpY3NFYXN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/ForensicsHard.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/ForensicsHard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xGb3JlbnNpY3NIYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/ForensicsMedium.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/ForensicsMedium.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xGb3JlbnNpY3NNZWRpdW0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/HashStretch.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/HashStretch.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xIYXNoU3RyZXRjaC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Index.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/KaliShadow.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/KaliShadow.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xLYWxpU2hhZG93LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/LogAnalysis.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/LogAnalysis.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xMb2dBbmFseXNpcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/LogEasy.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/LogEasy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xMb2dFYXN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/LogHard.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/LogHard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xMb2dIYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/LogMedium.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/LogMedium.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xMb2dNZWRpdW0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Networking.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Networking.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xOZXR3b3JraW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/NetworkingEasy.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/NetworkingEasy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xOZXR3b3JraW5nRWFzeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/NetworkingHard.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/NetworkingHard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xOZXR3b3JraW5nSGFyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/NetworkingMedium.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/NetworkingMedium.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xOZXR3b3JraW5nTWVkaXVtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/OSINT.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/OSINT.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xPU0lOVC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/OSINT_Easy.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/OSINT_Easy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xPU0lOVF9FYXN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/OSINT_Hard.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/OSINT_Hard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xPU0lOVF9IYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/OSINT_Medium.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/OSINT_Medium.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xPU0lOVF9NZWRpdW0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/PasswordCracking.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/PasswordCracking.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xQYXNzd29yZENyYWNraW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/PngOddities.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/PngOddities.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xQbmdPZGRpdGllcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/PythonEasy.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/PythonEasy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xQeXRob25FYXN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/PythonHard.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/PythonHard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xQeXRob25IYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/PythonMedium.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/PythonMedium.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xQeXRob25NZWRpdW0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/RockYou.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/RockYou.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xSb2NrWW91LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Sample.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Sample.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xTYW1wbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Scripting.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/Scripting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xTY3JpcHRpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/WindowsHashes.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Challenges/WindowsHashes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbGxlbmdlc1xXaW5kb3dzSGFzaGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Home/About.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Home/Index.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Resource/Delete.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Resource/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzb3VyY2VcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Resource/Edit.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Resource/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzb3VyY2VcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Shared/_Layout.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/_ViewImports.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/source/repos/JacobDPoland/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/_ViewStart.cshtml]
+[C:/Users/moham/Documents/GitHub/CaptureTheIsland/CTI-Home/CaptureTheIsland/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
