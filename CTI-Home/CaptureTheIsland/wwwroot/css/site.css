@@ -82,3 +82,100 @@ input[type="password"],
 h2 {
     color: #ffffff !important;
 }
+
+/* Visible only when focused: keyboard "skip to main" link */
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    padding: 0.5rem 1rem;
+    background-color: var(--bg);
+    color: var(--fg);
+    z-index: 1000;
+}
+
+    .skip-link:focus {
+        left: 0.5rem;
+        top: 0.5rem;
+    }
+
+/* High-contrast black and white mode */
+body.hc {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+    /* Make common UI elements high-contrast in this mode */
+    body.hc .navbar,
+    body.hc .card,
+    body.hc .table,
+    body.hc .btn,
+    body.hc .nav-link,
+    body.hc footer,
+    body.hc header {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border-color: #ffffff !important;
+    }
+    /* High-contrast black & white mode */
+    body.hc,
+    body.hc.bg-dark,
+    body.hc.text-light {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        /* Make EVERYTHING black/white and boost contrast */
+        filter: grayscale(100%) contrast(1.4);
+    }
+
+        /* Navbar & header in high contrast */
+        body.hc header,
+        body.hc .navbar,
+        body.hc .navbar.bg-dark {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border-color: #ffffff !important;
+        }
+
+        /* Footer */
+        body.hc footer {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border-color: #ffffff !important;
+        }
+
+        /* Buttons & nav links */
+        body.hc .btn,
+        body.hc .nav-link {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border-color: #ffffff !important;
+        }
+
+        /* Tables */
+        body.hc .table,
+        body.hc .table.table-dark {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border-color: #ffffff !important;
+        }
+
+        /* Links readable in high contrast */
+        body.hc a {
+            color: #ffffff !important;
+            text-decoration: underline;
+        }
+
+        /* Form fields */
+        body.hc .form-control,
+        body.hc input.form-control,
+        body.hc input[type="email"],
+        body.hc input[type="password"] {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border-color: #ffffff !important;
+        }
+
+            body.hc .form-control::placeholder,
+            body.hc input.form-control::placeholder {
+                color: #dddddd !important;
+            }
