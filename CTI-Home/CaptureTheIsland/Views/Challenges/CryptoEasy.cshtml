@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Easy Cryptography — Number Bases";
+}
+
+<div class="card bg-secondary bg-opacity-25 border-light shadow-lg p-4">
+    <h2 class="text-center mb-4" style="color:white;">
+        🟢 Easy — Number Bases
+    </h2>
+
+    <p class="text-light">
+        Decode each of the following encoded values. They are encoded using Hexadecimal,
+        Base64, and Binary representations. Enter the plaintext words you discover.
+    </p>
+
+    <!-- Encoded Values -->
+    <div class="mt-3">
+        <p><strong>1. Hexadecimal:</strong> <code>0x73636f7270696f6e</code></p>
+
+        <form asp-action="SubmitCryptoEasy" method="post">
+            <input name="hexAnswer" class="form-control mb-3" placeholder="Enter plaintext word" />
+
+            <p><strong>2. Base64:</strong> <code>c2NyaWJibGU=</code></p>
+            <input name="b64Answer" class="form-control mb-3" placeholder="Enter plaintext word" />
+
+            <p><strong>3. Binary:</strong></p>
+            <code>01110011 01100101 01100011 01110101 01110010 01100101 01101100 01111001</code>
+            <input name="binAnswer" class="form-control mt-2 mb-3" placeholder="Enter plaintext word" />
+
+            <p><strong>4. Binary (Large):</strong></p>
+            <code>
+                01100010 01000111 00111001 01110011 01100010 01000111 01101100 01110111
+                01100010 00110011 01000001 00111101
+            </code>
+            <input name="bigBinAnswer" class="form-control mt-2 mb-3" placeholder="Enter plaintext word" />
+
+            <button type="submit" class="btn btn-primary mt-3">Submit Answers</button>
+        </form>
+
+        <!-- Success / Error Alerts -->
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success mt-4">@TempData["Success"]</div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger mt-4">@TempData["Error"]</div>
+        }
+    </div>
+
+    <!-- Hints Accordion -->
+    <div class="accordion mt-4" id="hintsAccordion">
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light collapsed"
+                        type="button" data-bs-toggle="collapse"
+                        data-bs-target="#hint1">
+                    Need a hint?
+                </button>
+            </h2>
+            <div id="hint1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    • Hex values can be decoded using an online hex-to-text tool.<br />
+                    • Base64 can be decoded using CyberChef or dCode.<br />
+                    • Binary can be converted by grouping into 8 bits per character.<br />
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary mt-2">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light collapsed"
+                        type="button" data-bs-toggle="collapse"
+                        data-bs-target="#hint2">
+                    Stuck? View walk-through tips.
+                </button>
+            </h2>
+            <div id="hint2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <p>Useful tools:</p>
+                    <ul>
+                        <li><a href="https://gchq.github.io/CyberChef/" target="_blank">CyberChef</a></li>
+                        <li><a href="https://www.dcode.fr" target="_blank">dCode</a></li>
+                    </ul>
+                    <p>
+                        CyberChef Recipe example:
+                        <code>From Base64 → UTF-8</code>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between mt-4">
+        <a href="/Challenges/Cryptography" class="btn btn-outline-light">
+            ← Back to Cryptography
+        </a>
+
+        <a href="/Challenges/CryptoMedium" class="btn btn-outline-info">
+            Next Challenge →
+        </a>
+    </div>
+</div>
+

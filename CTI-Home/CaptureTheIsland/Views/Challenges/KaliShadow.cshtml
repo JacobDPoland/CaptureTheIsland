@@ -1,0 +1,197 @@
+﻿@{
+    ViewData["Title"] = "Kali Linux Shadow (yescrypt)";
+}
+
+<div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
+    <div class="card-body text-light">
+        <h2 class="mb-3">Hard — Kali Linux /etc/shadow (yescrypt)</h2>
+
+        <p>
+            Below is a snippet of <code>/etc/shadow</code> from a Kali Linux machine.
+            Your mission is to analyze it and answer the questions about the only user account
+            that has a password set.
+        </p>
+
+        <pre class="small">
+daemon:*:17955:0:99999:7:::
+bin:*:17955:0:99999:7:::
+sys:*:17955:0:99999:7:::
+sync:*:17955:0:99999:7:::
+games:*:17955:0:99999:7:::
+man:*:17955:0:99999:7:::
+lp:*:17955:0:99999:7:::
+mail:*:17955:0:99999:7:::
+...
+redis:*:18766:0:99999:7:::
+hollie:$y$j9T$/WzixhAsn8sdXhCquYzh01$KZlio78LilItobsx/17ecFf1e2SbsduhP1sZEWuHrL4:18934:0:99999:7:::
+        </pre>
+
+        <p class="mt-3">
+            Answer the following questions about this account.
+        </p>
+
+        <form asp-action="SubmitKaliShadow" method="post" class="mt-3">
+
+            <div class="mb-3">
+                <label class="form-label">1. Username of the only user account with a password</label>
+                <input name="username" class="form-control bg-dark text-light border-secondary" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">2. On what date was the user's password last changed? (YYYY-MM-DD)</label>
+                <input name="date" class="form-control bg-dark text-light border-secondary" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">3. What is the salt used to secure the user's password?</label>
+                <input name="salt" class="form-control bg-dark text-light border-secondary" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">4. What is the hash digest of the user's password?</label>
+                <input name="digest" class="form-control bg-dark text-light border-secondary" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">5. What is the plaintext password of the user's password?</label>
+                <input name="plaintext" class="form-control bg-dark text-light border-secondary" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Answers</button>
+        </form>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success mt-3">@TempData["Success"]</div>
+
+            <div class="mt-3">
+                <h5>Correct Answers</h5>
+                <ul>
+                    <li>Username → <code>@TempData["U"]</code></li>
+                    <li>Password last changed → <code>@TempData["D"]</code></li>
+                    <li>Salt → <code>@TempData["S"]</code></li>
+                    <li>Hash digest → <code>@TempData["H"]</code></li>
+                    <li>Plaintext password → <code>@TempData["P"]</code></li>
+                </ul>
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger mt-3">@TempData["Error"]</div>
+        }
+
+        <hr class="border-secondary mt-4" />
+
+        <!-- Hints / Walkthrough -->
+        <div class="accordion mt-3" id="kaliHints">
+            <div class="accordion-item bg-dark text-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-secondary text-light" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#kaliHint1">
+                        Need a hint?
+                    </button>
+                </h2>
+                <div id="kaliHint1" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        Look for the only line whose second field is <em>not</em> blank or <code>*</code>/<code>!</code>.
+                        That line contains the yescrypt hash you're interested in.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item bg-dark text-light mt-2">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-secondary text-light" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#kaliWalkthrough">
+                        Stuck? View Full Walk-Through
+                    </button>
+                </h2>
+
+                <div id="kaliWalkthrough" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+
+                        <h5 class="text-info">Walk-Through</h5>
+
+                        <p>
+                            This challenge involves cracking a Kali Linux password that uses the
+                            <strong>yescrypt</strong> password hashing function. At the time of writing,
+                            <strong>yescrypt is NOT supported</strong> by Hashcat or John the Ripper in normal modes.
+                        </p>
+
+                        <p>
+                            However — if you run <strong>John</strong> on a system that natively uses yescrypt
+                            (such as Kali Linux), you can still crack yescrypt hashes using:
+                        </p>
+
+                        <pre><code>john --format=crypt passwords.txt</code></pre>
+
+                        <p>
+                            John uses the system’s native Unix password crypt implementation when
+                            <code>--format=crypt</code> is used. This allows it to crack yescrypt hashes,
+                            <strong>but only when running on a system that supports yescrypt</strong>.
+                        </p>
+
+                        <p class="mt-3">
+                            You may add a wordlist (slower):
+                        </p>
+
+                        <pre><code>john --format=crypt --wordlist=/usr/share/wordlists/rockyou.txt passwords.txt</code></pre>
+
+                        <p>
+                            But cracking works much faster without specifying a wordlist.
+                        </p>
+
+                        <hr />
+
+                        <h5 class="text-info">Questions</h5>
+
+                        <p>
+                            <strong>1. What is the username of the only user account with a password?</strong><br />
+                            Look at the only entry whose second field is NOT blank. This is the user with a password hash.
+                        </p>
+
+                        <p>
+                            <strong>2. On what date was the user’s password last changed?</strong><br />
+                            The third field contains the number of days since <em>January 1, 1970</em>.
+                            You can convert this using an online Epoch converter.
+                        </p>
+
+                        <p>
+                            <strong>3. What is the salt used to secure the user's password?</strong><br />
+                            The salt in a yescrypt hash appears between <code>$</code> symbols after the parameters block.
+                        </p>
+
+                        <p>
+                            <strong>4. What is the hash digest of the user's password?</strong><br />
+                            This appears after the salt in the final section of the hash.
+                        </p>
+
+                        <p>
+                            <strong>5. What is the plaintext password of the user?</strong><br />
+                            Run John on Kali Linux using <code>--format=crypt</code> to crack the password.
+                        </p>
+
+                        <hr />
+
+                        <p class="text-warning">
+                            ⚠ Reminder: This challenge MUST be solved on a system that uses yescrypt natively (e.g. Kali Linux),
+                            otherwise John will fail to crack the hash.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-between">
+
+                <!-- Back to Password Cracking -->
+                <a href="/Challenges/PasswordCracking" class="btn btn-outline-light">
+                    ⬅ Back to Password Cracking
+                </a>
+
+                <!-- Next Challenge -->
+                <a href="/Challenges/LogAnalysis" class="btn btn-primary float-end">
+                    Next Challenge →
+                </a>
+
+            </div>

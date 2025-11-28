@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Log Analysis Challenges";
+}
+
+<div class="container mt-4">
+
+    <div class="card bg-secondary bg-opacity-25 border-light shadow-lg mb-4">
+        <div class="card-body text-light">
+            <h2 class="text-center mb-3" style="color:white;">🔍 Log Analysis Challenges</h2>
+
+            <p class="mb-4">
+                Analyze real system and web server logs to uncover suspicious activity, detect attacks,
+                and piece together what happened. Choose a difficulty level below:
+            </p>
+
+            <div class="list-group">
+
+                <!-- Easy -->
+                <a href="/Challenges/LogEasy" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>🟩 Easy — Apache Log Basics</strong>
+                </a>
+
+                <!-- Medium -->
+                <a href="/Challenges/LogMedium" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>🟧 Medium — SSH Brute-Force Detection</strong>
+                </a>
+
+                <!-- Hard -->
+                <a href="/Challenges/LogHard" class="list-group-item list-group-item-action bg-dark text-light">
+                    <strong>🟥 Hard — Incident Timeline Reconstruction</strong>
+                </a>
+
+            </div>
+
+            <a href="/Challenges" class="btn btn-outline-light mt-4">← Back to Challenge Categories</a>
+
+        </div>
+    </div>
+</div>
+

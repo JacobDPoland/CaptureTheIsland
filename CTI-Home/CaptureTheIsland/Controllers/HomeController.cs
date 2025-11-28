@@ -28,5 +28,21 @@ namespace CaptureTheIsland.Controllers
             };
             return View(vm);
         }
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        // ⭐ TEAM PAGE
+        public IActionResult Team()
+        {
+            return View();
+        }
+
+        // ⭐ CONTACT PAGE
+        public IActionResult Contact()
+        {
+            return View();
+        }
     }
 }

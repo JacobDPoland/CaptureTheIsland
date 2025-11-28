@@ -1,0 +1,31 @@
+﻿<h2>Apache Access Sleuth</h2>
+
+<p>
+    Analyze the logs below to find the hidden flag.
+    <strong>Remember: include the full filename AND extension (example: <code>example.txt</code>)</strong>.
+</p>
+
+<pre>
+192.168.1.10 - - [24/Nov/2025:14:10:23 -0600] "GET /index.html HTTP/1.1" 200 1043
+192.168.1.11 - - [24/Nov/2025:14:12:01 -0600] "POST /login.php HTTP/1.1" 401 560
+10.0.0.5     - - [24/Nov/2025:14:15:42 -0600] "GET /secret/config.php.bak HTTP/1.1" 200 874
+192.168.1.10 - - [24/Nov/2025:14:20:15 -0600] "GET /Cool_script.txt HTTP/1.1" 200 42
+172.16.0.7   - - [24/Nov/2025:14:25:01 -0600] "GET /evil_script.sh HTTP/1.1" 404 199
+</pre>
+
+<form asp-action="SubmitApacheAccessSleuth" method="post" class="mt-3">
+    <input name="flag" class="form-control" placeholder="Enter full filename (e.g., evil_script.sh)" />
+    <button type="submit" class="btn btn-primary mt-2">Submit Flag</button>
+</form>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success mt-3">@TempData["Message"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger mt-3">@TempData["Error"]</div>
+}
+
+<a href="/Challenges/HashStretch" class="btn btn-secondary mt-4">Next Challenge → Hash Stretch</a>

@@ -83,6 +83,41 @@ h2 {
     color: #ffffff !important;
 }
 
+/* --- Resource table action buttons --- */
+/* --- Resource table action buttons --- */
+.resource-btn {
+    display: inline-block;
+    width: 85px; /* fixed width for perfect alignment */
+    padding: 6px 0;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+    .resource-btn.edit {
+        border: 2px solid #f5d742; /* gold border */
+    }
+
+    .resource-btn.delete {
+        border: 2px solid #d9534f; /* red border */
+    }
+
+    .resource-btn:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+.team-photo {
+    width: 100%;
+    height: 300px; /* uniform height for all images */
+    object-fit: cover; /* crops instead of stretching */
+    object-position: center;
+    border-bottom: 1px solid #0dcaf0; /* keeps your colored borders */
+}
+}
+
 /* Visible only when focused: keyboard "skip to main" link */
 .skip-link {
     position: absolute;

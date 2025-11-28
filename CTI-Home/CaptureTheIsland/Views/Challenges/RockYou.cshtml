@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "RockYou Hash Cracking";
+}
+
+<div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
+    <div class="card-body text-light">
+        <h2 class="mb-3">Easy — RockYou Hash Cracking</h2>
+
+        <p>
+            Below are three MD5 hashes. Each came from a weak password that appears in the
+            famous <code>rockyou.txt</code> wordlist. Your goal is to recover the plaintext
+            for each hash.
+        </p>
+
+        <div class="table-responsive mb-3">
+            <table class="table table-dark table-striped table-bordered align-middle">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>MD5 Hash</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><code>68a96446a5afb4ab69a2d15091771e39</code></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><code>ec5f0b1826389df8622133014e88afde</code></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><code>2233287f476ba63323e60addca1f6b64</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <form asp-action="SubmitRockYou" method="post" class="mt-3">
+            <div class="mb-3">
+                <label class="form-label">Plaintext for Hash #1</label>
+                <input name="hash1" class="form-control bg-dark text-light border-secondary" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Plaintext for Hash #2</label>
+                <input name="hash2" class="form-control bg-dark text-light border-secondary" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Plaintext for Hash #3</label>
+                <input name="hash3" class="form-control bg-dark text-light border-secondary" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Answers</button>
+        </form>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success mt-3">@TempData["Success"]</div>
+
+            <div class="mt-3">
+                <h5>Correct Plaintexts</h5>
+                <ul>
+                    <li>Hash #1 → <code>@TempData["Answer1"]</code></li>
+                    <li>Hash #2 → <code>@TempData["Answer2"]</code></li>
+                    <li>Hash #3 → <code>@TempData["Answer3"]</code></li>
+                </ul>
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger mt-3">@TempData["Error"]</div>
+        }
+
+        <hr class="border-secondary mt-4" />
+
+        <!-- Hints Accordion -->
+        <div class="accordion mt-3" id="rockyouHints">
+            <div class="accordion-item bg-dark text-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-secondary text-light" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#ryHint1">
+                        Need a hint?
+                    </button>
+                </h2>
+                <div id="ryHint1" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        Put the hashes in a file (e.g., <code>hashes.txt</code>) and use tools like
+                        <code>hashcat</code> or <code>john</code> with the <code>rockyou.txt</code> wordlist.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item bg-dark text-light mt-2">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-secondary text-light" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#ryHint2">
+                        Still stuck? Show example commands.
+                    </button>
+                </h2>
+                <div id="ryHint2" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <p>Example with <strong>hashcat</strong> (mode 0 = MD5):</p>
+                        <pre>hashcat -m 0 -a 0 hashes.txt /usr/share/wordlists/rockyou.txt</pre>
+                        <p>Example with <strong>john</strong>:</p>
+                        <pre>john --wordlist=/usr/share/wordlists/rockyou.txt hashes.txt</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="/Challenges/PasswordCracking" class="btn btn-secondary mt-4">← Back to Password Cracking</a>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+
+<div class="container text-light">
+
+    <!-- ⭐ HERO TITLE -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold display-4">About Our Project</h1>
+        <p class="lead text-secondary">
+            A Capture-the-Flag (CTF) training platform built for our Internet Programming course (COSC 3351).
+        </p>
+    </div>
+
+    <!-- ⭐ PROJECT DESCRIPTION -->
+    <div class="bg-secondary bg-opacity-10 p-4 rounded border border-secondary mb-5">
+        <h3 class="fw-bold mb-3">📘 Project Background</h3>
+        <p>
+            This project was developed as part of our <strong>Internet Programming (COSC 3351)</strong> class.
+            It was inspired by the National Cyber League (NCL), where both Mohammed and Jacob
+            competed. Mohammed's team placed <strong>19th in the nation</strong>, which heavily motivated
+            the idea of creating a beginner-friendly CTF platform that teaches cybersecurity skills in
+            a hands-on, interactive way.
+        </p>
+
+        <p>
+            Our goal was to build a complete web-based environment where new cybersecurity
+            students can practice solving real challenges involving cryptography, OSINT, password
+            cracking, networking, scripting, and more.
+        </p>
+    </div>
+
+    <!-- ⭐ TEAM SECTION -->
+    <h2 class="fw-bold text-center mb-4">👥 Meet the Team</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+
+        <!-- ⭐ Mohammed -->
+        <div class="col">
+            <div class="card h-100 bg-dark border border-info text-light">
+                <img src="~/images/Mohammed.png" class="team-photo" alt="Mohammed photo" />
+                <div class="card-body">
+                    <h4 class="card-title text-info fw-bold">Mohammed Asad Khan</h4>
+                    <h6 class="text-warning">Lead Programmer & Challenge Architect</h6>
+
+                    <p class="card-text mt-3">
+                        Built the core backend logic, created most of the CTF challenges,
+                        designed the technical architecture, and implemented the main features
+                        of Capture The Island.
+                    </p>
+
+                    <!-- ⭐ Added detailed bio -->
+                    <p class="card-text">
+                        Mohammed is a sophomore Cybersecurity student at TAMU-CC.
+                        He plans to work as a penetration tester and red-team operator after graduating.
+                        He enjoys learning hacking techniques, solving CTFs, and studying offensive security.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ⭐ Jacob -->
+        <div class="col">
+            <div class="card h-100 d-flex flex-column bg-dark border border-primary text-light">
+                <img src="~/images/Jacob.png"
+                     alt="Jacob photo"
+                     style="width:100%; height:380px; object-fit:cover; object-position:center; border-bottom:1px solid rgba(255,255,255,0.15);" />
+                <div class="card-body">
+                    <h4 class="card-title text-primary fw-bold">Jacob Poland</h4>
+                    <h6 class="text-warning">Team Leader</h6>
+
+                    <p class="card-text mt-3">
+                        Organized team roles, structured the project vision, reviewed challenge
+                        designs, and ensured the final product aligned with course requirements.
+                    </p>
+
+                    <!-- ⭐ Added new bio info below while keeping your original text -->
+                    <p class="card-text">
+                        Jacob is a senior at TAMU-CC studying Computer Science with an emphasis in Cybersecurity.
+                        He enjoys all things nerdy and is looking to begin a career in application security,
+                        network security, and/or penetration testing.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ⭐ David -->
+        <div class="col">
+            <div class="card h-100 bg-dark border border-primary text-light">
+                <img src="~/images/David.png"
+                     alt="David photo"
+                     style="width:100%; height:380px; object-fit:cover; object-position:center; border-bottom:1px solid rgba(255,255,255,0.15);" />
+                <div class="card-body">
+                    <h4 class="card-title text-primary fw-bold">David Valle</h4>
+                    <h6 class="text-warning">Database Administrator</h6>
+
+                    <p class="card-text mt-3">
+                        Managed database structure, ensured data integrity, and maintained backend
+                        resource integration across the site.
+                    </p>
+
+                    <!-- ⭐ Added detailed bio -->
+                    <p class="card-text">
+                        David is 27 and studying Cybersecurity at TAMU-CC as a transfer student.
+                        He previously graduated from Del Mar College with an AAS degree.
+                        After graduation, he plans to start his own IT firm.
+                        Outside of cybersecurity, he enjoys DM’ing tabletop RPGs.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ⭐ Julien -->
+        <div class="col">
+            <div class="card h-100 bg-dark border border-danger text-light">
+                <img src="~/images/" class="card-img-top border-bottom border-danger" alt="Julien photo" />
+                <div class="card-body">
+                    <h4 class="card-title text-danger fw-bold">Julien Beletic</h4>
+                    <h6 class="text-warning">Software Engineer</h6>
+                    <p class="card-text mt-3">
+                        Developed UI components, improved user experience, and assisted in
+                        implementing front-end features and design consistency across the platform.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

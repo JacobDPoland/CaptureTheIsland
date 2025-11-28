@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "Python 1 — Easy Scripting";
+}
+
+<h2>🐍 Python 1 — Easy</h2>
+
+<p>
+    We have created a simple Python script for you to break into as training.
+    See if you can figure out a password that will authenticate with the program.
+</p>
+
+<!-- DOWNLOAD PYTHON FILE -->
+<a class="btn btn-outline-info mb-3"
+   href="/files/PYTHON1.py"
+   download>
+    ⬇ Download PYTHON1.py
+</a>
+
+<h4>Tutorial Video</h4>
+<p><i>(Add your video here later)</i></p>
+
+<hr />
+
+<h3>Walk-Through</h3>
+
+<p>
+    This challenge involves analyzing vulnerabilities in a poorly implemented password verification function.
+</p>
+
+<pre class="bg-dark text-light p-3 rounded">
+#!/usr/bin/python
+
+import sys
+
+def main():
+  if len(sys.argv) != 2:
+    print("Invalid args")
+    return
+  password = sys.argv[1]
+  builder = 0
+  for c in password:
+    builder += ord(c)
+  if builder == 1000 and len(password) == 10 and ord(password[1]) == 83:
+    print("correct")
+  else:
+    print("incorrect")
+
+if __name__ == "__main__":
+  main()
+</pre>
+
+<p>
+    Question 1 can be solved by hand by calculating the totals for the ASCII
+    character codes in the input. This process can be aided with some code.
+    Below is a solution created with JavaScript (example from the original challenge).
+</p>
+
+<img src="/files/python1-solver-example.png"
+     class="img-fluid rounded mb-3"
+     alt="JS solver example" />
+
+<hr />
+
+<h3>Question</h3>
+
+<p><strong>What is an input to this program that will result in a correct validation?</strong></p>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<form method="post" asp-action="SubmitPythonEasy">
+    <input name="answer" class="form-control mb-2" placeholder="Enter the secret key..." />
+    <button type="submit" class="btn btn-primary">Submit Answer</button>
+</form>
+
+<hr />
+
+<!-- NAV BUTTONS -->
+<div class="mt-4 d-flex justify-content-between">
+    <a href="/Challenges/Scripting" class="btn btn-secondary">← Back to Scripting</a>
+    <a href="/Challenges/PythonMedium" class="btn btn-info">Next Challenge →</a>
+</div>
+
+<p class="mt-4 text-center text-info">
+    Created by Mohammed Asad Khan
+</p>
+

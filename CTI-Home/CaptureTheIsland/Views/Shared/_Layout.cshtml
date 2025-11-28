@@ -10,25 +10,75 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
+
 <body class="bg-dark text-light">
 
     <!-- New: first focusable thing for keyboard users -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header role="banner">
-        <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-secondary" aria-label="Primary">
+        <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-secondary">
             <div class="container">
 
-                <a class="btn btn-outline-light me-3" href="@Url.Action("Index", "Home")" aria-label="Home">Home</a>
-                <span class="navbar-brand fw-bold">Capture The Island</span>
+                <!-- LOGO / TITLE -->
+                <a class="navbar-brand fw-bold me-4" href="@Url.Action("Index", "Home")">
+                    Capture The Island
+                </a>
 
+                <!-- NAV TOGGLER -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#primaryNav" aria-controls="primaryNav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                <!-- NAV CONTENT -->
                 <div class="collapse navbar-collapse" id="primaryNav">
+
+                    <ul class="navbar-nav me-auto">
+
+                        <!-- ⭐️ HOME DROPDOWN -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle btn btn-outline-light me-3 px-3"
+                               href="#" id="homeDrop" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Home
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="homeDrop">
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Home")">🏠 Main Home</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Challenges")">🎯 Challenges</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- ⭐️ ABOUT DROPDOWN -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle btn btn-outline-info me-3 px-3"
+                               href="#" id="aboutDrop" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                About Us
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="aboutDrop">
+                                <li><a class="dropdown-item" href="@Url.Action("About", "Home")">📘 Our Story</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- ⭐️ CONTACT DROPDOWN -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle btn btn-outline-warning me-3 px-3"
+                               href="#" id="contactDrop" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Contact
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="contactDrop">
+                                <li><a class="dropdown-item" href="@Url.Action("Contact", "Home")">📩 Contact Form</a></li>
+                                <li><a class="dropdown-item" href="mailto:mohammed@example.com">✉ Email Us</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+
+                    <!-- RIGHT SIDE AUTH -->
                     <ul class="navbar-nav ms-auto">
 
                         <!-- High contrast toggle button -->
@@ -69,6 +119,7 @@
 
                     </ul>
                 </div>
+
             </div>
         </nav>
     </header>
@@ -78,16 +129,17 @@
     </main>
 
     <footer class="border-top border-secondary py-3 mt-auto">
-        <div class="container">&copy; @DateTime.Now.Year Jacob Poland,David Valle — Capture The Island</div>
+        <div class="container">&copy; @DateTime.Now.Year Mohammed Asad Khan & Jacob Poland — Capture The Island</div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @RenderSection("Scripts", required: false)
 
-    <!-- Animation Script Below -->
+    <!-- Animation Script -->
     <script>
         (function () {
             const STORAGE_KEY = 'ctiAnimations';
+
             function animationsDisabled() { return localStorage.getItem(STORAGE_KEY) === 'off'; }
             function setAnimations(on) { localStorage.setItem(STORAGE_KEY, on ? 'on' : 'off'); }
 
@@ -104,16 +156,20 @@
                 const off = animationsDisabled();
                 const canvas = document.getElementById('title-canvas');
                 const staticTitle = document.querySelector('#hero .static-title');
+
                 if (canvas) canvas.style.display = off ? 'none' : 'block';
                 if (staticTitle) staticTitle.style.display = off ? 'block' : 'none';
+
                 if (window.CtiTitle && typeof window.CtiTitle.setRunning === 'function') {
                     window.CtiTitle.setRunning(!off);
                 }
+
                 refreshToggleUI();
             }
 
             document.addEventListener('DOMContentLoaded', function () {
                 const btn = document.getElementById('anim-toggle');
+
                 if (btn) {
                     btn.addEventListener('click', function () {
                         const off = animationsDisabled();
@@ -121,9 +177,11 @@
                         applyState();
                     });
                 }
+
                 if (!localStorage.getItem(STORAGE_KEY)) {
                     localStorage.setItem(STORAGE_KEY, 'on');
                 }
+
                 applyState();
             });
         })();

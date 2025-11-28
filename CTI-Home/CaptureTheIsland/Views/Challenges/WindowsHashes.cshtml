@@ -1,0 +1,134 @@
+﻿@{
+    ViewData["Title"] = "Windows NTLM (Ophcrack)";
+}
+
+<div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
+    <div class="card-body text-light">
+        <h2 class="mb-3">Medium — Windows NTLM (Ophcrack)</h2>
+
+        <p>
+            These are Windows NTLM password hashes. Your goal is to recover the plaintext passwords
+            using <strong>Ophcrack</strong> and the appropriate rainbow tables (XP special tables).
+        </p>
+
+        <div class="table-responsive mb-3">
+            <table class="table table-dark table-striped table-bordered align-middle">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>NT Hash</th>
+                        <th>LM Hash</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><code>65711C079DC4CD3CC2265B23734E0DAC</code></td>
+                        <td><code>47F747C5190DC0F0B921AA4A07F06285</code></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><code>21259DD63B980471AAD3B435B51404EE</code></td>
+                        <td><code>1E43E37B818AB5EDB066EB58CCDC1823</code></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><code>FBBDA33FC12E83FB0C240E84A183686E</code></td>
+                        <td><code>DDE9DC6E34E2E6E11EF9E51C6B27ED96</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="mt-3 text-warning fw-bold">
+            ⚠ IMPORTANT: When loading these hashes into Ophcrack, make sure the
+            <strong>LM Hash</strong> and <strong>NT Hash</strong> are separated by a
+            <strong>colon ( : )</strong> — formatted exactly like:
+            <br />
+            <code>LMHASH: NTHASH</code>
+            <br /><br />
+            Example:
+            <br />
+            <code>47F747C5190DC0F0B921AA4A07F06285:65711C079DC4CD3CC2265B23734E0DAC</code>
+        </p>
+
+        <form asp-action="SubmitWindowsHashes" method="post" class="mt-3">
+            <div class="mb-3">
+                <label class="form-label">Plaintext for Hash #1</label>
+                <input name="nt1" class="form-control bg-dark text-light border-secondary" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Plaintext for Hash #2</label>
+                <input name="nt2" class="form-control bg-dark text-light border-secondary" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Plaintext for Hash #3</label>
+                <input name="nt3" class="form-control bg-dark text-light border-secondary" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Answers</button>
+        </form>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success mt-3">@TempData["Success"]</div>
+
+            <div class="mt-3">
+                <h5>Correct Plaintexts</h5>
+                <ul>
+                    <li>Hash #1 → <code>@TempData["A1"]</code></li>
+                    <li>Hash #2 → <code>@TempData["A2"]</code></li>
+                    <li>Hash #3 → <code>@TempData["A3"]</code></li>
+                </ul>
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger mt-3">@TempData["Error"]</div>
+        }
+
+        <hr class="border-secondary mt-4" />
+
+        <!-- Hints / Ophcrack Walkthrough -->
+        <div class="accordion mt-3" id="winHints">
+            <div class="accordion-item bg-dark text-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-secondary text-light" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#winHint1">
+                        Need a hint?
+                    </button>
+                </h2>
+                <div id="winHint1" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        Ophcrack uses rainbow tables to crack Windows hashes. Make sure you are using
+                        the correct <strong>XP special tables</strong> for these hashes.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item bg-dark text-light mt-2">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-secondary text-light" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#winHint2">
+                        Stuck? See walkthrough tips.
+                    </button>
+                </h2>
+                <div id="winHint2" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <p>
+                            1. Install Ophcrack and download the <strong>XP tables</strong> (torrent if needed).<br />
+                            2. Start Ophcrack → use <strong>Load &gt; Single Hash</strong> or
+                            <strong>Load &gt; PWDUMP file</strong> if you have multiple hashes in a file.<br />
+                            3. Select the XP rainbow tables, then start cracking.
+                        </p>
+                        <p class="small">
+                            Note: Some download links may point to Vista tables by mistake; ensure you're using XP tables.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="/Challenges/PasswordCracking" class="btn btn-secondary mt-4">← Back to Password Cracking</a>
+    </div>
+</div>
