@@ -44,9 +44,19 @@ namespace CaptureTheIsland.Controllers
         }
 
         // ⭐ CONTACT PAGE
+        [AllowAnonymous]
         public IActionResult Contact()
         {
             return View();
         }
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult Contact(string name, string email, string subject, string message)
+        {
+            TempData["Message"] = "Your message has been received! We'll get back to you soon.";
+            return RedirectToAction("Contact");
+        }
+
     }
+
 }
