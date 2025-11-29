@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Our Team";
+}
+
+<!--
+    This page introduces the team behind Capture The Island.  It provides
+    some background on the instructors or organizers running the CTF site.
+    Feel free to customize this content to highlight whoever is
+    responsible for maintaining the platform.
+-->
+
+<section class="mb-5">
+    <h2 class="h3 mb-3">Meet the Team</h2>
+    <p>
+        Capture The Island is built and maintained by a small team of
+        cybersecurity enthusiasts and educators.  We believe that hands‑on
+        challenges are the best way to learn defensive and offensive
+        security skills.  Our mission is to make high‑quality CTF
+        experiences accessible to students and professionals alike.
+    </p>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card bg-dark text-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Jacob Poland</h5>
+                    <p class="card-text">
+                        Jacob is a cybersecurity instructor specializing in
+                        network defense and incident response.  He helps design
+                        the forensics and OSINT challenges on Capture The Island.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card bg-dark text-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Mohammed Asad Khan</h5>
+                    <p class="card-text">
+                        Mohammed focuses on cryptography and web
+                        exploitation topics.  He authored several of the
+                        crypto and web challenges you’ll find on the site.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="mt-4">
+        Have questions or feedback?  Feel free to reach out via our
+        <a asp-action="Contact" asp-controller="Home">contact page</a>.
+    </p>
+</section>

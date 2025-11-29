@@ -6,7 +6,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CaptureTheIsland.Controllers
 {
-    [Authorize]   // 🔒 THIS PROTECTS THE ENTIRE HOME CONTROLLER
+    // Require a logged‑in user in either the User or Admin roles for all
+    // actions in this controller.  This replaces the generic [Authorize]
+    // attribute so that only those assigned to one of our defined roles
+    // can access the home page and associated information.
+    [Authorize(Roles = "User,Admin")]   // 🔒 THIS PROTECTS THE ENTIRE HOME CONTROLLER
     public class HomeController : Controller
     {
         private ResourceContext context { get; set; }

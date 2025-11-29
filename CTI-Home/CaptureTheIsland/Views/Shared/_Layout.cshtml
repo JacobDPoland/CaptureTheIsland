@@ -1,6 +1,7 @@
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using CaptureTheIsland.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +13,6 @@
 </head>
 
 <body class="bg-dark text-light">
-
-    <!-- New: first focusable thing for keyboard users -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header role="banner">
         <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-secondary">
@@ -59,6 +57,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="aboutDrop">
                                 <li><a class="dropdown-item" href="@Url.Action("About", "Home")">📘 Our Story</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Team", "Home")">👥 Team</a></li>
                             </ul>
                         </li>
 
@@ -97,6 +96,17 @@
                             <li class="nav-item me-3 d-flex align-items-center text-info">
                                 Welcome, @UserManager.GetUserName(User)
                             </li>
+
+                            @* Links to user and admin dashboards appear only when a user is
+                               authenticated.  The admin link is shown conditionally if the
+                               current user is in the Admin role.  The user dashboard link
+                               is shown to all authenticated users. *@
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item me-2">
+                                    <a class="btn btn-outline-warning" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Admin</a>
+                                </li>
+                            }
 
                             <li class="nav-item">
                                 <form asp-controller="Account" asp-action="Logout" method="post">

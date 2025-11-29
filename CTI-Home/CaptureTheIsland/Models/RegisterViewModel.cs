@@ -9,7 +9,8 @@ namespace CaptureTheIsland.Models
         public string Email { get; set; }
 
         [Required]
-        [MinLength(6)]
+        // Require at least 10 characters to align with Identity options.
+        [MinLength(10)]
         public string Password { get; set; }
 
         [Required]

@@ -1,8 +1,10 @@
 ﻿using CaptureTheIsland.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CaptureTheIsland.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ResourceController : Controller
     {
         private ResourceContext context { get; set; }

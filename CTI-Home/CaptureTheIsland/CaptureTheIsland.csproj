@@ -32,4 +32,8 @@
   <ItemGroup>
     <None Include="wwwroot\files\CTI_git_challenge.zip" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\User\Controllers\" />
+    <Folder Include="Areas\User\Views\" />
+  </ItemGroup>
 </Project>

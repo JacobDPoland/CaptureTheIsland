@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Access Denied";
+}
+
+<!--
+    This view is displayed when an authenticated user attempts to access a page
+    for which they do not have the required role.  By default the cookie
+    configuration in Startup.cs points the AccessDeniedPath to this action.
+    The page offers a clear message and a link back to the home page.
+-->
+
+<div class="container mt-5">
+    <div class="alert alert-warning">
+        <h3 class="fw-bold">🚫 Access Denied</h3>
+        <p>
+            You are logged in, but you do not have permission to view the requested page.
+        </p>
+        <p>
+            If you think this is an error, please contact your instructor or site administrator.
+        </p>
+    </div>
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-light">
+        ⬅ Back to Home
+    </a>
+</div>

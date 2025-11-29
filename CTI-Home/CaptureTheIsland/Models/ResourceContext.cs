@@ -4,7 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CaptureTheIsland.Models
 {
-    public class ResourceContext : IdentityDbContext<IdentityUser>
+    // Use ApplicationUser instead of the base IdentityUser so that
+    // additional profile properties can be added in the future and to
+    // align with the SecureExample design.  ApplicationUser derives
+    // from IdentityUser and resides in the same namespace.
+    public class ResourceContext : IdentityDbContext<ApplicationUser>
     {
         public ResourceContext(DbContextOptions<ResourceContext> options)
             : base(options)

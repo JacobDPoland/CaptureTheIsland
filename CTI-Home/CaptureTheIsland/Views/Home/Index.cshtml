@@ -110,9 +110,15 @@
     <section class="mb-5">
         <h2 class="h3 mb-3 text-light">Resources</h2>
 
+    @* Only administrators should be able to create new resources.  Wrap the
+       "Add New Resource" button in a role check so that it is hidden from
+       regular users. *@
+    @if (User.IsInRole("Admin"))
+    {
         <a asp-controller="Resource" asp-action="Add" class="btn btn-outline-info mb-3">
             Add New Resource
         </a>
+    }
 
         <div class="table-responsive">
             <table class="table table-dark table-striped table-bordered align-middle">
@@ -121,7 +127,10 @@
                         <th scope="col">Resource</th>
                         <th scope="col">Link</th>
                         <th scope="col">Description</th>
-                        <th scope="col" style="width: 120px;">Actions</th>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <th scope="col" style="width: 120px;">Actions</th>
+                        }
                     </tr>
                 </thead>
                 <tbody>
@@ -138,27 +147,33 @@
 
                             <td>@res.Description</td>
 
-                            <td class="text-center">
-                                <div class="d-flex gap-2 justify-content-center">
+                        
+                            @* Wrap the edit/delete buttons in a role check.  These
+                               administrative actions should only be visible to
+                               administrators.  If the user is not an admin,
+                               display an empty cell to maintain table layout. *@
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <td class="text-center">
+                                    <div class="d-flex gap-2 justify-content-center">
+                                        <a asp-controller="Resource"
+                                           asp-action="Edit"
+                                           asp-route-id="@res.ResourceId"
+                                           asp-route-slug="@res.Slug"
+                                           class="btn btn-sm btn-outline-warning">
+                                            Edit
+                                        </a>
 
-                                    <a asp-controller="Resource"
-                                       asp-action="Edit"
-                                       asp-route-id="@res.ResourceId"
-                                       asp-route-slug="@res.Slug"
-                                       class="btn btn-sm btn-outline-warning">
-                                        Edit
-                                    </a>
-
-                                    <a asp-controller="Resource"
-                                       asp-action="Delete"
-                                       asp-route-id="@res.ResourceId"
-                                       asp-route-slug="@res.Slug"
-                                       class="btn btn-sm btn-outline-danger">
-                                        Delete
-                                    </a>
-
-                                </div>
-                            </td>
+                                        <a asp-controller="Resource"
+                                           asp-action="Delete"
+                                           asp-route-id="@res.ResourceId"
+                                           asp-route-slug="@res.Slug"
+                                           class="btn btn-sm btn-outline-danger">
+                                            Delete
+                                        </a>
+                                    </div>
+                                </td>
+                            }
                         </tr>
                     }
                 </tbody>

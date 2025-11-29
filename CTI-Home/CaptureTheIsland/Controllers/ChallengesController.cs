@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CaptureTheIsland.Controllers
 {
-    [Authorize] // Users MUST be logged in to see challenges
-    public class ChallengesController : Controller
+[Authorize(Roles = "User,Admin")] // Users MUST be logged in and in the correct role to see challenges
+public class ChallengesController : Controller
     {
         public IActionResult Index()
         {
