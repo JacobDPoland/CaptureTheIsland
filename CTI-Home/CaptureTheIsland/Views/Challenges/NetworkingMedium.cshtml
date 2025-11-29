@@ -103,7 +103,11 @@
 
 @if (TempData["Success"] != null)
 {
-    <script>markChallengeComplete("NetworkingMedium");</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            markChallengeComplete("NetworkingHard");
+        });
+    </script>
 }
 
 <hr class="border-secondary" />

@@ -47,7 +47,11 @@
         }
         @if (TempData["Success"] != null)
         {
-            <script>markChallengeComplete("CryptoEasy");</script>
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    markChallengeComplete("CryptoEasy");
+                });
+            </script>
         }
     </div>
 

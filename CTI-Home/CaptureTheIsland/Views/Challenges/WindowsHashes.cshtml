@@ -89,7 +89,11 @@
 
         @if (TempData["Success"] != null)
         {
-            <script>markChallengeComplete("WindowsHashes");</script>
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    markChallengeComplete("WindowsHashes");
+                });
+            </script>
         }
 
         <hr class="border-secondary mt-4" />
