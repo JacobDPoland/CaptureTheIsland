@@ -2,39 +2,110 @@
     ViewData["Title"] = "Log Analysis Challenges";
 }
 
-<div class="container mt-4">
+<div class="container">
 
+    <!-- Header Card -->
     <div class="card bg-secondary bg-opacity-25 border-light shadow-lg mb-4">
         <div class="card-body text-light">
-            <h2 class="text-center mb-3" style="color:white;">🔍 Log Analysis Challenges</h2>
 
-            <p class="mb-4">
-                Analyze real system and web server logs to uncover suspicious activity, detect attacks,
-                and piece together what happened. Choose a difficulty level below:
+            <h2 class="text-center mb-3 fw-bold" style="color:white;">
+                🔍 Log Analysis Challenges
+            </h2>
+
+            <p>
+                Investigate real system and web server logs to uncover suspicious activity,
+                detect brute-force attempts, and reconstruct incident timelines.
             </p>
 
-            <div class="list-group">
-
-                <!-- Easy -->
-                <a href="/Challenges/LogEasy" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>🟩 Easy — Apache Log Basics</strong>
-                </a>
-
-                <!-- Medium -->
-                <a href="/Challenges/LogMedium" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>🟧 Medium — SSH Brute-Force Detection</strong>
-                </a>
-
-                <!-- Hard -->
-                <a href="/Challenges/LogHard" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>🟥 Hard — Incident Timeline Reconstruction</strong>
-                </a>
-
-            </div>
-
-            <a href="/Challenges" class="btn btn-outline-light mt-4">← Back to Challenge Categories</a>
-
+            <p class="mb-0">
+                Select a difficulty level below to begin:
+            </p>
         </div>
     </div>
+
+
+    <!-- Challenge Cards -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <!-- Easy -->
+        <div class="col">
+            <a href="/Challenges/LogEasy"
+               class="challenge-card card h-100 bg-dark border border-secondary text-light text-decoration-none">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Easy — Apache Log Basics</h4>
+
+                    <p class="card-text small">
+                        Learn to identify common request types, user agents, and suspicious IP activity
+                        in Apache access logs.
+                    </p>
+
+                    <span class="badge bg-success px-3 py-1">Easy</span>
+                </div>
+
+            </a>
+        </div>
+
+        <!-- Medium -->
+        <div class="col">
+            <a href="/Challenges/LogMedium"
+               class="challenge-card card h-100 bg-dark border border-secondary text-light text-decoration-none">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Medium — SSH Brute-Force Detection</h4>
+
+                    <p class="card-text small">
+                        Analyze authentication logs to track brute-force patterns and pinpoint unauthorized
+                        login attempts.
+                    </p>
+
+                    <span class="badge bg-warning text-dark px-3 py-1">Medium</span>
+                </div>
+
+            </a>
+        </div>
+
+        <!-- Hard -->
+        <div class="col">
+            <a href="/Challenges/LogHard"
+               class="challenge-card card h-100 bg-dark border border-secondary text-light text-decoration-none">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Hard — Incident Timeline Reconstruction</h4>
+
+                    <p class="card-text small">
+                        Piece together multi-source logs to build a full timeline of an intrusion,
+                        from reconnaissance to exploitation.
+                    </p>
+
+                    <span class="badge bg-danger px-3 py-1">Hard</span>
+                </div>
+
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Back Button -->
+    <a href="/Challenges" class="btn btn-outline-info mt-4">
+        ← Back to Challenge Categories
+    </a>
+
 </div>
+
+
+<!-- Hover Glow Styling -->
+<style>
+    .challenge-card {
+        transition: 0.25s ease-in-out;
+        border-radius: 10px;
+    }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            border-color: cyan !important;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.35);
+        }
+</style>
+
 

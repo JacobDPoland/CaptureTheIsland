@@ -4,46 +4,103 @@
 
 <div class="container">
 
+    <!-- Header Card -->
     <div class="card bg-secondary bg-opacity-25 border-light shadow-lg mb-4">
         <div class="card-body text-light">
 
-            <h2 class="text-center mb-3" style="color:white;">🔥 Sample Challenges</h2>
+            <h2 class="text-center mb-3 fw-bold" style="color:white;">
+                🔥 Sample Challenges
+            </h2>
 
             <p>
-                These beginner-friendly challenges introduce you to core CTF skills such as
+                These beginner-friendly challenges introduce you to foundational CTF skills such as
                 log analysis, ciphers, hashing, and simple forensics.
             </p>
 
             <p class="mb-4">
-                Choose a challenge below to begin:
+                Select a challenge below to begin:
             </p>
 
-            <div class="list-group">
+            <!-- Challenge List -->
+            <div class="list-group challenge-list">
 
-                <a href="/Challenges/CipherWarmup" class="list-group-item list-group-item-action bg-dark text-light">
-                    ➤ <strong>Cipher Warm-up</strong>
-                    <div class="small text-muted">Basic substitution & decoding practice</div>
+                <!-- Cipher Warm-up -->
+                <a href="/Challenges/CipherWarmup"
+                   class="list-group-item list-group-item-action bg-dark text-light challenge-item">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>
+                            <strong>➤ Cipher Warm-up</strong>
+                            <div class="small text-muted">Basic substitution & decoding practice</div>
+                        </span>
+                    </div>
                 </a>
 
-                <a href="/Challenges/ApacheAccessSleuth" class="list-group-item list-group-item-action bg-dark text-light">
-                    ➤ <strong>Apache Access Sleuth</strong>
-                    <div class="small text-muted">Investigate web server logs for clues</div>
+                <!-- Apache Access Sleuth -->
+                <a href="/Challenges/ApacheAccessSleuth"
+                   class="list-group-item list-group-item-action bg-dark text-light challenge-item">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>
+                            <strong>➤ Apache Access Sleuth</strong>
+                            <div class="small text-muted">Investigate web server logs for clues</div>
+                        </span>
+                    </div>
                 </a>
 
-                <a href="/Challenges/HashStretch" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>➤ Hash Stretch</strong>
+                <!-- Hash Stretch -->
+                <a href="/Challenges/HashStretch"
+                   class="list-group-item list-group-item-action bg-dark text-light challenge-item">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>
+                            <strong>➤ Hash Stretch</strong>
+                            <div class="small text-muted">Practice multi-round hashing logic</div>
+                        </span>
+                    </div>
                 </a>
 
+                <!-- PNG Oddities -->
+                <a href="/Challenges/PngOddities"
+                   class="list-group-item list-group-item-action bg-dark text-light challenge-item">
 
-                <a href="/Challenges/PngOddities" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>➤ PNG Oddities</strong>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>
+                            <strong>➤ PNG Oddities</strong>
+                            <div class="small text-muted">Analyze image metadata for hidden clues</div>
+                        </span>
+                    </div>
                 </a>
 
             </div>
 
-            <a href="/Challenges" class="btn btn-outline-info mt-4">← Back to Challenge Categories</a>
+            <!-- Back Button -->
+            <a href="/Challenges" class="btn btn-outline-info mt-4">
+                ← Back to Challenge Categories
+            </a>
 
         </div>
     </div>
 
 </div>
+
+<!-- Additional CSS -->
+<style>
+    .challenge-item {
+        padding: 18px;
+        border-radius: 6px;
+        margin-bottom: 5px;
+        transition: 0.25s ease-in-out;
+    }
+
+        .challenge-item:hover {
+            background-color: #1a1a1a !important;
+            border-left: 4px solid cyan;
+            transform: translateX(4px);
+        }
+
+    .challenge-list .small {
+        color: #b5b5b5 !important;
+    }
+</style>
+

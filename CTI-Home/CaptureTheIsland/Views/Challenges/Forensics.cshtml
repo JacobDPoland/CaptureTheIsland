@@ -4,56 +4,112 @@
 
 <div class="container">
 
-    <!-- Header -->
+    <!-- Header Card -->
     <div class="card bg-secondary bg-opacity-25 border-light shadow-lg mb-4">
         <div class="card-body text-light">
-            <h2 class="text-center mb-3" style="color:white;">🔍 Forensics Challenges</h2>
+
+            <h2 class="text-center mb-3 fw-bold" style="color:white;">
+                🔍 Forensics Challenges
+            </h2>
 
             <p>
-                Digital forensics challenges test your ability to recover evidence, analyze artifacts,
-                investigate hidden information, and decode what happened behind the scenes.
+                Digital forensics challenges test your ability to recover hidden evidence, analyze artifacts,
+                inspect metadata, and uncover what happened behind the scenes.
             </p>
 
-            <p>
-                These tasks simulate real-world investigations including deleted files, hidden data,
-                metadata analysis, and version tracking.
+            <p class="mb-0">
+                These tasks simulate real-world investigations involving deleted files, encoded secrets,
+                tampered data, and version control trails.
             </p>
+
         </div>
     </div>
 
-    <!-- Challenge Levels -->
-    <div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
-        <div class="card-body">
 
-            <h3 class="text-center mb-4" style="color:white;">Choose a Difficulty</h3>
+    <!-- Challenge Cards -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
 
-            <div class="list-group">
+        <!-- EASY -->
+        <div class="col">
+            <a href="/Challenges/ForensicsEasy"
+               class="forensic-card card h-100 bg-dark border border-secondary text-light text-decoration-none">
 
-                <!-- EASY -->
-                <a href="/Challenges/ForensicsEasy" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>🟢 Easy — Version Control</strong>
-                    <br />
-                    Recover hidden or overwritten information in versioned files.
-                </a>
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Easy — Version Control</h4>
 
-                <!-- MEDIUM -->
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-light disabled">
-                    <strong>🟡 Medium — Coming Soon</strong>
-                </a>
+                    <p class="card-text small">
+                        Inspect a Git repository backup to uncover deleted evidence
+                        using <code>git log</code> and <code>git show</code>.
+                    </p>
 
-                <!-- HARD -->
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-light disabled">
-                    <strong>🔴 Hard — Coming Soon</strong>
-                </a>
+                    <span class="badge bg-success px-3 py-1">Easy</span>
+                </div>
 
-            </div>
-
-            <!-- Back button -->
-            <div class="mt-4 text-center">
-                <a href="/Challenges" class="btn btn-outline-light">⬅ Back to Challenges</a>
-            </div>
-
+            </a>
         </div>
+
+
+        <!-- MEDIUM (Coming Soon) -->
+        <div class="col">
+            <div class="forensic-card card h-100 bg-dark border border-secondary text-light disabled">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Medium — Coming Soon</h4>
+
+                    <p class="card-text small text-warning">
+                        More forensic challenges will be added soon!
+                    </p>
+
+                    <span class="badge bg-warning text-dark px-3 py-1">Medium</span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- HARD (Coming Soon) -->
+        <div class="col">
+            <div class="forensic-card card h-100 bg-dark border border-secondary text-light disabled">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Hard — Coming Soon</h4>
+
+                    <p class="card-text small text-warning">
+                        Advanced forensic investigations are on the way.
+                    </p>
+
+                    <span class="badge bg-danger px-3 py-1">Hard</span>
+                </div>
+
+            </div>
+        </div>
+
     </div>
+
+    <!-- Back Button -->
+    <a href="/Challenges" class="btn btn-outline-info mt-4">
+        ← Back to Challenge Categories
+    </a>
 
 </div>
+
+
+<!-- Hover Glow Styling -->
+<style>
+    .forensic-card {
+        transition: 0.25s ease-in-out;
+        border-radius: 10px;
+    }
+
+        .forensic-card:hover:not(.disabled) {
+            transform: translateY(-5px);
+            border-color: cyan !important;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.35);
+        }
+
+        .forensic-card.disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+</style>
+

@@ -2,35 +2,106 @@
     ViewData["Title"] = "OSINT Challenges";
 }
 
-<div class="card bg-secondary bg-opacity-25 border-light shadow-lg p-4">
-    <h2 class="text-center mb-4" style="color:white;">🌍 OSINT Challenges</h2>
+<div class="container">
 
-    <p class="text-light">
-        OSINT (Open-Source Intelligence) involves gathering and analyzing publicly
-        available information. These challenges will help you build investigative
-        skills using metadata, research techniques, and real-world lookup tools.
-    </p>
+    <!-- Header -->
+    <div class="card bg-secondary bg-opacity-25 border-light shadow-lg mb-4">
+        <div class="card-body text-light">
+            <h2 class="text-center mb-3 fw-bold" style="color:white;">
+                🌍 OSINT Challenges
+            </h2>
 
-    <div class="list-group">
+            <p>
+                OSINT (Open-Source Intelligence) involves gathering and analyzing publicly
+                available information. These challenges help you develop real investigative
+                skills using metadata, research techniques, and open lookup tools.
+            </p>
 
-        <a href="/Challenges/OSINT_Easy" class="list-group-item list-group-item-action bg-dark text-light">
-            <strong>🟢 Easy — Metadata Extraction</strong><br />
-            Learn how to extract EXIF and GPS data from images.
-        </a>
+            <p class="mb-0">
+                Start with metadata extraction and work your way toward full-scale
+                intelligence analysis.
+            </p>
+        </div>
+    </div>
 
-        <a href="/Challenges/OSINT_Medium" class="list-group-item list-group-item-action bg-dark text-light">
-            <strong>🟡 Medium — Threat Intelligence</strong><br />
-            Research real-world vulnerabilities and historical attacks.
-        </a>
 
-        <a href="/Challenges/OSINT_Hard" class="list-group-item list-group-item-action bg-dark text-light">
-            <strong>🔴 Hard — Barcode Analysis</strong><br />
-            Decode a barcode and extract hidden information.
-        </a>
+    <!-- Challenge Grid -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <!-- EASY -->
+        <div class="col">
+            <a href="/Challenges/OSINT_Easy"
+               class="osint-card card h-100 bg-dark border border-secondary text-light text-decoration-none">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Easy — Metadata Extraction</h4>
+
+                    <p class="card-text small">
+                        Learn to extract EXIF and GPS metadata from images using online tools.
+                    </p>
+
+                    <span class="badge bg-success px-3 py-1">Easy</span>
+                </div>
+
+            </a>
+        </div>
+
+        <!-- MEDIUM -->
+        <div class="col">
+            <a href="/Challenges/OSINT_Medium"
+               class="osint-card card h-100 bg-dark border border-secondary text-light text-decoration-none">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Medium — Threat Intelligence</h4>
+
+                    <p class="card-text small">
+                        Research real vulnerabilities, attacks, and CVEs using open sources.
+                    </p>
+
+                    <span class="badge bg-warning text-dark px-3 py-1">Medium</span>
+                </div>
+
+            </a>
+        </div>
+
+        <!-- HARD -->
+        <div class="col">
+            <a href="/Challenges/OSINT_Hard"
+               class="osint-card card h-100 bg-dark border border-secondary text-light text-decoration-none">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Hard — Barcode Analysis</h4>
+
+                    <p class="card-text small">
+                        Scan and decode a barcode to uncover hidden information.
+                    </p>
+
+                    <span class="badge bg-danger px-3 py-1">Hard</span>
+                </div>
+
+            </a>
+        </div>
 
     </div>
 
-    <div class="mt-4">
-        <a href="/Challenges" class="btn btn-outline-light">← Back to Challenges</a>
-    </div>
+    <!-- Back Button -->
+    <a href="/Challenges" class="btn btn-outline-info mt-4">
+        ← Back to Challenge Categories
+    </a>
+
 </div>
+
+
+<!-- Hover Glow Styling -->
+<style>
+    .osint-card {
+        transition: 0.25s ease-in-out;
+        border-radius: 10px;
+    }
+
+        .osint-card:hover {
+            transform: translateY(-5px);
+            border-color: cyan !important;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.35);
+        }
+</style>

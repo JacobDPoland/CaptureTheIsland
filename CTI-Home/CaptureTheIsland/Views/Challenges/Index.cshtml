@@ -5,16 +5,17 @@
 <div class="container">
 
     <!-- 🔥 Intro Card -->
-    <div class="card bg-secondary bg-opacity-25 border-light shadow-lg mb-4">
+    <div class="card bg-dark border-secondary shadow-lg mb-4">
         <div class="card-body text-light">
 
-            <h2 class="text-center mb-3" style="color:white;">Before You Begin</h2>
+            <h2 class="text-center mb-3 fw-bold">
+                🧭 Before You Begin
+            </h2>
 
             <p>
                 Capture The Flag (CTF) challenges often require cybersecurity tools and
                 penetration testing utilities that are best available in
-                <strong>Kali Linux</strong>.
-                Using Kali ensures that you have proper access to:
+                <strong class="text-info">Kali Linux</strong>.
             </p>
 
             <ul>
@@ -22,186 +23,206 @@
                 <li>Network analysis utilities (Nmap, Wireshark)</li>
                 <li>Forensics tools</li>
                 <li>OSINT frameworks</li>
-                <li>Linux command-line environment used in real cybersecurity work</li>
+                <li>Linux command-line environment used in cybersecurity work</li>
             </ul>
 
-            <p class="mt-3">
-                If you do not already have Kali installed, follow this official guide:
-            </p>
+            <p class="mt-3">If you don’t have Kali installed, use this guide:</p>
 
             <a href="https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/"
                target="_blank"
                class="btn btn-outline-info">
-                🔗 How to Download & Install Kali Linux on VirtualBox
+                🔗 Install Kali Linux on VirtualBox
             </a>
         </div>
     </div>
 
-
-    <!-- 🔥 Challenge Categories -->
-    <div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
+    <!-- 🔥 Categories Section -->
+    <div class="card bg-dark border-secondary shadow-lg">
         <div class="card-body">
 
-            <h2 class="text-center mb-4" style="color:white;">Challenge Categories</h2>
+            <h2 class="text-center mb-4 fw-bold">🎯 Challenge Categories</h2>
 
-            <div class="list-group">
+            <div class="row row-cols-1 row-cols-md-2 g-3">
 
-                <!-- Sample Challenges -->
-                <a href="/Challenges/Sample" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>🔥 Sample Challenges</strong>
-                    <br />
-                    Cipher Warm-up, Apache Access Sleuth, Hash Stretch, PNG Oddities
-                </a>
+                <!-- Sample -->
+                <div class="col">
+                    <a href="/Challenges/Sample" class="challenge-card text-decoration-none">
+                        <div class="p-3 bg-secondary bg-opacity-25 border rounded shadow-sm">
+                            <h5 class="text-warning fw-bold">🔥 Sample Challenges</h5>
+                            <p class="text-light small mb-0">Warm-up tasks: cipher, logs, hashes, images</p>
+                        </div>
+                    </a>
+                </div>
 
                 <!-- Password Cracking -->
-                <a href="/Challenges/PasswordCracking" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>🔐 Password Cracking</strong>
-                </a>
+                <div class="col">
+                    <a href="/Challenges/PasswordCracking" class="challenge-card text-decoration-none">
+                        <div class="p-3 bg-secondary bg-opacity-25 border rounded shadow-sm">
+                            <h5 class="text-info fw-bold">🔐 Password Cracking</h5>
+                            <p class="text-light small mb-0">Hashcat, John, rainbow tables, rockyou</p>
+                        </div>
+                    </a>
+                </div>
 
                 <!-- Log Analysis -->
-                <a href="/Challenges/LogAnalysis" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>📄 Log Analysis</strong>
-                </a>
+                <div class="col">
+                    <a href="/Challenges/LogAnalysis" class="challenge-card text-decoration-none">
+                        <div class="p-3 bg-secondary bg-opacity-25 border rounded shadow-sm">
+                            <h5 class="text-success fw-bold">📄 Log Analysis</h5>
+                            <p class="text-light small mb-0">System logs, forensics, incident detection</p>
+                        </div>
+                    </a>
+                </div>
 
                 <!-- Cryptography -->
-                <a href="/Challenges/Cryptography" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>🔑 Cryptography</strong>
-                </a>
+                <div class="col">
+                    <a href="/Challenges/Cryptography" class="challenge-card text-decoration-none">
+                        <div class="p-3 bg-secondary bg-opacity-25 border rounded shadow-sm">
+                            <h5 class="text-primary fw-bold">🔑 Cryptography</h5>
+                            <p class="text-light small mb-0">Vigenère, RSA, Base64, binary, ciphers</p>
+                        </div>
+                    </a>
+                </div>
 
                 <!-- Forensics -->
-                <a href="/Challenges/Forensics" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>🧪 Forensics</strong>
-                </a>
+                <div class="col">
+                    <a href="/Challenges/Forensics" class="challenge-card text-decoration-none">
+                        <div class="p-3 bg-secondary bg-opacity-25 border rounded shadow-sm">
+                            <h5 class="text-danger fw-bold">🧪 Forensics</h5>
+                            <p class="text-light small mb-0">Memory, file system, backups, metadata</p>
+                        </div>
+                    </a>
+                </div>
 
                 <!-- OSINT -->
-                <a href="/Challenges/OSINT" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>🌍 OSINT</strong>
-                </a>
+                <div class="col">
+                    <a href="/Challenges/OSINT" class="challenge-card text-decoration-none">
+                        <div class="p-3 bg-secondary bg-opacity-25 border rounded shadow-sm">
+                            <h5 class="text-warning fw-bold">🌍 OSINT</h5>
+                            <p class="text-light small mb-0">Online investigation, footprinting</p>
+                        </div>
+                    </a>
+                </div>
 
                 <!-- Networking -->
-                <a href="/Challenges/Networking" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>🌐 Networking</strong>
-                </a>
+                <div class="col">
+                    <a href="/Challenges/Networking" class="challenge-card text-decoration-none">
+                        <div class="p-3 bg-secondary bg-opacity-25 border rounded shadow-sm">
+                            <h5 class="text-info fw-bold">🌐 Networking</h5>
+                            <p class="text-light small mb-0">Packets, PCAPs, protocols, Wireshark</p>
+                        </div>
+                    </a>
+                </div>
 
                 <!-- Scripting -->
-                <a href="/Challenges/Scripting" class="list-group-item list-group-item-action bg-dark text-light">
-                    <strong>⚙️ Scripting</strong>
-                </a>
+                <div class="col">
+                    <a href="/Challenges/Scripting" class="challenge-card text-decoration-none">
+                        <div class="p-3 bg-secondary bg-opacity-25 border rounded shadow-sm">
+                            <h5 class="text-light fw-bold">⚙️ Scripting</h5>
+                            <p class="text-light small mb-0">Python automation & code-breaking</p>
+                        </div>
+                    </a>
+                </div>
 
             </div>
-
         </div>
     </div>
 
 </div>
-<!-- CTF Learning Resources (Beautiful Version) -->
-<div class="card bg-secondary bg-opacity-25 border-light shadow-lg mt-4 mb-5">
+
+<!-- Learning Resources -->
+<div class="card bg-dark border-secondary shadow-lg mt-4 mb-5">
     <div class="card-body text-light">
 
-        <h3 class="mb-4 text-center fw-bold" style="color:white;">
-            🌐 Ready to Level Up Your Cybersecurity Skills?
-        </h3>
+        <h3 class="mb-4 text-center fw-bold">🌐 Expand Your Cybersecurity Journey</h3>
 
-        <p class="text-center mb-4">
-            This project was designed to introduce players to Capture-the-Flag (CTF) challenges.
-            If you're serious about cybersecurity and want to continue improving, explore these
-            industry-leading training platforms:
+        <p class="text-center">
+            This site introduces CTF concepts.
+            To grow further, explore these platforms:
         </p>
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
-            <!-- HackTheBox -->
+            @* --- Reuse your existing cards unchanged (they already look great) --- *@
             <div class="col">
                 <a href="https://www.hackthebox.com/" target="_blank" class="text-decoration-none">
                     <div class="p-3 h-100 card bg-dark border-secondary shadow-sm platform-card">
                         <h5 class="text-info">🟩 Hack The Box</h5>
-                        <p class="text-light small mb-0">
-                            Hands-on hacking labs, real-world pentesting, and CTF challenges for all skill levels.
-                        </p>
+                        <p class="small text-light mb-0">Hands-on hacking labs.</p>
                     </div>
                 </a>
             </div>
 
-            <!-- TryHackMe -->
             <div class="col">
                 <a href="https://tryhackme.com" target="_blank" class="text-decoration-none">
                     <div class="p-3 h-100 card bg-dark border-secondary shadow-sm platform-card">
                         <h5 class="text-success">🟢 TryHackMe</h5>
-                        <p class="text-light small mb-0">
-                            Guided virtual rooms perfect for beginners learning cybersecurity and ethical hacking.
-                        </p>
+                        <p class="small text-light mb-0">Guided beginner learning.</p>
                     </div>
                 </a>
             </div>
 
-            <!-- LetsDefend -->
             <div class="col">
                 <a href="https://letsdefend.io" target="_blank" class="text-decoration-none">
                     <div class="p-3 h-100 card bg-dark border-secondary shadow-sm platform-card">
                         <h5 class="text-warning">🛡️ LetsDefend</h5>
-                        <p class="text-light small mb-0">
-                            A defensive-focused SOC analyst training platform with real incident response labs.
-                        </p>
+                        <p class="small text-light mb-0">SOC analyst simulations.</p>
                     </div>
                 </a>
             </div>
 
-            <!-- OverTheWire -->
             <div class="col">
                 <a href="https://overthewire.org" target="_blank" class="text-decoration-none">
                     <div class="p-3 h-100 card bg-dark border-secondary shadow-sm platform-card">
                         <h5 class="text-primary">🎯 OverTheWire</h5>
-                        <p class="text-light small mb-0">
-                            Classic CTF wargames helping players learn Linux, networking, and exploitation basics.
-                        </p>
+                        <p class="small text-light mb-0">Classic CTF wargames.</p>
                     </div>
                 </a>
             </div>
 
-            <!-- picoCTF -->
             <div class="col">
                 <a href="https://picoctf.com" target="_blank" class="text-decoration-none">
                     <div class="p-3 h-100 card bg-dark border-secondary shadow-sm platform-card">
                         <h5 class="text-danger">🎓 picoCTF</h5>
-                        <p class="text-light small mb-0">
-                            A beginner-friendly CTF competition created by Carnegie Mellon University (CMU).
-                        </p>
+                        <p class="small text-light mb-0">Beginner-friendly competition.</p>
                     </div>
                 </a>
             </div>
 
-            <!-- Open CTF Suggestion -->
             <div class="col">
                 <a href="https://ctftime.org" target="_blank" class="text-decoration-none">
                     <div class="p-3 h-100 card bg-dark border-secondary shadow-sm platform-card">
                         <h5 class="text-info">💡 CTFtime</h5>
-                        <p class="text-light small mb-0">
-                            Discover upcoming CTF competitions from around the world and track your progress.
-                        </p>
+                        <p class="small text-light mb-0">Find upcoming CTF events.</p>
                     </div>
                 </a>
             </div>
 
         </div>
-
-        <p class="mt-4 text-center small">
-            Explore, practice, and keep hacking. The more challenges you solve, the stronger you become.
-            Stay curious and stay persistent!
-        </p>
-
     </div>
 </div>
 
 <style>
-    /* Hover glow effect */
+    .challenge-card div {
+        transition: 0.25s ease-in-out;
+        border-radius: 10px;
+        border-color: #444 !important;
+    }
+
+    .challenge-card:hover div {
+        transform: translateY(-4px);
+        border-color: cyan !important;
+        box-shadow: 0 0 12px rgba(0,255,255,0.35);
+    }
+
     .platform-card {
-        transition: 0.2s ease-in-out;
+        transition: 0.25s ease-in-out;
         border-radius: 10px;
     }
 
         .platform-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.35);
+            transform: translateY(-4px);
             border-color: cyan !important;
+            box-shadow: 0 0 12px rgba(0,255,255,0.35);
         }
 </style>

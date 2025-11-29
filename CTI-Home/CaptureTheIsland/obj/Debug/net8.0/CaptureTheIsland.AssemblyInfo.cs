@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CaptureTheIsland")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34bbf339915179e2e5056e4a12e1e1974f22395f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c311009f57bf10b099afb55404dc7332fcf02bbe")]
 [assembly: System.Reflection.AssemblyProductAttribute("CaptureTheIsland")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CaptureTheIsland")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

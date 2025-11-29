@@ -2,28 +2,107 @@
     ViewData["Title"] = "Networking Challenges";
 }
 
-<h2 class="mb-4">🌐 Networking Challenges</h2>
+<div class="container">
 
-<div class="card bg-secondary bg-opacity-25 border-light shadow-lg mb-4">
-    <div class="card-body text-light">
-        <p>Networking is the backbone of modern communication. These challenges will train you to analyze real packet captures, decode protocols, and understand how data moves across the internet.</p>
+    <!-- Header -->
+    <div class="card bg-secondary bg-opacity-25 border-light shadow-lg mb-4">
+        <div class="card-body text-light">
+            <h2 class="text-center mb-3 fw-bold" style="color:white;">
+                🌐 Networking Challenges
+            </h2>
+
+            <p>
+                Networking is the backbone of modern communication. These challenges train you
+                to analyze real packet captures, decode protocols, and understand how data
+                moves across the internet.
+            </p>
+
+            <p class="mb-0">
+                Start with DNS packet inspection and work your way up to raw IPv4 dissection.
+            </p>
+        </div>
     </div>
+
+
+    <!-- Challenge Grid -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <!-- EASY -->
+        <div class="col">
+            <a href="/Challenges/NetworkingEasy"
+               class="net-card card h-100 bg-dark border border-secondary text-light text-decoration-none">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Easy — DNS Packet Capture</h4>
+
+                    <p class="card-text small">
+                        Analyze DNS queries and responses in a packet capture.
+                    </p>
+
+                    <span class="badge bg-success px-3 py-1">Easy</span>
+                </div>
+
+            </a>
+        </div>
+
+        <!-- MEDIUM -->
+        <div class="col">
+            <a href="/Challenges/NetworkingMedium"
+               class="net-card card h-100 bg-dark border border-secondary text-light text-decoration-none">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Medium — HTTP Traffic Analysis</h4>
+
+                    <p class="card-text small">
+                        Inspect HTTP requests and responses to uncover transferred files.
+                    </p>
+
+                    <span class="badge bg-warning text-dark px-3 py-1">Medium</span>
+                </div>
+
+            </a>
+        </div>
+
+        <!-- HARD -->
+        <div class="col">
+            <a href="/Challenges/NetworkingHard"
+               class="net-card card h-100 bg-dark border border-secondary text-light text-decoration-none">
+
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Hard — Raw IPv4 Packet Dissection</h4>
+
+                    <p class="card-text small">
+                        Decode a raw IPv4 header bit-by-bit using the official RFC layout.
+                    </p>
+
+                    <span class="badge bg-danger px-3 py-1">Hard</span>
+                </div>
+
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- Back Button -->
+    <a href="/Challenges" class="btn btn-outline-info mt-4">
+        ← Back to Challenge Categories
+    </a>
+
 </div>
 
-<div class="list-group">
 
-    <a href="/Challenges/NetworkingEasy" class="list-group-item list-group-item-action bg-dark text-light">
-        <strong>🟢 Easy — DNS Packet Capture</strong>
-    </a>
+<!-- Hover Glow Styling -->
+<style>
+    .net-card {
+        transition: 0.25s ease-in-out;
+        border-radius: 10px;
+    }
 
-    <a href="/Challenges/NetworkingMedium" class="list-group-item list-group-item-action bg-dark text-light">
-        <strong>🟡 Medium — HTTP Traffic Analysis</strong>
-    </a>
+        .net-card:hover {
+            transform: translateY(-5px);
+            border-color: cyan !important;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.35);
+        }
+</style>
 
-    <a href="/Challenges/NetworkingHard" class="list-group-item list-group-item-action bg-dark text-light">
-        <strong>🔴 Hard — Packet Dissection (Raw IPv4)</strong>
-    </a>
-
-</div>
-
-<p class="mt-4 text-center text-info">Created by Mohammed Asad Khan</p>
