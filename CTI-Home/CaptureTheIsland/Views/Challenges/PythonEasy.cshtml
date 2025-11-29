@@ -74,6 +74,11 @@ if __name__ == "__main__":
     <div class="alert alert-danger">@TempData["Error"]</div>
 }
 
+@if (TempData["Success"] != null)
+{
+    <script>markChallengeComplete("PythonEasy");</script>
+}
+
 <form method="post" asp-action="SubmitPythonEasy">
     <input name="answer" class="form-control mb-2" placeholder="Enter the secret key..." />
     <button type="submit" class="btn btn-primary">Submit Answer</button>

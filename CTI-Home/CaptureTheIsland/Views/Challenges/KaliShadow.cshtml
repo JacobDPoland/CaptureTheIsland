@@ -81,6 +81,11 @@ hollie:$y$j9T$/WzixhAsn8sdXhCquYzh01$KZlio78LilItobsx/17ecFf1e2SbsduhP1sZEWuHrL4
             <div class="alert alert-danger mt-3">@TempData["Error"]</div>
         }
 
+        @if (TempData["Success"] != null)
+        {
+            <script>markChallengeComplete("KaliShadow");</script>
+}
+
         <hr class="border-secondary mt-4" />
 
         <!-- Hints / Walkthrough -->

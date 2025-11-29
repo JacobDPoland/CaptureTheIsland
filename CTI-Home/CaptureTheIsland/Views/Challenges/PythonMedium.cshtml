@@ -36,6 +36,11 @@
         <div class="alert alert-danger mt-3">@TempData["Error"]</div>
     }
 
+    @if (TempData["Success"] != null)
+    {
+        <script>markChallengeComplete("PythonHard");</script>
+    }
+
     <hr />
 
     <!-- Walkthrough Accordion -->

@@ -36,6 +36,70 @@
         </div>
     </div>
 
+    <!-- GLOBAL + CATEGORY PROGRESS -->
+    <div class="card bg-secondary bg-opacity-25 border-light shadow-lg p-4 mb-4">
+        <h3 class="text-light text-center mb-4">🏆 Your CTF Progress</h3>
+
+        <div id="overall-progress" class="mb-4"></div>
+
+        <div id="category-progress"></div>
+    </div>
+
+    <script>
+        // Category definitions (edit when adding new challenges)
+        const categories = {
+            "Sample": ["CipherWarmup", "ApacheAccessSleuth", "HashStretch", "PngOddities"],
+            "Password Cracking": ["RockYou", "WindowsHashes", "KaliShadow"],
+            "Log Analysis": ["LogEasy"], // Add more if needed
+            "Cryptography": ["CryptoEasy", "CryptoMedium"],
+            "Forensics": ["ForensicsEasy"],
+            "OSINT": ["OSINT_Easy", "OSINT_Medium", "OSINT_Hard"],
+            "Networking": ["NetworkingEasy", "NetworkingMedium", "NetworkingHard"],
+            "Scripting": ["PythonEasy", "PythonMedium"]
+        };
+
+        const completed = getCompletedChallenges();
+
+        // Count total challenges
+        const total = Object.values(categories).flat().length;
+        const totalDone = completed.length;
+        const totalPercent = Math.floor((totalDone / total) * 100);
+
+        // Inject Global Progress Bar
+        document.getElementById("overall-progress").innerHTML = `
+            <h5 class="text-info">Overall Progress</h5>
+            <div class="progress bg-dark mb-2">
+                <div class="progress-bar bg-info"
+                     role="progressbar"
+                     style="width: ${totalPercent}%;">
+                     ${totalPercent}%
+                </div>
+            </div>
+        `;
+
+        // Inject Category Progress Bars
+        let catHTML = "";
+        for (const [catName, chalList] of Object.entries(categories)) {
+            const completedCount = chalList.filter(x => completed.includes(x)).length;
+            const percent = Math.floor((completedCount / chalList.length) * 100);
+
+            catHTML += `
+                <div class="mb-3">
+                    <strong class="text-light">${catName}</strong>
+                    <div class="progress bg-dark">
+                        <div class="progress-bar bg-success"
+                             style="width: ${percent}%;">
+                             ${percent}%
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        document.getElementById("category-progress").innerHTML = catHTML;
+    </script>
+
+
     <!-- 🔥 Categories Section -->
     <div class="card bg-dark border-secondary shadow-lg">
         <div class="card-body">

@@ -244,5 +244,22 @@
         })();
     </script>
 
+    <script>
+        // Save a challenge as completed
+        function markChallengeComplete(name) {
+            let completed = JSON.parse(localStorage.getItem("completedChallenges") || "[]");
+            if (!completed.includes(name)) {
+                completed.push(name);
+                localStorage.setItem("completedChallenges", JSON.stringify(completed));
+            }
+        }
+
+        // Read all completed challenges
+        function getCompletedChallenges() {
+            return JSON.parse(localStorage.getItem("completedChallenges") || "[]");
+        }
+    </script>
+
+
 </body>
 </html>

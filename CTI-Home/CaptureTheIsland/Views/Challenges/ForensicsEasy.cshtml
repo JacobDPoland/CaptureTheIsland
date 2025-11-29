@@ -129,6 +129,11 @@
     <div class="alert alert-danger">@TempData["Error"]</div>
 }
 
+@if (TempData["Success"] != null)
+{
+    <script>markChallengeComplete("ForensicsEasy");</script>
+}
+
 <hr class="border-secondary" />
 
 <a href="/Challenges/Forensics" class="btn btn-secondary me-2">⬅ Back to Forensics</a>

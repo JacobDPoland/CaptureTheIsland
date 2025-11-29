@@ -72,6 +72,11 @@
     <div class="alert alert-danger mt-3">@TempData["Error"]</div>
 }
 
+@if (TempData["Message"] != null)
+{
+    <script>markChallengeComplete("HashStretch");</script>
+}
+
 <a href="/Challenges/Sample" class="btn btn-secondary mt-4">Back to Sample Challenges</a>
 
 <a href="/Challenges/PNGOddities" class="btn btn-outline-info mt-4">

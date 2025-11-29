@@ -28,5 +28,10 @@
     </div>
 }
 
+@if (TempData["Success"] != null)
+{
+    <script>markChallengeComplete("CipherWarmup");</script>
+}
+
 <a href="/Challenges/ApacheAccessSleuth" class="btn btn-secondary mt-4">Next Challenge</a>
 
