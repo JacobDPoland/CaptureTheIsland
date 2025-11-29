@@ -1,24 +1,143 @@
 ﻿@{
-    ViewData["Title"] = "Log Analysis - Medium";
+    ViewData["Title"] = "Medium — SSH Brute-force Detection";
 }
 
-<div class="container mt-5">
+<div class="container mt-4">
+
+    <!-- Card wrapper -->
     <div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
         <div class="card-body text-light">
 
-            <h2 class="text-center mb-3">🟧 Medium Log Analysis</h2>
+            <h2 class="text-center mb-3" style="color:white;">
+                🟧 Medium — SSH Brute-force Detection
+            </h2>
 
-            <p class="text-center">
-                This challenge will be available soon.
-                Check back later!
+            <p>
+                Analyze the SSH authentication log entries below and identify which IP address
+                successfully brute-forced a login. This challenge builds on the Easy Apache logs
+                by focusing on failed vs. successful SSH authentication events.
             </p>
 
-            <div class="text-center mt-4">
-                <a href="/Challenges/LogAnalysis" class="btn btn-outline-light">← Back to Log Analysis</a>
+            <!-- Log snippet -->
+            <h5 class="mt-3">Log snippet (auth.log)</h5>
+            <pre class="bg-dark p-3 border rounded small" style="max-height: 420px; overflow-y: auto;">
+Nov 29 02:13:11 island sshd: Failed password for invalid user admin from 198.51.100.10 port 51432 ssh2
+Nov 29 02:13:15 island sshd: Failed password for invalid user admin from 198.51.100.10 port 51489 ssh2
+Nov 29 02:13:20 island sshd: Failed password for invalid user test from 198.51.100.10 port 51547 ssh2
+
+Nov 29 02:14:03 island sshd: Failed password for invalid user backup from 192.0.2.77 port 49122 ssh2
+Nov 29 02:14:08 island sshd: Failed password for invalid user guest from 192.0.2.77 port 49188 ssh2
+
+Nov 29 02:15:31 island sshd: Failed password for root from 203.0.113.42 port 40112 ssh2
+Nov 29 02:15:36 island sshd: Failed password for root from 203.0.113.42 port 40179 ssh2
+Nov 29 02:15:40 island sshd: Failed password for root from 203.0.113.42 port 40241 ssh2
+Nov 29 02:15:45 island sshd: Failed password for root from 203.0.113.42 port 40305 ssh2
+Nov 29 02:15:50 island sshd: Failed password for root from 203.0.113.42 port 40361 ssh2
+Nov 29 02:15:55 island sshd: Accepted password for root from 203.0.113.42 port 40419 ssh2
+
+Nov 29 02:16:10 island sshd: Failed password for invalid user deploy from 192.0.2.77 port 49233 ssh2
+Nov 29 02:16:24 island sshd: Failed password for invalid user student from 198.51.100.10 port 51602 ssh2
+Nov 29 02:16:57 island sshd: Failed password for invalid user ubuntu from 198.51.100.10 port 51671 ssh2
+            </pre>
+
+            <!-- Form -->
+            <form asp-action="SubmitLogMediumSsh" method="post" class="mt-3">
+                @Html.AntiForgeryToken()
+
+                <label class="mt-3">
+                    <strong>1. Which IP address successfully brute-forced an SSH login?</strong>
+                </label>
+                <input name="flag"
+                       id="flag"
+                       class="form-control bg-dark text-light border-secondary"
+                       placeholder="Example: 123.0.123.12" />
+
+                <button type="submit" class="btn btn-primary mt-3">
+                    Submit Answer
+                </button>
+            </form>
+
+            <!-- Result messages -->
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success mt-3">@TempData["Success"]</div>
+            }
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger mt-3">@TempData["Error"]</div>
+            }
+
+            
+            <!-- Back & Next -->
+            <div class="mt-4 d-flex justify-content-between">
+                <a href="/Challenges/LogEasy" class="btn btn-outline-light">
+                    ← Back to Easy Apache Logs
+                </a>
+                <a href="/Challenges/LogHard" class="btn btn-outline-light">
+                    Next Challenge → Hard Incident Investigation
+                </a>
+            </div>
+
+
+            <!-- Hints -->
+            <div class="accordion mt-4" id="hintsAccordionMedium">
+                <div class="accordion-item bg-dark text-light">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-dark text-light"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#hintMedium1">
+                            Need a hint?
+                        </button>
+                    </h2>
+                    <div id="hintMedium1" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            • Look for lines that say <code>Failed password</code> versus
+                            <code>Accepted password</code>.<br />
+                            • The attacking IP will have several failed attempts followed by
+                            one successful login.<br />
+                            • Focus on the <code>from IP</code> portion of each log line.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Walkthrough -->
+            <div class="accordion mt-3" id="walkAccordionMedium">
+                <div class="accordion-item bg-dark text-light">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-dark text-light collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#walkMedium">
+                            Stuck? View Full Walk-Through
+                        </button>
+                    </h2>
+                    <div id="walkMedium" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <strong>Line-by-line guidance:</strong><br /><br />
+
+                            • 198.51.100.10 generates several <code>Failed password</code>
+                            events, but never an <code>Accepted</code> one.<br />
+                            • 192.0.2.77 also shows only <code>Failed password</code> entries.<br />
+                            • The IP <code>203.0.113.42</code> has multiple failures for user
+                            <code>root</code> followed by an
+                            <code>Accepted password for root from 203.0.113.42</code> line.<br /><br />
+
+                            This means <strong>203.0.113.42</strong> is the IP that successfully
+                            brute-forced the SSH login.
+
+                            <hr />
+
+                            <strong>Correct Answer:</strong><br />
+                            • Attacker IP → <code>203.0.113.42</code>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
     </div>
+
 </div>
-
-

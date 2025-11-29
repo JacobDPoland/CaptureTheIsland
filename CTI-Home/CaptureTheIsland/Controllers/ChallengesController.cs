@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CaptureTheIsland.Controllers
 {
@@ -39,6 +40,82 @@ public class ChallengesController : Controller
             TempData["Error"] = "❌ Incorrect flag. Try analyzing the logs again.";
             return RedirectToAction("ApacheAccessSleuth");
         }
+
+        // 🟦 Medium SSH Brute Force
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitLogMediumSsh(string flag)
+        {
+            string correctIp = "203.0.113.42";
+
+            if (!string.IsNullOrWhiteSpace(flag) &&
+
+            flag.Trim() == correctIp)
+            {
+                TempData["Success"] = "✔ Correct! You identified the attacking IP responsible for the successful brute-force.";
+            }
+            else
+            {
+                TempData["Error"] = "❌ Incorrect. Re-check the failed and successful SSH logins and try again.";
+            }
+
+            return RedirectToAction("LogMedium");
+
+        }
+
+        // 🟦 Hard Incident Timeline Reconstruction
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitLogHardIncident(string q1, string q2, string q3, string q4)
+        {
+            string a1 = "203.0.113.99";
+            string a2 = "03:01:50";
+            string a3 = "backup.tar.gz";
+            string a4 = "/downloads/backup.tar.gz";
+
+            bool correct1 = !string.IsNullOrWhiteSpace(q1) &&
+                            q1.Trim() == a1;
+
+            bool correct2 = !string.IsNullOrWhiteSpace(q2) &&
+                            q2.Trim() == a2;
+
+            bool correct3 = !string.IsNullOrWhiteSpace(q3) &&
+                            q3.Trim().Equals(a3, StringComparison.OrdinalIgnoreCase);
+
+            bool correct4 = !string.IsNullOrWhiteSpace(q4) &&
+                            q4.Trim().Equals(a4, StringComparison.OrdinalIgnoreCase);
+
+            bool anyCorrect = correct1 || correct2 || correct3 || correct4;
+            bool anyWrong =
+                (!string.IsNullOrWhiteSpace(q1) && !correct1) ||
+                (!string.IsNullOrWhiteSpace(q2) && !correct2) ||
+                (!string.IsNullOrWhiteSpace(q3) && !correct3) ||
+                (!string.IsNullOrWhiteSpace(q4) && !correct4);
+
+            if (!anyCorrect && !anyWrong)
+            {
+                TempData["Error"] = "⚠ Please answer at least one question before submitting.";
+                return RedirectToAction("LogHard");
+            }
+
+            if (anyCorrect)
+            {
+                TempData["Success"] = "✔ One or more of your answers are correct. Nice work!";
+            }
+
+            if (anyWrong)
+            {
+                TempData["Error"] = "❌ One or more answers are incorrect. Re-check the logs and try again.";
+            }
+
+            return RedirectToAction("LogHard");
+        }
+
+
+
+
 
         // 🟦 Cipher Warm-up — GET
         [HttpGet]
@@ -420,7 +497,7 @@ public class ChallengesController : Controller
 
             // ⭐ User entered nothing
             if (string.IsNullOrWhiteSpace(username) &&
-                string.IsNullOrWhiteSpace(date) &&  
+                string.IsNullOrWhiteSpace(date) &&
                 string.IsNullOrWhiteSpace(salt) &&
                 string.IsNullOrWhiteSpace(digest) &&
                 string.IsNullOrWhiteSpace(plaintext))
@@ -688,11 +765,6 @@ public class ChallengesController : Controller
             return View();
         }
 
-
-        public IActionResult OSINT_Easy()
-        {
-            return View();
-        }
         // =====================
         // OSINT EASY — Metadata
         // =====================
@@ -735,10 +807,7 @@ public class ChallengesController : Controller
             return RedirectToAction("OSINT_Easy");
         }
 
-        public IActionResult OSINT_Medium()
-        {
-            return View();
-        }
+
 
         // =====================
         // OSINT MEDIUM — Threat Intel
@@ -786,10 +855,7 @@ public class ChallengesController : Controller
             return RedirectToAction("OSINT_Medium");
         }
 
-        public IActionResult OSINT_Hard()
-        {
-            return View();
-        }
+
 
         // =====================
         // OSINT HARD — Barcode

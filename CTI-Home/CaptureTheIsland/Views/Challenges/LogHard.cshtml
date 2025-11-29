@@ -1,23 +1,169 @@
 ﻿@{
-    ViewData["Title"] = "Log Analysis - Hard";
+    ViewData["Title"] = "Hard — Incident Log Investigation";
 }
 
-<div class="container mt-5">
+<div class="container mt-4">
+
     <div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
         <div class="card-body text-light">
 
-            <h2 class="text-center mb-3">🟥 Hard Log Analysis</h2>
+            <h2 class="text-center mb-3" style="color:white;">
+                🟥 Hard — Incident Log Investigation
+            </h2>
 
-            <p class="text-center">
-                This challenge will be available soon.
-                Advanced incident response simulation coming shortly.
+            <p>
+                An alert has been raised about a possible compromise on one of your servers.
+                Combine SSH and web server logs to reconstruct what happened and identify
+                the attacker’s actions.
             </p>
 
-            <div class="text-center mt-4">
-                <a href="/Challenges/LogAnalysis" class="btn btn-outline-light">← Back to Log Analysis</a>
+            <h5 class="mt-3">Log snippets (auth.log, sudo.log, access.log)</h5>
+            <pre class="bg-dark p-3 border rounded small" style="max-height: 420px; overflow-y: auto;">
+# auth.log (SSH)
+Nov 29 03:01:11 island sshd: Failed password for invalid user admin from 198.51.100.10 port 52101 ssh2
+Nov 29 03:01:16 island sshd: Failed password for invalid user test from 198.51.100.10 port 52144 ssh2
+Nov 29 03:01:22 island sshd: Failed password for invalid user backup from 192.0.2.77 port 49311 ssh2
+Nov 29 03:01:39 island sshd: Failed password for root from 203.0.113.99 port 40711 ssh2
+Nov 29 03:01:44 island sshd: Failed password for root from 203.0.113.99 port 40769 ssh2
+Nov 29 03:01:50 island sshd: Accepted password for root from 203.0.113.99 port 40825 ssh2
+
+# sudo.log
+Nov 29 03:02:05 island sudo:   root : TTY=pts/0 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/cat /etc/shadow
+Nov 29 03:02:17 island sudo:   root : TTY=pts/0 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/tar czf /tmp/backup.tar.gz /var/www/html
+
+# access.log (web)
+203.0.113.99 - - [29/Nov/2025:03:03:02 -0600] "GET /index.html HTTP/1.1" 200 1043
+203.0.113.99 - - [29/Nov/2025:03:03:15 -0600] "GET /admin/ HTTP/1.1" 403 721
+203.0.113.99 - - [29/Nov/2025:03:03:41 -0600] "GET /downloads/backup.tar.gz HTTP/1.1" 200 85321
+192.0.2.77   - - [29/Nov/2025:03:04:10 -0600] "GET /images/logo.png HTTP/1.1" 200 982
+            </pre>
+
+            <form asp-action="SubmitLogHardIncident" method="post" class="mt-3">
+                @Html.AntiForgeryToken()
+
+                <label class="mt-3">
+                    <strong>1. Which IP address successfully gained root access?</strong>
+                </label>
+                <input name="q1"
+                       class="form-control bg-dark text-light border-secondary"
+                       placeholder="Example: 198.51.100.50" />
+
+                <label class="mt-3">
+                    <strong>2. At what time did the successful SSH login to root occur?</strong>
+                </label>
+                <input name="q2"
+                       class="form-control bg-dark text-light border-secondary"
+                       placeholder="Example: 04:12:34" />
+
+                <label class="mt-3">
+                    <strong>3. What filename did the attacker archive before exfiltration?</strong>
+                </label>
+                <input name="q3"
+                       class="form-control bg-dark text-light border-secondary"
+                       placeholder="Example: archive-example.tar.gz" />
+
+                <label class="mt-3">
+                    <strong>4. What exact URL path was used to download the archive?</strong>
+                </label>
+                <input name="q4"
+                       class="form-control bg-dark text-light border-secondary"
+                       placeholder="Example: /path/to/example.tar.gz" />
+
+
+                <button type="submit" class="btn btn-primary mt-3">
+                    Submit Answers
+                </button>
+            </form>
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success mt-3">@TempData["Success"]</div>
+            }
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger mt-3">@TempData["Error"]</div>
+            }
+
+            <!-- Back & Next -->
+            <div class="mt-4 d-flex justify-content-between">
+                <a href="/Challenges/LogMedium" class="btn btn-outline-light">
+                    ← Back to Medium SSH Logs
+                </a>
+                <a href="/Challenges/Cryptography" class="btn btn-outline-light">
+                    Next Category → Cryptography Challenges
+                </a>
+            </div>
+
+
+            <!-- Hints -->
+            <div class="accordion mt-4" id="hintsAccordionHard">
+                <div class="accordion-item bg-dark text-light">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-dark text-light"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#hintHard1">
+                            Need a hint?
+                        </button>
+                    </h2>
+                    <div id="hintHard1" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            • Start in <code>auth.log</code> and find the line where SSH shows
+                            <code>Accepted password for root</code> — note the IP and time.<br />
+                            • In <code>sudo.log</code>, follow what commands are run right after that login
+                            (look at any use of <code>tar</code> and <code>/tmp</code>).<br />
+                            • In <code>access.log</code>, look for that same IP downloading something
+                            that looks like a backup archive.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Walkthrough -->
+            <div class="accordion mt-3" id="walkAccordionHard">
+                <div class="accordion-item bg-dark text-light">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-dark text-light collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#walkHard">
+                            Stuck? View Full Walk-Through
+                        </button>
+                    </h2>
+                    <div id="walkHard" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <strong>Investigation steps:</strong><br /><br />
+
+                            • In <code>auth.log</code>, multiple IPs fail SSH, but only
+                            <code>203.0.113.99</code> has an
+                            <code>Accepted password for root</code> at <code>03:01:50</code>.<br />
+                            • Immediately after, <code>sudo.log</code> shows root reading
+                            <code>/etc/shadow</code> and creating
+                            <code>/tmp/backup.tar.gz</code> with <code>tar</code>.<br />
+                            • Finally, <code>access.log</code> shows the same IP
+                            <code>203.0.113.99</code> downloading
+                            <code>/downloads/backup.tar.gz</code> with a 200 status code.<br /><br />
+
+                            So the attacker:
+                            gained root from <strong>203.0.113.99</strong> at
+                            <strong>03:01:50</strong>, archived <strong>backup.tar.gz</strong>,
+                            and exfiltrated it via
+                            <strong>/downloads/backup.tar.gz</strong>.
+
+                            <hr />
+
+                            <strong>Correct Answers:</strong><br />
+                            • Q1 → 203.0.113.99<br />
+                            • Q2 → 03:01:50<br />
+                            • Q3 → backup.tar.gz<br />
+                            • Q4 → /downloads/backup.tar.gz<br />
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
     </div>
-</div>
 
+</div>

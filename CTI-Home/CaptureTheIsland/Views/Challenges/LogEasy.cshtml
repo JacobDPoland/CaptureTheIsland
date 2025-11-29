@@ -67,16 +67,19 @@
                 <div class="alert alert-danger mt-3">@TempData["Error"]</div>
             }
 
-            @if (TempData["Success"] != null)
-            {
-                <script>markChallengeComplete("LogEasy");</script>
-            }
-
             <!-- Back & Next -->
             <div class="mt-4 d-flex justify-content-between">
-                <a href="/Challenges/LogAnalysis" class="btn btn-outline-light">← Back to Log Analysis</a>
-                <a class="btn btn-outline-secondary disabled">Next Challenge → Medium (Coming Soon)</a>
+                <a href="/Challenges/LogAnalysis" class="btn btn-outline-light">
+                    ← Back to Log Analysis
+                </a>
+                <a href="/Challenges/LogMedium" class="btn btn-outline-light">
+                    Next Challenge → Medium (SSH Brute-force)
+                </a>
             </div>
+
+
+
+
 
             <!-- Hints -->
             <div class="accordion mt-4" id="hintsAccordion">
