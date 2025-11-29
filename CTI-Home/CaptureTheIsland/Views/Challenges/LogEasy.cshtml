@@ -67,6 +67,15 @@
                 <div class="alert alert-danger mt-3">@TempData["Error"]</div>
             }
 
+            @if (TempData["Success"] != null)
+            {
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                        markChallengeComplete("LogEasy");
+                    });
+                </script>
+            }
+
             <!-- Back & Next -->
             <div class="mt-4 d-flex justify-content-between">
                 <a href="/Challenges/LogAnalysis" class="btn btn-outline-light">

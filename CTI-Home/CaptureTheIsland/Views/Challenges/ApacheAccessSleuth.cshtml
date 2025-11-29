@@ -29,6 +29,9 @@
 }
 @if (TempData["Success"] != null)
 {
-    <script>markChallengeComplete("ApacheAcessSleuth");</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            markChallengeComplete("ApacheAccessSleuth");
+        });
+    </script>
 }
-<a href="/Challenges/HashStretch" class="btn btn-secondary mt-4">Next Challenge → Hash Stretch</a>

@@ -75,7 +75,11 @@
 
         @if (TempData["Success"] != null)
         {
-            <script>markChallengeComplete("RockYou");</script>
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    markChallengeComplete("RockYou");
+                });
+            </script>
         }
 
         <hr class="border-secondary mt-4" />

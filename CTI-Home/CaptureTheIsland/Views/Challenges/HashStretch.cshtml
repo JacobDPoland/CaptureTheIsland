@@ -72,9 +72,13 @@
     <div class="alert alert-danger mt-3">@TempData["Error"]</div>
 }
 
-@if (TempData["Message"] != null)
+@if (TempData["Success"] != null)
 {
-    <script>markChallengeComplete("HashStretch");</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            markChallengeComplete("HashStretch");
+        });
+    </script>
 }
 
 <a href="/Challenges/Sample" class="btn btn-secondary mt-4">Back to Sample Challenges</a>

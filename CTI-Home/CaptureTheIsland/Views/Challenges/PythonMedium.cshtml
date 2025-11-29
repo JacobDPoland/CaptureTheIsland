@@ -38,7 +38,11 @@
 
     @if (TempData["Success"] != null)
     {
-        <script>markChallengeComplete("PythonHard");</script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                markChallengeComplete("PythonMedium");
+            });
+        </script>
     }
 
     <hr />

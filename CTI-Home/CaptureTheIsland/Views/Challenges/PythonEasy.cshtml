@@ -76,7 +76,11 @@ if __name__ == "__main__":
 
 @if (TempData["Success"] != null)
 {
-    <script>markChallengeComplete("PythonEasy");</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            markChallengeComplete("PythonEasy");
+        });
+    </script>
 }
 
 <form method="post" asp-action="SubmitPythonEasy">

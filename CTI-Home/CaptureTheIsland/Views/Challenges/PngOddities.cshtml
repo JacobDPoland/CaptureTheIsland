@@ -35,11 +35,12 @@
 
 @if (TempData["Success"] != null)
 {
-    <script>markChallengeComplete("PngOddities");</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            markChallengeComplete("PngOddities");
+        });
+    </script>
 }
-
-<hr />
-
 <!-- HINT ACCORDION -->
 <div class="accordion mt-4" id="hintsAccordion">
 
