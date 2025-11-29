@@ -279,6 +279,14 @@
         box-shadow: 0 0 12px rgba(0,255,255,0.35);
     }
 
+    /* Keyboard focus should behave like hover */
+    .challenge-card:focus-visible div,
+    .challenge-card:focus div {
+        transform: translateY(-4px);
+        border-color: cyan !important;
+        box-shadow: 0 0 12px rgba(0,255,255,0.35);
+    }
+
     .platform-card {
         transition: 0.25s ease-in-out;
         border-radius: 10px;
@@ -289,4 +297,13 @@
             border-color: cyan !important;
             box-shadow: 0 0 12px rgba(0,255,255,0.35);
         }
+
+    /* Keyboard focus for platform cards */
+    a:focus-visible .platform-card,
+    a:focus .platform-card {
+        transform: translateY(-4px);
+        border-color: cyan !important;
+        box-shadow: 0 0 12px rgba(0,255,255,0.35);
+    }
+
 </style>
