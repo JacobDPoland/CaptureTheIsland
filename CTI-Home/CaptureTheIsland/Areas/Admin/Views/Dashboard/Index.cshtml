@@ -87,6 +87,71 @@
             grid-template-columns: repeat(2, 1fr);
         }
     }
+
+    /* User table styles: borders, alternating rows and padding */
+    #userTable {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid rgba(255,255,255,0.06);
+        margin-top: 0.75rem;
+        table-layout: auto;
+    }
+
+    #userTable th,
+    #userTable td {
+        border: 1px solid rgba(255,255,255,0.04);
+        padding: 0.65rem 0.9rem;
+        text-align: left;
+        vertical-align: middle;
+        color: #e4e4e4;
+    }
+
+    /* clickable header styles */
+    #userTable thead th[onclick] {
+        cursor: pointer;
+        transition: background-color 150ms ease, color 150ms ease, transform 100ms ease;
+    }
+
+    #userTable thead th[onclick]:hover {
+        background: rgba(0,235,255,0.06);
+        color: #ffffff;
+        transform: translateY(-1px);
+    }
+
+    #userTable thead th {
+        background: rgba(255,255,255,0.03);
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    #userTable tbody tr:nth-child(odd) {
+        background: rgba(255,255,255,0.02);
+    }
+
+    #userTable tbody tr:nth-child(even) {
+        background: rgba(255,255,255,0.01);
+    }
+
+    #userTable tbody tr:hover {
+        background: rgba(0,235,255,0.04);
+    }
+
+    .email-cell {
+        min-width: 240px;
+        max-width: 520px;
+        word-break: break-word;
+        padding-right: 1rem;
+    }
+
+    /* smaller button appearance inside table cells */
+    .btn-small {
+        padding: 0.28rem 0.55rem;
+        font-size: 0.85rem;
+        border-radius: 4px;
+    }
+
 </style>
 
 
@@ -159,11 +224,11 @@
         <table id="userTable">
             <thead>
                 <tr>
-                    <th onclick="sortTable(0)">Email</th>
-                    <th onclick="sortTable(1)">Role</th>
-                    <th onclick="sortTable(2)">Joined</th>
-                    <th onclick="sortTable(3)">Challenges</th>
-                    <th>Actions</th>
+                    <th style="min-width:240px;" onclick="sortTable(0)">Email</th>
+                    <th style="width:110px;" onclick="sortTable(1)">Role</th>
+                    <th style="width:130px;" onclick="sortTable(2)">Joined</th>
+                    <th style="width:110px;" onclick="sortTable(3)">Challenges</th>
+                    <th style="width:140px;">Actions</th>
                 </tr>
             </thead>
 
@@ -222,7 +287,7 @@
         const rows = Array.from(table.rows).slice(1);
         const isAsc = table.getAttribute("data-sort") != "asc";
 
-        rows.sort((a, b) => {
+        rows.sort((a, b) => {f
             const x = a.cells[col].innerText.toLowerCase();
             const y = b.cells[col].innerText.toLowerCase();
             return isAsc ? x.localeCompare(y) : y.localeCompare(x);
