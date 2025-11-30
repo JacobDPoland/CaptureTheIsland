@@ -16,7 +16,8 @@ namespace CaptureTheIsland.Models
         }
 
         public DbSet<Resource> Resources { get; set; }
-        
+        public DbSet<Challenge> Challenges { get; set; }
+        public DbSet<ChallengeSummary> ChallengeSummaries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
