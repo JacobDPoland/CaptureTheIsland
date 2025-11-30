@@ -20,31 +20,30 @@ namespace CaptureTheIsland.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder); // VERY IMPORTANT
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Resource>().HasData(
-                new Resource
+                new Resource { ResourceId = 1, Name = "dCode", Link = "https://www.dcode.fr", Description = "..." },
+                new Resource { ResourceId = 2, Name = "Cyber Chef", Link = "https://gchq.github.io/CyberChef/", Description = "..." },
+                new Resource { ResourceId = 3, Name = "Whois", Link = "https://www.who.is", Description = "..." }
+            );
+
+            modelBuilder.Entity<Challenge>().HasData(
+                new Challenge
                 {
-                    ResourceId = 1,
-                    Name = "dCode",
-                    Link = "https://www.dcode.fr",
-                    Description = "dCode is the universal site for deciphering coded messages..."
-                },
-                new Resource
-                {
-                    ResourceId = 2,
-                    Name = "Cyber Chef",
-                    Link = "https://gchq.github.io/CyberChef/",
-                    Description = "Cyber Chef is a helpful cryptography resource..."
-                },
-                new Resource
-                {
-                    ResourceId = 3,
-                    Name = "Whois",
-                    Link = "https://www.who.is",
-                    Description = "Helpful resource to find information about domain owners."
+                    ChallengeId = 1,
+                    Title = "Cipher Warm-Up",
+                    Category = "Sample",
+                    Difficulty = "Easy",
+                    Slug = "cipher-warm-up",
+                    Description = "Basic substitution & decoding practice",
+                    Prompt = "Decode the following ROT13 cipher text to find the flag.",
+                    FileURL = "",
+                    Flag = "Hello, this is my flag",
+                    Hints = "ROT13 is a simple letter substitution cipher...\nTry dCode or Cyber Chef."
                 }
             );
+
         }
     }
 }
