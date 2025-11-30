@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CaptureTheIsland.Migrations
 {
-    [DbContext(typeof(ResourceContext))]
+    [DbContext(typeof(ApplicationContext))]
     [Migration("20251107235149_Install")]
     partial class Install
     {

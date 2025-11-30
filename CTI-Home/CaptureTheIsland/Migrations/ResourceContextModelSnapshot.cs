@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CaptureTheIsland.Migrations
 {
-    [DbContext(typeof(ResourceContext))]
-    partial class ResourceContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApplicationContext))]
+    partial class ApplicationContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

@@ -13,9 +13,9 @@ namespace CaptureTheIsland.Controllers
     [Authorize(Roles = "User,Admin")]   // 🔒 THIS PROTECTS THE ENTIRE HOME CONTROLLER
     public class HomeController : Controller
     {
-        private ResourceContext context { get; set; }
+        private ApplicationContext context { get; set; }
 
-        public HomeController(ResourceContext ctx)
+        public HomeController(ApplicationContext ctx)
         {
             context = ctx;
         }

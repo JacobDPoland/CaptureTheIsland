@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CaptureTheIsland.Migrations
 {
-    [DbContext(typeof(ResourceContext))]
+    [DbContext(typeof(ApplicationContext))]
     [Migration("20251129040522_Init")]
     partial class Init
     {

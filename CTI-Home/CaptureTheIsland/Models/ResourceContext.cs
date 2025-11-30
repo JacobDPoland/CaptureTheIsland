@@ -8,14 +8,15 @@ namespace CaptureTheIsland.Models
     // additional profile properties can be added in the future and to
     // align with the SecureExample design.  ApplicationUser derives
     // from IdentityUser and resides in the same namespace.
-    public class ResourceContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
-        public ResourceContext(DbContextOptions<ResourceContext> options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
         }
 
         public DbSet<Resource> Resources { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

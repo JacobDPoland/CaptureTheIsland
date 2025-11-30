@@ -25,7 +25,7 @@ namespace CaptureTheIsland.Data
             var scopedServices = scope.ServiceProvider;
 
             // Ensure the database is created and migrations are applied
-            var context = scopedServices.GetRequiredService<ResourceContext>();
+            var context = scopedServices.GetRequiredService<ApplicationContext>();
             await context.Database.MigrateAsync();
 
             var roleManager = scopedServices.GetRequiredService<RoleManager<IdentityRole>>();

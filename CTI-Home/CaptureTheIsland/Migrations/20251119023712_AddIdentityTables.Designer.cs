@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CaptureTheIsland.Migrations
 {
-    [DbContext(typeof(ResourceContext))]
+    [DbContext(typeof(ApplicationContext))]
     [Migration("20251119023712_AddIdentityTables")]
     partial class AddIdentityTables
     {

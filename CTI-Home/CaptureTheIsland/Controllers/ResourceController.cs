@@ -7,9 +7,9 @@ namespace CaptureTheIsland.Controllers
     [Authorize(Roles = "Admin")]
     public class ResourceController : Controller
     {
-        private ResourceContext context { get; set; }
+        private ApplicationContext context { get; set; }
 
-        public ResourceController(ResourceContext ctx)
+        public ResourceController(ApplicationContext ctx)
         {
             context = ctx;
         }

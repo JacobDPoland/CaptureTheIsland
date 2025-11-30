@@ -22,9 +22,9 @@ namespace CaptureTheIsland
             services.AddControllersWithViews();
 
             // --- DATABASE CONTEXT ---
-            services.AddDbContext<ResourceContext>(options =>
+            services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("ResourceContext")));
+                    Configuration.GetConnectionString("ApplicationContext")));
 
             // --- ASP.NET CORE IDENTITY ---
             // Configure Identity to use our ApplicationUser class and require
@@ -32,7 +32,7 @@ namespace CaptureTheIsland
             // failures.  These settings mirror the SecureExample project and
             // ensure that credentials are stored using the built‑in Identity
             // infrastructure.  The AddEntityFrameworkStores call wires up
-            // Identity to use our ResourceContext (which derives from
+            // Identity to use our ApplicationContext (which derives from
             // IdentityDbContext<ApplicationUser>).  Token providers are added
             // to support password resets and other token based flows.
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -51,7 +51,7 @@ namespace CaptureTheIsland
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
             })
-                .AddEntityFrameworkStores<ResourceContext>()
+                .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
 
             // --- COOKIE SETTINGS (REDIRECT TO LOGIN) ---
