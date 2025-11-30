@@ -35,5 +35,6 @@
   <ItemGroup>
     <Folder Include="Areas\User\Controllers\" />
     <Folder Include="Areas\User\Views\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>
