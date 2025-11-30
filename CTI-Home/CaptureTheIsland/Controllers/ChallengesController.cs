@@ -765,6 +765,11 @@ public class ChallengesController : Controller
             return View();
         }
 
+        public IActionResult OSINT_Easy()
+        {
+            return View();
+        }
+
         // =====================
         // OSINT EASY — Metadata
         // =====================
@@ -807,7 +812,10 @@ public class ChallengesController : Controller
             return RedirectToAction("OSINT_Easy");
         }
 
-
+        public IActionResult OSINT_Medium()
+        {
+            return View();
+        }
 
         // =====================
         // OSINT MEDIUM — Threat Intel
@@ -854,8 +862,11 @@ public class ChallengesController : Controller
 
             return RedirectToAction("OSINT_Medium");
         }
-
-
+        public IActionResult OSINT_Hard()
+        {
+            return View();
+        }
+        
 
         // =====================
         // OSINT HARD — Barcode

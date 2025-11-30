@@ -47,6 +47,20 @@
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Challenges")">🎯 Challenges</a></li>
                             </ul>
                         </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <!-- PROFILE DROPDOWN -->
+                            <li class="nav-item dropdown me-3">
+                                <a class="nav-link dropdown-toggle btn btn-outline-primary px-3"
+                                href="/Views/Account/Profile" id="profileDrop" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                    Profile
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="profileDrop">
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile">👤 View Profile</a></li>
+                                </ul>
+                            </li>
+                        }
 
                         <!-- ⭐️ ABOUT DROPDOWN -->
                         <li class="nav-item dropdown">
@@ -93,10 +107,6 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <!-- USER LOGGED IN -->
-                            <li class="nav-item me-3 d-flex align-items-center text-info">
-                                Welcome, @UserManager.GetUserName(User)
-                            </li>
-
                             @* Links to user and admin dashboards appear only when a user is
                                authenticated.  The admin link is shown conditionally if the
                                current user is in the Admin role.  The user dashboard link

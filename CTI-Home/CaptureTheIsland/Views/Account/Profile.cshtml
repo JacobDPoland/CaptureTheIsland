@@ -1,0 +1,71 @@
+﻿@model CaptureTheIsland.Models.ProfileViewModel
+@{
+    ViewData["Title"] = "Your Profile";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
+            <div class="card-body">
+
+                <h2 class="text-center mb-4 text-light">👤 Your Profile</h2>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-dark text-light">
+                        <strong>Email:</strong> @Model.Email
+                    </li>
+                    <li class="list-group-item bg-dark text-light">
+                        <strong>Username:</strong> @Model.UserName
+                    </li>
+                </ul>
+
+                <h3 class="text-light mt-4 mb-3">
+                    🎯 Challenges Completed
+                </h3>
+
+                <div id="challenge-grid" class="challenge-grid"></div>
+
+
+                <div class="text-center mt-4">
+                    <a href="/" class="btn btn-outline-info">← Back to Home</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            let completed = JSON.parse(localStorage.getItem("completedChallenges") || "[]");
+            let grid = document.getElementById("challenge-grid");
+
+            if (completed.length === 0) {
+                grid.innerHTML = `
+                    <div class="challenge-card empty-card">
+                        <span>No challenges completed yet.</span>
+                    </div>`;
+                return;
+            }
+
+            completed.forEach(challenge => {
+
+                let cleanName = challenge.replace(/_/g, " ");
+
+                grid.innerHTML += `
+                    <div class="challenge-card">
+                        <div class="challenge-icon">🏆</div>
+                        <div class="challenge-info">
+                            <span class="challenge-title">${cleanName}</span>
+                            <span class="challenge-tag">Completed ✔</span>
+                        </div>
+                    </div>`;
+            });
+        });
+    </script>
+
+
+}

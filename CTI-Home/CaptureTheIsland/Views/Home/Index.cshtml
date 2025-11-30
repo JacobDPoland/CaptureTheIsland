@@ -19,6 +19,13 @@
     <script src="~/js/shapeshifter-title.js" defer></script>
 }
 
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="text-center mb-4" style="font-size: 1.2rem; color: cyan;">
+        👋 Welcome back, <strong>@User.Identity.Name</strong>
+    </div>
+}
+
 
 <!-- 🔥 NEW CHALLENGE INTRO SECTION -->
 <hr class="border-secondary my-5" />
