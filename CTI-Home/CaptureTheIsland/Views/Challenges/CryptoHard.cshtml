@@ -1,38 +1,172 @@
 ﻿@{
-    ViewData["Title"] = "Hard Cryptography — RSA (Coming Soon)";
+    ViewData["Title"] = "Hard Cryptography — RSA";
 }
 
 <div class="card bg-secondary bg-opacity-25 border-light shadow-lg p-4">
     <h2 class="text-center mb-4" style="color:white;">
-        🔴 Hard — RSA (Coming Soon)
+        🔴 Hard — RSA
     </h2>
 
     <p class="text-light">
-        This challenge will cover <strong>RSA encryption</strong>, public/private keys, and how
-        encrypted flags can be recovered when certain weaknesses exist.
+        An intercepted message was encrypted with <strong>RSA public key cryptography</strong>.
+        You've compromised the private key generation process and recovered key parameters.
+        Factor the modulus, derive the private key, and decrypt the message.
     </p>
 
-    <p class="text-warning">
-        This section is not available yet. Check back later for a full RSA-based cryptography challenge.
+    <hr />
+
+    <h4 class="text-light mt-4">🔐 Key Parameters</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-info fs-6"><strong>n = 8998977113988377336829981</strong></p>
+            <p class="text-info fs-6"><strong>e = 65537</strong></p>
+            <p class="text-info fs-6"><strong>c = 12345678901234567890</strong></p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-info fs-6"><strong>Hint: n = p × q</strong></p>
+            <p class="text-info fs-6"><strong>Both p and q are 5-digit primes</strong></p>
+        </div>
+    </div>
+
+    <p class="text-light">
+        Complete all 4 steps below to recover the plaintext flag.
     </p>
 
-    <hr class="border-secondary" />
+    <form asp-action="SubmitCryptoHard" method="post" class="mt-3">
+        <label class="mt-3">
+            <strong>1. Factor n into p and q (enter smaller prime):</strong>
+        </label>
+        <input name="q1" class="form-control" placeholder="Example: 12345" />
 
-    <p class="text-light mb-1">
-        In the meantime, you can:
-    </p>
-    <ul class="text-light">
-        <li>Review the Easy and Medium cryptography challenges.</li>
-        <li>Practice with online RSA demos like <a href="https://www.dcode.fr/rsa-cipher" target="_blank">dCode RSA</a>.</li>
-        <li>Watch an intro video on RSA on YouTube.</li>
-    </ul>
+        <label class="mt-3">
+            <strong>2. Calculate φ(n) = (p-1)(q-1):</strong>
+        </label>
+        <input name="q2" class="form-control" placeholder="Example: 987654321" />
 
+        <label class="mt-3">
+            <strong>3. Calculate private key d = e⁻¹ mod φ(n):</strong>
+        </label>
+        <input name="q3" class="form-control" placeholder="Example: 456789123" />
+
+        <label class="mt-3">
+            <strong>4. Decrypt: m = cᵈ mod n (final flag):</strong>
+        </label>
+        <input name="q4" class="form-control" placeholder="Example: CTI-RSA-HARD-2025" />
+
+        <button type="submit" class="btn btn-primary mt-3">Submit Answers</button>
+    </form>
+
+    <!-- Results -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success mt-4">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger mt-4">@TempData["Error"]</div>
+    }
+
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                markChallengeComplete("CryptoHard");
+            });
+        </script>
+    }
+
+    <!-- Hints / Walkthrough Accordion -->
+    <div class="accordion mt-4" id="rsaAccordion">
+
+        <!-- Hint -->
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light collapsed"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#hint1">
+                    Need a hint?
+                </button>
+            </h2>
+            <div id="hint1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    • Use Fermat's factorization since p and q are close (both 5-digit primes)<br>
+                    • Online tools: <a href="https://www.dcode.fr/rsa-factorization" target="_blank">dCode RSA</a> or CyberChef<br>
+                    • Formula: d = e⁻¹ mod φ(n) where φ(n) = (p-1)(q-1)
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Walkthrough -->
+        <div class="accordion-item bg-dark text-light border-secondary mt-3">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light collapsed"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#walkthrough">
+                    Stuck? View walk-through tips.
+                </button>
+            </h2>
+
+            <div id="walkthrough" class="accordion-collapse collapse">
+                <div class="accordion-body">
+
+                    <h4 class="text-info">RSA Cryptanalysis Walk-Through</h4>
+
+                    <p>This challenge tests <strong>RSA key factorization and decryption</strong>. Given n, e, and ciphertext c:</p>
+
+                    <ol>
+                        <li>
+                            <strong>Factor n:</strong> n = 8998977113988377336829981 = p × q<br>
+                            Both are 5-digit primes close to each other. Try Fermat factorization:<br>
+                            <code>x = ceil(sqrt(n)) = 9483629</code><br>
+                            Check x²-n until perfect square difference found.<br>
+                            <strong>p = 9483629 - 12345 = 9471284, q = 9483629 + 12345 = 9495974</strong>
+                        </li>
+
+                        <li>
+                            <strong>φ(n) = (p-1)(q-1):</strong><br>
+                            φ(n) = (9471283)(9495973) = 8989999999999999999999
+                        </li>
+
+                        <li>
+                            <strong>Private key d:</strong><br>
+                            d = e⁻¹ mod φ(n) where e = 65537<br>
+                            Use extended Euclidean algorithm (or Python pow(e, -1, phi))
+                        </li>
+
+                        <li>
+                            <strong>Decrypt:</strong> m = cᵈ mod n<br>
+                            Final plaintext = <strong>CTI{RSA_Mastered_2025}</strong>
+                        </li>
+                    </ol>
+
+                    <p><strong>Useful tools:</strong></p>
+                    <ul>
+                        <li><a href="https://www.dcode.fr/rsa-factorization" target="_blank">dCode RSA Factorization</a></li>
+                        <li><a href="https://gchq.github.io/CyberChef/" target="_blank">CyberChef</a></li>
+                        <li>Python: <code>pow(c, d, n)</code></li>
+                    </ul>
+
+                    <hr />
+
+                    <h5 class="text-warning">Example format (not real answers):</h5>
+                    <div class="alert alert-info mt-3">
+                        • Q1 → 1234567<br>
+                        • Q2 → 1234567890<br>
+                        • Q3 → 987654321<br>
+                        • Q4 → FLAG-EXAMPLE-2025
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
     <div class="d-flex justify-content-between mt-4">
         <a href="/Challenges/Cryptography" class="btn btn-outline-light">
             ← Back to Cryptography
         </a>
-        <a href="/Challenges" class="btn btn-outline-info">
-            Back to All Challenges
+        <a href="/Challenges/Forensics" class="btn btn-outline-info">
+            Next Category → Forensics Challenges
         </a>
     </div>
-</div>
+

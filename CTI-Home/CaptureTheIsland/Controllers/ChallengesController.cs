@@ -692,6 +692,47 @@ public class ChallengesController : Controller
             return RedirectToAction("CryptoMedium");
         }
 
+        // Crypto Hard RSA
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitCryptoHard(string q1, string q2, string q3, string q4)
+        {
+            // Correct answers (keep these in sync with your RSA design)
+            string a1 = "9471284";                  // example smaller prime p
+            string a2 = "8989999999999999999999";   // example φ(n)
+            string a3 = "43210987654321098765";     // example d
+            string a4 = "CTI{RSA_Mastered_2025}";   // example final flag
+
+            int correct = 0;
+
+            if (!string.IsNullOrWhiteSpace(q1) &&
+                q1.Trim() == a1)
+                correct++;
+
+            if (!string.IsNullOrWhiteSpace(q2) &&
+                q2.Trim() == a2)
+                correct++;
+
+            if (!string.IsNullOrWhiteSpace(q3) &&
+                q3.Trim() == a3)
+                correct++;
+
+            if (!string.IsNullOrWhiteSpace(q4) &&
+                q4.Trim() == a4)
+                correct++;
+
+            if (correct > 0)
+            {
+                TempData["Success"] = $"✔ You answered {correct} question(s) correctly!";
+            }
+            else
+            {
+                TempData["Error"] = "❌ None of your answers were correct. Try again!";
+            }
+
+            return RedirectToAction("CryptoHard");
+        }
+
 
         public IActionResult CryptoHard()
         {
