@@ -21,6 +21,16 @@ namespace CaptureTheIsland
             // --- ENABLE MVC ---
             services.AddControllersWithViews();
 
+            // --- ENABLE SESSION (ADD THIS) ---
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(2);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             // --- DATABASE CONTEXT ---
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(
@@ -86,6 +96,8 @@ namespace CaptureTheIsland
             app.UseRouting();
 
             // --- AUTHENTICATION + AUTHORIZATION MIDDLEWARE ---
+            app.UseSession();
+
             app.UseAuthentication();
             app.UseAuthorization();
 

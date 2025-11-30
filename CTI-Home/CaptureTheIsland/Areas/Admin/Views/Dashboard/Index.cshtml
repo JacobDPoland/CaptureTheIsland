@@ -1,10 +1,233 @@
+﻿@model CaptureTheIsland.Models.AdminDashboardViewModel
 @{
-    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Title"] = "Admin Control Center";
 }
 
-<h1 class="display-4">Admin Dashboard</h1>
+<!-- CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<p>Welcome to the admin area.  Only users in the <strong>Admin</strong> role can
-access this section of the application.  From here you can manage
-resources or perform other administrative tasks.  This page is
-intentionally minimal and can be extended to suit your needs.</p>
+<style>
+    body {
+        background-color: #121820 !important;
+        color: #e4e4e4 !important;
+    }
+
+    .admin-wrapper {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+        animation: fadeIn 0.8s ease;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    h1 {
+        font-size: 2.3rem;
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+
+    /* GLASS PANELS */
+    .glass-card {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(0,255,255,0.12);
+        backdrop-filter: blur(8px);
+        padding: 22px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        transition: 0.3s ease;
+        box-shadow: 0 0 15px rgba(0,255,255,0.05);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .glass-card:hover {
+            border-color: #00eaff;
+            box-shadow: 0 0 25px rgba(0,255,255,0.18);
+        }
+
+        .glass-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(120deg, transparent 40%, rgba(0,255,255,0.5), transparent 60%);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: rotateBorder 4s linear infinite;
+        }
+
+    @@keyframes rotateBorder {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+    }
+
+    @@media (max-width: 768px) {
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>
+
+
+
+<div class="admin-wrapper">
+
+    <h1>🛡️ Admin Control Center</h1>
+
+    <!-- === STATS GRID === -->
+    <div class="stats-grid">
+
+        <div class="glass-card">
+            <div class="stat-label">Total Users</div>
+            <div class="stat-number">@Model.TotalUsers</div>
+        </div>
+
+        <div class="glass-card">
+            <div class="stat-label">Admins</div>
+            <div class="stat-number">@Model.AdminCount</div>
+        </div>
+
+        <div class="glass-card">
+            <div class="stat-label">Registered Challenges</div>
+            <div class="stat-number">@Model.TotalChallenges</div>
+        </div>
+
+        <div class="glass-card">
+            <div class="stat-label">Completed (All Users)</div>
+            <div class="stat-number">@Model.TotalCompletedChallenges</div>
+        </div>
+
+    </div>
+
+    <!-- ===== PIE CHART ===== -->
+    <div class="glass-card">
+        <h3>📊 Challenge Completion Breakdown</h3>
+        <canvas id="challengeChart" height="120"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('challengeChart');
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Completed', 'Remaining'],
+                datasets: [{
+                    data: [
+                        @Model.TotalCompletedChallenges,
+                        @Model.TotalChallenges - @Model.TotalCompletedChallenges
+                    ],
+                    backgroundColor: ['#00eaff', '#1b2a38'],
+                    borderColor: ['#00eaff', '#1b2a38'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                plugins: { legend: { labels: { color: 'white' } } }
+            }
+        });
+    </script>
+
+
+    <!-- === USER TABLE WITH SEARCH + SORTING === -->
+    <div class="glass-card">
+        <h3>👥 User Overview</h3>
+
+        <input id="userSearch" type="text" placeholder="Search users...">
+
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Email</th>
+                    <th onclick="sortTable(1)">Role</th>
+                    <th onclick="sortTable(2)">Joined</th>
+                    <th onclick="sortTable(3)">Challenges</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var u in Model.Users)
+                {
+                    <tr>
+                        <td class="email-cell">@u.Email</td>
+
+                        <td>
+                            @if (u.Role == "Admin")
+                            {
+                                <span class="badge-admin">Admin</span>
+                            }
+                            else
+                            {
+                                <span class="badge-user">User</span>
+                            }
+                        </td>
+
+                        <td>@u.DateCreated.ToShortDateString()</td>
+                        <td>@u.CompletedChallenges</td>
+
+                        <td>
+                            <button class="btn-small btn-role">Toggle Role</button>
+                            <button class="btn-small btn-delete">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <p style="opacity: 0.7; font-size: 0.8rem; margin-top:10px;">
+            *Challenge counts reflect progress saved in each user's browser.
+        </p>
+    </div>
+
+</div>
+
+
+<!-- === SEARCH & SORTING JAVASCRIPT === -->
+<script>
+    document.getElementById("userSearch").addEventListener("keyup", function () {
+        const filter = this.value.toLowerCase();
+        const rows = document.querySelectorAll("#userTable tbody tr");
+
+        rows.forEach(row => {
+            row.style.display = row.textContent.toLowerCase().includes(filter)
+                ? ""
+                : "none";
+        });
+    });
+
+    function sortTable(col) {
+        const table = document.getElementById("userTable");
+        const rows = Array.from(table.rows).slice(1);
+        const isAsc = table.getAttribute("data-sort") != "asc";
+
+        rows.sort((a, b) => {
+            const x = a.cells[col].innerText.toLowerCase();
+            const y = b.cells[col].innerText.toLowerCase();
+            return isAsc ? x.localeCompare(y) : y.localeCompare(x);
+        });
+
+        table.setAttribute("data-sort", isAsc ? "asc" : "desc");
+        rows.forEach(row => table.tBodies[0].appendChild(row));
+    }
+</script>
