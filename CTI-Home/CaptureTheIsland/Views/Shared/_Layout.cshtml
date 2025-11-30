@@ -43,8 +43,9 @@
                                 Home
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="homeDrop">
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "Home")">🏠 Main Home</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "Challenges")">🎯 Challenges</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">🏠 Main Home</a></li> 
+                                @* ref="@Url.Action("Index", "Home") *@
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Challenges" asp-action="Index">🎯 Challenges</a></li>
                             </ul>
                         </li>
                         @if (SignInManager.IsSignedIn(User))
@@ -57,7 +58,7 @@
                                     Profile
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="profileDrop">
-                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile">👤 View Profile</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Profile">👤 View Profile</a></li>
                                 </ul>
                             </li>
                         }
@@ -70,8 +71,8 @@
                                 About Us
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="aboutDrop">
-                                <li><a class="dropdown-item" href="@Url.Action("About", "Home")">📘 Our Story</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Team", "Home")">👥 Team</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="About">📘 Our Story</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Team">👥 Team</a></li>
                             </ul>
                         </li>
 
@@ -83,7 +84,7 @@
                                 Contact
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="contactDrop">
-                                <li><a class="dropdown-item" href="@Url.Action("Contact", "Home")">📩 Contact Form</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Contact">📩 Contact Form</a></li>
                                 <li><a class="dropdown-item" href="mailto:mohammed@example.com">✉ Email Us</a></li>
                             </ul>
                         </li>
