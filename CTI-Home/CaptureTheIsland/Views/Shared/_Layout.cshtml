@@ -93,10 +93,6 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <!-- USER LOGGED IN -->
-                            <li class="nav-item me-3 d-flex align-items-center text-info">
-                                Welcome, @UserManager.GetUserName(User)
-                            </li>
-
                             @* Links to user and admin dashboards appear only when a user is
                                authenticated.  The admin link is shown conditionally if the
                                current user is in the Admin role.  The user dashboard link

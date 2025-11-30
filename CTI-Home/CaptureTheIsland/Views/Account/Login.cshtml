@@ -3,43 +3,107 @@
     ViewData["Title"] = "Sign In";
 }
 
-<div class="row justify-content-center">
+<style>
+    /* Page Styling */
+    .login-wrapper {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Card Styling */
+    .login-card {
+        background: rgba(30, 30, 30, 0.8);
+        border: 1px solid #444;
+        border-radius: 14px;
+        padding: 30px;
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+        transition: 0.2s ease-in-out;
+    }
+
+        .login-card:hover {
+            box-shadow: 0 0 35px rgba(0, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+    /* Inputs */
+    .login-input {
+        background: #111 !important;
+        border: 1px solid #555 !important;
+        color: #fff !important;
+    }
+
+        .login-input:focus {
+            border-color: cyan !important;
+            box-shadow: 0 0 10px rgba(0,255,255,0.4);
+        }
+
+    /* Button */
+    .login-btn {
+        background: linear-gradient(90deg, #00d4ff, #007bff);
+        border: none;
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-align: center;
+        transition: 0.25s;
+    }
+
+        .login-btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+        }
+
+</style>
+
+<div class="login-wrapper">
     <div class="col-md-5">
-        <div class="card bg-secondary bg-opacity-25 border-light shadow-lg">
-            <div class="card-body">
+        <div class="login-card">
 
-                <h2 class="text-center mb-4" style="color: white !important;">Sign In</h2>
+            <h2 class="text-center mb-4 text-light fw-bold">
+                🔐 Sign In
+            </h2>
 
-                @if (!string.IsNullOrEmpty(Model?.ErrorMessage))
-                {
-                    <div class="alert alert-danger">@Model.ErrorMessage</div>
-                }
+            @if (!string.IsNullOrEmpty(Model?.ErrorMessage))
+            {
+                <div class="alert alert-danger">@Model.ErrorMessage</div>
+            }
 
-                <form asp-action="Login" method="post">
-                    <div class="mb-3">
-                        <label class="form-label" style="color: white !important;">Email</label>
-                        <input asp-for="Email" class="form-control bg-dark text-light border-secondary" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
+            <form asp-action="Login" method="post">
 
-                    <div class="mb-3">
-                        <label class="form-label" style="color: white !important;">Password</label>
-                        <input asp-for="Password" type="password" class="form-control bg-dark text-light border-secondary" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
+                <!-- Email -->
+                <div class="mb-3">
+                    <label class="form-label text-light">Email</label>
+                    <input asp-for="Email" class="form-control login-input" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
 
-                    <button type="submit" class="btn btn-outline-light w-100">Login</button>
+                <!-- Password -->
+                <div class="mb-3">
+                    <label class="form-label text-light">Password</label>
+                    <input asp-for="Password" type="password" class="form-control login-input" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
 
-                    <hr class="border-secondary">
+                <!-- Login Button -->
+                <button type="submit" class="login-btn w-100">
+                    Login
+                </button>
 
-                    <div class="text-center">
-                        <a href="@Url.Action("Register", "Account")" class="text-info">
-                            Don’t have an account? Register
-                        </a>
-                    </div>
-                </form>
+                <hr class="border-secondary">
 
-            </div>
+                <div class="text-center mt-3">
+                    <a href="@Url.Action("Register", "Account")" class="text-info">
+                        Don’t have an account? <strong>Register</strong>
+                    </a>
+                </div>
+
+            </form>
+
         </div>
     </div>
 </div>

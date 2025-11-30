@@ -12,7 +12,7 @@
     </p>
 
     <div class="text-center mb-3">
-        <img src="/images/osint/barcode.png" class="img-fluid rounded border" alt="Barcode Challenge">
+        <img src="~/images/barcode.png" class="img-fluid rounded border" alt="Barcode Challenge">
     </div>
 
     <a href="/images/barcode.png" download class="btn btn-outline-info mb-4">
@@ -23,17 +23,59 @@
 
     <h4 class="text-light">Questions</h4>
 
-    <ol class="text-light">
-        <li>What format does the barcode use?</li>
-        <li>What is the hidden flag inside the barcode?</li>
-    </ol>
+    <!-- ================================= -->
+    <!--        SUBMISSION FORM START       -->
+    <!-- ================================= -->
+    <form method="post" asp-action="SubmitOSINTHard" class="text-light">
 
+        <div class="mb-3">
+            <label class="form-label">1. Barcode format:</label>
+            <input name="format"
+                   class="form-control bg-dark text-light border-secondary"
+                   placeholder="ex: CODE-39" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">2. Hidden flag inside the barcode:</label>
+            <input name="flag"
+                   class="form-control bg-dark text-light border-secondary"
+                   placeholder="ex: CTI-UZLU-5369" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Submit Answers</button>
+    </form>
+
+    <!-- ================================= -->
+    <!--   SUCCESS / ERROR MESSAGES        -->
+    <!-- ================================= -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success mt-3">
+            ✅ @TempData["Success"]
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                markChallengeComplete("OSINT_Hard");
+            });
+        </script>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger mt-3">
+            ❌ @TempData["Error"]
+        </div>
+    }
+
+    <hr class="border-secondary" />
+
+    <!-- Walkthrough -->
     <details class="mt-3">
         <summary class="text-info">📘 Walkthrough (Click to expand)</summary>
         <div class="text-light mt-2">
 
             <p>Use an online barcode scanner such as:</p>
-
             <ul>
                 <li>
                     <a href="https://online-barcode-reader.inliteresearch.com/" target="_blank">
@@ -59,4 +101,3 @@
     </div>
 
 </div>
-
