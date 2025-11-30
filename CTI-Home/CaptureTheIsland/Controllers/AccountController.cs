@@ -144,5 +144,20 @@ namespace CaptureTheIsland.Controllers
         {
             return View();
         }
+
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            var model = new ProfileViewModel
+            {
+                Email = user.Email,
+                UserName = user.UserName
+            };
+
+            return View(model);
+        }
+
     }
 }

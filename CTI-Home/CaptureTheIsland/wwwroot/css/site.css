@@ -214,3 +214,66 @@ body.hc {
             body.hc input.form-control::placeholder {
                 color: #dddddd !important;
             }
+
+/* Grid layout */
+.challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* Card style */
+.challenge-card {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    background: #1e1f26;
+    border: 1px solid #2c2d33;
+    border-radius: 12px;
+    color: #e1e1e1;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.15);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+    .challenge-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 0 14px rgba(0, 255, 255, 0.35);
+    }
+
+/* Empty "no challenges" card */
+.empty-card {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.65;
+}
+
+/* Trophy icon */
+.challenge-icon {
+    font-size: 1.8rem;
+    margin-right: 14px;
+}
+
+/* Title + tag container */
+.challenge-info {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Challenge name */
+.challenge-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Completed badge */
+.challenge-tag {
+    margin-top: 3px;
+    font-size: 0.9rem;
+    background: #28a745;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
