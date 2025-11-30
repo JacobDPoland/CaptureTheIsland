@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using CaptureTheIsland.Models;
 using System.IO;
+using Microsoft.Extensions.Logging;
 
 namespace CaptureTheIsland.Areas.Admin.Controllers
 {
@@ -11,14 +12,24 @@ namespace CaptureTheIsland.Areas.Admin.Controllers
     public class DashboardController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILogger<DashboardController> _logger;
 
-        public DashboardController(UserManager<ApplicationUser> userManager)
+        public DashboardController(UserManager<ApplicationUser> userManager, ILogger<DashboardController> logger)
         {
             _userManager = userManager;
+            _logger = logger;
         }
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Dashboard.Index requested by {User}", User?.Identity?.Name);
+
+            // Dump TempData keys to the log for diagnostics
+            foreach (var key in TempData.Keys)
+            {
+                _logger.LogInformation("TempData[{Key}] = {Value}", key, TempData.Peek(key));
+            }
+
             var allUsers = _userManager.Users.ToList();
             var allChallenges = GetAllChallenges();
 

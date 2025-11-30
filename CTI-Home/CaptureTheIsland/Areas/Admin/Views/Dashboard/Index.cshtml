@@ -154,11 +154,34 @@
 
 </style>
 
-
-
 <div class="admin-wrapper">
 
     <h1>🛡️ Admin Control Center</h1>
+
+    @* Diagnostic dump of TempData so you see any keys set during the redirect *@
+    <div class="mb-3">
+        <strong>TempData diagnostics:</strong>
+        <ul>
+            @foreach (var key in TempData.Keys)
+            {
+                <li>@key : @TempData.Peek(key)</li>
+            }
+        </ul>
+    </div>
+
+    @* Normal status/error messages (existing) *@
+    @{
+        var success = TempData["StatusMessage"] ?? TempData["Success"];
+        var error = TempData["ErrorMessage"] ?? TempData["Error"];
+    }
+    @if (success is string s && !string.IsNullOrWhiteSpace(s))
+    {
+        <div class="alert alert-success" role="alert">@s</div>
+    }
+    @if (error is string e && !string.IsNullOrWhiteSpace(e))
+    {
+        <div class="alert alert-danger" role="alert">@e</div>
+    }
 
     <!-- === STATS GRID === -->
     <div class="stats-grid">
@@ -237,7 +260,6 @@
                 {
                     <tr>
                         <td class="email-cell">@u.Email</td>
-
                         <td>
                             @if (u.Role == "Admin")
                             {
@@ -248,12 +270,16 @@
                                 <span class="badge-user">User</span>
                             }
                         </td>
-
                         <td>@u.DateCreated.ToShortDateString()</td>
                         <td>@u.CompletedChallenges</td>
-
                         <td>
-                            <button class="btn-small btn-role">Toggle Role</button>
+                            @* Make the action URL explicit (no area) to avoid area-routing confusion *@
+                            <form action="@Url.Action("ToggleAdmin", "Account", new { area = "" })" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="email" value="@u.Email" />
+                                <input type="hidden" name="makeAdmin" value="true" />
+                                <button type="submit" class="btn btn-sm btn-primary">Make Admin</button>
+                            </form>
                             <button class="btn-small btn-delete">Delete</button>
                         </td>
                     </tr>
@@ -287,7 +313,7 @@
         const rows = Array.from(table.rows).slice(1);
         const isAsc = table.getAttribute("data-sort") != "asc";
 
-        rows.sort((a, b) => {f
+        rows.sort((a, b) => {
             const x = a.cells[col].innerText.toLowerCase();
             const y = b.cells[col].innerText.toLowerCase();
             return isAsc ? x.localeCompare(y) : y.localeCompare(x);

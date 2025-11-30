@@ -4,6 +4,7 @@ using CaptureTheIsland.Models;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace CaptureTheIsland.Controllers
 {
@@ -11,13 +12,19 @@ namespace CaptureTheIsland.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ILogger<AccountController> _logger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
+            ILogger<AccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
+            _logger = logger;
         }
 
         // ============================
@@ -157,6 +164,87 @@ namespace CaptureTheIsland.Controllers
             };
 
             return View(model);
+        }
+
+        /// <summary>
+        /// Toggles the Admin role for the given user (by email/username).
+        /// Call this from other classes that have a reference to AccountController.
+        /// </summary>
+        /// <param name="email">User's email (also used as username).</param>
+        /// <param name="makeAdmin">
+        /// true = ensure user is in Admin role;
+        /// false = ensure user is NOT in Admin role.
+        /// </param>
+        [NonAction]
+        public async Task ToggleAdminAsync(string email, bool makeAdmin)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new System.ArgumentException("Email is required.", nameof(email));
+
+            // Ensure the Admin role exists
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+            {
+                var roleResult = await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                if (!roleResult.Succeeded)
+                {
+                    var errors = string.Join("; ", roleResult.Errors.Select(e => e.Description));
+                    throw new System.InvalidOperationException($"Failed to ensure Admin role exists: {errors}");
+                }
+            }
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                throw new System.InvalidOperationException($"User '{email}' not found.");
+            }
+
+            bool isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
+
+            if (makeAdmin && !isAdmin)
+            {
+                var addResult = await _userManager.AddToRoleAsync(user, "Admin");
+                if (!addResult.Succeeded)
+                {
+                    var errors = string.Join("; ", addResult.Errors.Select(e => e.Description));
+                    throw new System.InvalidOperationException($"Failed to add user '{email}' to Admin role: {errors}");
+                }
+            }
+            else if (!makeAdmin && isAdmin)
+            {
+                var removeResult = await _userManager.RemoveFromRoleAsync(user, "Admin");
+                if (!removeResult.Succeeded)
+                {
+                    var errors = string.Join("; ", removeResult.Errors.Select(e => e.Description));
+                    throw new System.InvalidOperationException($"Failed to remove user '{email}' from Admin role: {errors}");
+                }
+            }
+        }
+
+        // POST: /Account/ToggleAdmin
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ToggleAdmin(string email, bool makeAdmin)
+        {
+            _logger.LogInformation("ToggleAdmin called. email={Email}, makeAdmin={MakeAdmin}, Caller={User}", email, makeAdmin, User?.Identity?.Name);
+
+            try
+            {
+                await ToggleAdminAsync(email, makeAdmin);
+                TempData["StatusMessage"] = makeAdmin
+                    ? $"User '{email}' is now an Admin."
+                    : $"User '{email}' is no longer an Admin.";
+
+                _logger.LogInformation("ToggleAdmin succeeded for {Email}, makeAdmin={MakeAdmin}", email, makeAdmin);
+            }
+            catch (System.Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                _logger.LogError(ex, "ToggleAdmin failed for {Email}, makeAdmin={MakeAdmin}", email, makeAdmin);
+            }
+
+            // Redirect wherever your admin UI lives
+            return RedirectToAction("Index", "Dashboard", new { area="Admin" });
         }
 
     }
