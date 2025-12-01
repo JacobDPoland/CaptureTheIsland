@@ -4,9 +4,6 @@
     ViewData["Title"] = "Admin Control Center";
 }
 
-<!-- CHART.JS -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <style>
     body {
         background-color: #121820 !important;
@@ -217,35 +214,6 @@
         </div>
 
     </div>
-
-    <!-- ===== PIE CHART ===== -->
-    <div class="glass-card">
-        <h3>📊 Challenge Completion Breakdown</h3>
-        <canvas id="challengeChart" height="120"></canvas>
-    </div>
-
-    <script>
-        const ctx = document.getElementById('challengeChart');
-
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Completed', 'Remaining'],
-                datasets: [{
-                    data: [
-                        @Model.TotalCompletedChallenges,
-                        @Model.TotalChallenges - @Model.TotalCompletedChallenges
-                    ],
-                    backgroundColor: ['#00eaff', '#1b2a38'],
-                    borderColor: ['#00eaff', '#1b2a38'],
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                plugins: { legend: { labels: { color: 'white' } } }
-            }
-        });
-    </script>
 
     <!-- === USER TABLE WITH SEARCH + SORTING === -->
     <div class="glass-card">
