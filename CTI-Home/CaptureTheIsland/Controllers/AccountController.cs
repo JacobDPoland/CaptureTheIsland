@@ -229,6 +229,15 @@ namespace CaptureTheIsland.Controllers
         {
             _logger.LogInformation("ToggleAdmin called. email={Email}, makeAdmin={MakeAdmin}, Caller={User}", email, makeAdmin, User?.Identity?.Name);
 
+            // Prevent an admin from revoking their own Admin role
+            if (!makeAdmin &&
+                string.Equals(User?.Identity?.Name, email, StringComparison.OrdinalIgnoreCase))
+            {
+                TempData["ErrorMessage"] = "You cannot revoke your own Admin role.";
+                _logger.LogWarning("User {User} attempted to revoke their own Admin role", User?.Identity?.Name);
+                return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+            }
+
             try
             {
                 await ToggleAdminAsync(email, makeAdmin);

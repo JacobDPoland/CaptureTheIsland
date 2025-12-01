@@ -2,6 +2,9 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Admin Control Center";
+
+    // current logged-in user's email (lowercase) for comparison
+    var currentUserEmail = User?.Identity?.Name?.ToLowerInvariant();
 }
 
 <style>
@@ -250,21 +253,32 @@
                         <td>@u.DateCreated.ToShortDateString()</td>
                         <td>@u.CompletedChallenges</td>
                         <td>
-                            @* ToggleAdmin: set makeAdmin based on whether the user currently has Admin role *@
-                            <form action="@Url.Action("ToggleAdmin", "Account", new { area = "" })" method="post" class="d-inline">
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" name="email" value="@u.Email" />
-                                <input type="hidden" name="makeAdmin" value="@(u.Role == "Admin" ? "false" : "true")" />
-                                <button type="submit" class="@(u.Role == "Admin" ? "btn btn-sm btn-revoke-admin" : "btn btn-sm btn-primary")">
-                                    @(u.Role == "Admin" ? "Revoke Admin" : "Make Admin")
-                                </button>
-                            </form>
+                            @{
+                                var isCurrentUserRow = currentUserEmail != null && currentUserEmail == (u.Email ?? "").ToLowerInvariant();
+                            }
 
-                            <form action="@Url.Action("DeleteUser", "Account", new { area = "" })" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete user @u.Email? This action cannot be undone.');">
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" name="email" value="@u.Email" />
-                                <button type="submit" class="btn btn-sm btn-danger">Delete User</button>
-                            </form>
+                            @* Hide action buttons for the currently signed-in user *@
+                            @if (!isCurrentUserRow)
+                            {
+                                <form action="@Url.Action("ToggleAdmin", "Account", new { area = "" })" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="email" value="@u.Email" />
+                                    <input type="hidden" name="makeAdmin" value="@(u.Role == "Admin" ? "false" : "true")" />
+                                    <button type="submit" class="@(u.Role == "Admin" ? "btn btn-sm btn-revoke-admin" : "btn btn-sm btn-primary")">
+                                        @(u.Role == "Admin" ? "Revoke Admin" : "Make Admin")
+                                    </button>
+                                </form>
+
+                                <form action="@Url.Action("DeleteUser", "Account", new { area = "" })" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete user @u.Email? This action cannot be undone.');">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="email" value="@u.Email" />
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete User</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <span>No Actions Available</span>
+                            }
                         </td>
                     </tr>
                 }
