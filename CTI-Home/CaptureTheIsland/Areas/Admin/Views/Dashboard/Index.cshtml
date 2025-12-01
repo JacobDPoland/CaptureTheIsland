@@ -152,6 +152,20 @@
         border-radius: 4px;
     }
 
+    /* Toggle / Revoke Admin button styles */
+    .btn-revoke-admin {
+        background-color: #dc3545; /* red */
+        color: #ffffff;
+        border: 1px solid #dc3545;
+        transition: background-color 150ms ease, color 150ms ease;
+    }
+
+    .btn-revoke-admin:hover,
+    .btn-revoke-admin:focus {
+        background-color: #c82333; /* slightly darker red on hover/focus */
+        color: #ffffff;
+        border-color: #c82333;
+    }
 </style>
 
 <div class="admin-wrapper">
@@ -237,7 +251,6 @@
         });
     </script>
 
-
     <!-- === USER TABLE WITH SEARCH + SORTING === -->
     <div class="glass-card">
         <h3>👥 User Overview</h3>
@@ -273,12 +286,14 @@
                         <td>@u.DateCreated.ToShortDateString()</td>
                         <td>@u.CompletedChallenges</td>
                         <td>
-                            @* Make the action URL explicit (no area) to avoid area-routing confusion *@
+                            @* ToggleAdmin: set makeAdmin based on whether the user currently has Admin role *@
                             <form action="@Url.Action("ToggleAdmin", "Account", new { area = "" })" method="post" class="d-inline">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="email" value="@u.Email" />
-                                <input type="hidden" name="makeAdmin" value="true" />
-                                <button type="submit" class="btn btn-sm btn-primary">Make Admin</button>
+                                <input type="hidden" name="makeAdmin" value="@(u.Role == "Admin" ? "false" : "true")" />
+                                <button type="submit" class="@(u.Role == "Admin" ? "btn btn-sm btn-revoke-admin" : "btn btn-sm btn-primary")">
+                                    @(u.Role == "Admin" ? "Revoke Admin" : "Make Admin")
+                                </button>
                             </form>
                             <button class="btn-small btn-delete">Delete</button>
                         </td>
@@ -293,7 +308,6 @@
     </div>
 
 </div>
-
 
 <!-- === SEARCH & SORTING JAVASCRIPT === -->
 <script>
