@@ -19,7 +19,7 @@
             <div class="container">
 
                 <!-- LOGO / TITLE -->
-                <a class="navbar-brand fw-bold me-4" href="@Url.Action("Index", "Home")">
+                <a class="navbar-brand fw-bold me-4" asp-area="" asp-controller="Home" asp-action="Index">
                     Capture The Island
                 </a>
 
@@ -43,8 +43,8 @@
                                 Home
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="homeDrop">
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "Home")">🏠 Main Home</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Index", "Challenges")">🎯 Challenges</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">🏠 Main Home</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Challenges" asp-action="Index">🎯 Challenges</a></li>
                             </ul>
                         </li>
                         @if (SignInManager.IsSignedIn(User))
@@ -52,12 +52,13 @@
                             <!-- PROFILE DROPDOWN -->
                             <li class="nav-item dropdown me-3">
                                 <a class="nav-link dropdown-toggle btn btn-outline-primary px-3"
-                                href="/Views/Account/Profile" id="profileDrop" role="button"
+                                href="#"
+                                id="profileDrop" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                     Profile
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="profileDrop">
-                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile">👤 View Profile</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Profile">👤 View Profile</a></li>
                                 </ul>
                             </li>
                         }
@@ -70,8 +71,8 @@
                                 About Us
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="aboutDrop">
-                                <li><a class="dropdown-item" href="@Url.Action("About", "Home")">📘 Our Story</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Team", "Home")">👥 Team</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="About">📘 Our Story</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Team">👥 Team</a></li>
                             </ul>
                         </li>
 
@@ -83,7 +84,7 @@
                                 Contact
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="contactDrop">
-                                <li><a class="dropdown-item" href="@Url.Action("Contact", "Home")">📩 Contact Form</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Contact">📩 Contact Form</a></li>
                                 <li><a class="dropdown-item" href="mailto:mohammed@example.com">✉ Email Us</a></li>
                             </ul>
                         </li>
@@ -130,10 +131,10 @@
                         {
                             <!-- USER NOT LOGGED IN -->
                             <li class="nav-item">
-                                <a class="btn btn-outline-light me-2" href="/Account/Login">Login</a>
+                                <a class="btn btn-outline-light me-2" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-outline-info" href="/Account/Register">Register</a>
+                                <a class="btn btn-outline-info" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
                             </li>
                         }
 
