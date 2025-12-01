@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace CaptureTheIsland.Controllers
 {
@@ -245,6 +246,71 @@ namespace CaptureTheIsland.Controllers
 
             // Redirect wherever your admin UI lives
             return RedirectToAction("Index", "Dashboard", new { area="Admin" });
+        }
+
+
+        /// <summary>
+        /// Deletes a user by email/username.
+        /// </summary>
+        /// <param name="email">User's email (also used as username).</param>
+        [NonAction]
+        public async Task DeleteUserAsync(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email is required.", nameof(email));
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                throw new InvalidOperationException($"User '{email}' not found.");
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+            if (!result.Succeeded)
+            {
+                var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+                throw new InvalidOperationException($"Failed to delete user '{email}': {errors}");
+            }
+        }
+
+        // POST: /Account/DeleteUser
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteUser(string email)
+        {
+            _logger.LogInformation("DeleteUser called. email={Email}, Caller={User}",
+                email,
+                User?.Identity?.Name);
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                TempData["ErrorMessage"] = "Email is required.";
+                return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+            }
+
+            // Optional: prevent an admin from deleting their own account
+            if (string.Equals(User?.Identity?.Name, email, StringComparison.OrdinalIgnoreCase))
+            {
+                TempData["ErrorMessage"] = "You cannot delete your own account.";
+                return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+            }
+
+            try
+            {
+                await DeleteUserAsync(email);
+
+                TempData["StatusMessage"] = $"User '{email}' has been deleted.";
+                _logger.LogInformation("DeleteUser succeeded for {Email}", email);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                _logger.LogError(ex, "DeleteUser failed for {Email}", email);
+            }
+
+            // Redirect back to your admin UI
+            return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
         }
 
     }

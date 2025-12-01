@@ -152,6 +152,13 @@
         border-radius: 4px;
     }
 
+    /* add small vertical margins to action buttons inside the table */
+    #userTable td .btn,
+    #userTable td .btn-small {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+    }
+
     /* Toggle / Revoke Admin button styles */
     .btn-revoke-admin {
         background-color: #dc3545; /* red */
@@ -171,17 +178,6 @@
 <div class="admin-wrapper">
 
     <h1>🛡️ Admin Control Center</h1>
-
-    @* Diagnostic dump of TempData so you see any keys set during the redirect *@
-    <div class="mb-3">
-        <strong>TempData diagnostics:</strong>
-        <ul>
-            @foreach (var key in TempData.Keys)
-            {
-                <li>@key : @TempData.Peek(key)</li>
-            }
-        </ul>
-    </div>
 
     @* Normal status/error messages (existing) *@
     @{
@@ -295,7 +291,12 @@
                                     @(u.Role == "Admin" ? "Revoke Admin" : "Make Admin")
                                 </button>
                             </form>
-                            <button class="btn-small btn-delete">Delete</button>
+
+                            <form action="@Url.Action("DeleteUser", "Account", new { area = "" })" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete user @u.Email? This action cannot be undone.');">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="email" value="@u.Email" />
+                                <button type="submit" class="btn btn-sm btn-danger">Delete User</button>
+                            </form>
                         </td>
                     </tr>
                 }
