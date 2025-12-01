@@ -37,7 +37,7 @@
 
                         <!-- ⭐️ HOME DROPDOWN -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle btn btn-outline-light me-3 px-3"
+                            <a class="nav-link dropdown-toggle nav-outline me-3 px-3"
                                href="#" id="homeDrop" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Home
@@ -50,11 +50,10 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <!-- PROFILE DROPDOWN -->
-                            <li class="nav-item dropdown me-3">
-                                <a class="nav-link dropdown-toggle btn btn-outline-primary px-3"
-                                href="#"
-                                id="profileDrop" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle nav-outline me-3 px-3"
+                                   href="#" id="profileDrop" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
                                     Profile
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="profileDrop">
@@ -62,10 +61,10 @@
                                 </ul>
                             </li>
                         }
-
                         <!-- ⭐️ ABOUT DROPDOWN -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle btn btn-outline-info me-3 px-3"
+                            <!-- About Us -->
+                            <a class="nav-link dropdown-toggle nav-outline me-3 px-3"
                                href="#" id="aboutDrop" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 About Us
@@ -75,10 +74,9 @@
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Team">👥 Team</a></li>
                             </ul>
                         </li>
-
                         <!-- ⭐️ CONTACT DROPDOWN -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle btn btn-outline-warning me-3 px-3"
+                            <a class="nav-link dropdown-toggle nav-outline me-3 px-3"
                                href="#" id="contactDrop" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Contact
@@ -88,9 +86,7 @@
                                 <li><a class="dropdown-item" href="mailto:mohammed@example.com">✉ Email Us</a></li>
                             </ul>
                         </li>
-
                     </ul>
-
 
                     <!-- RIGHT SIDE AUTH -->
                     <ul class="navbar-nav ms-auto">

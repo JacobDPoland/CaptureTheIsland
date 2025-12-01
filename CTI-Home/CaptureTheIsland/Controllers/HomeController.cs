@@ -20,6 +20,7 @@ namespace CaptureTheIsland.Controllers
             context = ctx;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var vm = new LandingViewModel
@@ -32,12 +33,15 @@ namespace CaptureTheIsland.Controllers
             };
             return View(vm);
         }
+        // ⭐ About Us PAGE
+        [AllowAnonymous]
         public IActionResult About()
         {
             return View();
         }
 
         // ⭐ TEAM PAGE
+        [AllowAnonymous]
         public IActionResult Team()
         {
             return View();

@@ -116,7 +116,6 @@ h2 {
     object-position: center;
     border-bottom: 1px solid #0dcaf0; /* keeps your colored borders */
 }
-}
 
 /* Visible only when focused: keyboard "skip to main" link */
 .skip-link {
@@ -277,3 +276,24 @@ body.hc {
     width: fit-content;
 }
 
+/* Nav-link "button" style for main nav on the left */
+.navbar .nav-link.nav-outline {
+    /*
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: .375rem; COMMENTED FOR LATER same radius as Bootstrap buttons */
+    padding: 0.35rem 0.9rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+    /* Hover */
+    .navbar .nav-link.nav-outline:hover {
+        border-color: #ffffff;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.50);
+    }
+
+    /* Keyboard focus – works with your global :focus outline */
+    .navbar .nav-link.nav-outline:focus-visible {
+        border-color: var(--focus);
+        box-shadow: 0 0 8px var(--focus);
+        outline: none; /* your global :focus still adds yellow outline around everything */
+    }
