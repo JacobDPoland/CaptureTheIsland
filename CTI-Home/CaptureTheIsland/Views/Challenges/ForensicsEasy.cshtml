@@ -1,146 +1,139 @@
 ﻿@{
-    ViewData["Title"] = "Forensics – Version Control (Easy)";
+    ViewData["Title"] = "Easy Forensics — Version Control";
 }
 
-<h2 class="mb-3">🔍 Forensics – Version Control (Easy)</h2>
+<div class="card bg-secondary bg-opacity-25 border-light shadow-lg p-4">
+    <h2 class="text-center mb-4" style="color:white;">
+        🟩 Easy — Version Control
+    </h2>
 
-<p>
-    One of our employee's computers was compromised and we saw this backup file leave the network,
-    but we couldn't find anything inside except a simple <strong>README.md</strong>.
-    Use your forensic skills to determine what was stolen.
-</p>
+    <p class="text-light">
+        One of our employee's computers was compromised. We intercepted a git backup leaving the network,
+        but it only contains a simple <strong>README.md</strong>. Use git forensics to recover what was stolen.
+    </p>
 
-<!-- Download Button -->
-<a href="~/files/CTI_git_challenge.zip" class="btn btn-outline-info mb-4" download>
-    ⬇ Download git_backup.zip
-</a>
+    <hr />
 
-<hr class="border-secondary" />
+    <h4 class="text-light mt-4">📦 Challenge File</h4>
+    <div class="row">
+        <div class="col-md-8">
+            <p class="text-info fs-6">
+                <a href="~/files/CTI_git_challenge.zip" class="btn btn-outline-info" download>
+                    ⬇ Download git_backup.zip
+                </a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p class="text-info fs-6"><strong>Extract → git log → find hidden commits</strong></p>
+        </div>
+    </div>
 
-<h3>📝 Walk-Through</h3>
+    <p class="text-light mt-3">
+        Answer all 4 questions from the git repository history.
+    </p>
 
-<div class="accordion mb-4" id="walkthrough">
-    <div class="accordion-item bg-dark text-light">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed bg-secondary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#wt1">
-                Click to View Full Walkthrough
-            </button>
-        </h2>
-        <div id="wt1" class="accordion-collapse collapse" data-bs-parent="#walkthrough">
-            <div class="accordion-body">
+    <form asp-action="SubmitForensicsEasy" method="post" class="mt-3">
+        <label class="mt-3">
+            <strong>1. Email address of compromised employee:</strong>
+        </label>
+        <input name="q1" class="form-control" placeholder="Example: user@example.com" />
 
-                <p>
-                    This challenge involves using git version control. Once you’ve downloaded the git_backup.zip file, you can unzip the directory using your favorite tool.
-                    You can unzip using Linux command line utility called <strong>unzip</strong> like this:
-                </p>
+        <label class="mt-3">
+            <strong>2. Compromised flag from git history:</strong>
+        </label>
+        <input name="q2" class="form-control" placeholder="Example: CTI-XXXX-1234" />
 
-<pre>unzip git_backup.zip</pre>
+        <label class="mt-3">
+            <strong>3. Service provider with compromised credentials:</strong>
+        </label>
+        <input name="q3" class="form-control" placeholder="Example: gmail.com" />
 
-                <p>
-                    Once unzipped and inside the <strong>git_backup</strong> directory, you will see only a README.md — nothing interesting.
-                    But if we use <strong>ls -a</strong>, we see more:
-                </p>
+        <label class="mt-3">
+            <strong>4. Password for that compromised account:</strong>
+        </label>
+        <input name="q4" class="form-control" placeholder="Example: P@ssw0rd123" />
 
-                <img src="~/img/forensics/git_hidden.png" class="img-fluid mb-3" />
+        <button type="submit" class="btn btn-primary mt-3">Submit Answers</button>
+    </form>
 
-                <p>
-                    The presence of the <strong>.git</strong> folder means this is a Git repository.
-                    We can query the commit history:
-                </p>
+    <!-- Results -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success mt-4">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger mt-4">@TempData["Error"]</div>
+    }
 
-<pre>git log</pre>
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                markChallengeComplete("ForensicsEasy");
+            });
+        </script>
+    }
 
-                <img src="~/img/forensics/git_log.png" class="img-fluid mb-3" />
+    <!-- Hints / Walkthrough Accordion -->
+    <div class="accordion mt-4" id="gitAccordion">
 
-                <p>
-                    We see commits from a user named <strong>Greg Peterson</strong> (and his email).
-                    Each commit has a SHA1 hash. We can view individual commits like this:
-                </p>
+        <!-- Hint -->
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light collapsed"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#hint1">
+                    Need a hint?
+                </button>
+            </h2>
+            <div id="hint1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    • <code>unzip git_backup.zip</code><br>
+                    • <code>ls -a</code> → see .git folder<br>
+                    • <code>git log</code> → find deleted FLAG.txt commit<br>
+                    • <code>git checkout next</code> → passwords.txt branch
+                </div>
+            </div>
+        </div>
 
-<pre>git show 438fa54ba62144ad84376635d957e5e73d89066e</pre>
+        <!-- Full Walkthrough -->
+        <div class="accordion-item bg-dark text-light border-secondary mt-3">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light collapsed"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#walkthrough">
+                    Stuck? View Full Walk-Through
+                </button>
+            </h2>
+            <div id="walkthrough" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4 class="text-info">Git Forensics Walk-Through</h4>
 
-                <img src="~/img/forensics/git_flag.png" class="img-fluid mb-3" />
+                    <ol>
+                        <li><strong>Unzip:</strong> <code>unzip git_backup.zip</code></li>
+                        <li><strong>Hidden git:</strong> <code>ls -a</code> → .git folder exists</li>
+                        <li><strong>Commit history:</strong> <code>git log</code> → Greg Peterson's commits + FLAG.txt deletion</li>
+                        <li><strong>View commit:</strong> <code>git show [SHA]</code> → FLAG.txt contents</li>
+                        <li><strong>Secret branch:</strong> <code>git branch</code> → "next" branch has passwords.txt</li>
+                    </ol>
 
-                <p>
-                    The output shows that a <strong>FLAG.txt</strong> file was added in this commit. The next commit removes it.
-                    To see if more information exists, check all branches:
-                </p>
+                    <p><strong>Tools:</strong> Any terminal with git</p>
 
-<pre>git branch</pre>
-
-                <img src="~/img/forensics/git_branch.png" class="img-fluid mb-3" />
-
-                <p>
-                    We see another branch named <strong>next</strong>.
-                    Switch to it:
-                </p>
-
-<pre>git checkout next</pre>
-
-                <img src="~/img/forensics/git_next.png" class="img-fluid mb-3" />
-
-                <p>
-                    Inside this branch, we find a <strong>passwords.txt</strong> file.
-                    It contains additional compromised credentials.
-                </p>
-
-                <p><strong>This is all the data needed to answer the challenge questions.</strong></p>
-
+                    <hr />
+                    <h5 class="text-warning">Example format (not real answers):</h5>
+                    <div class="alert alert-info mt-3">
+                        • Q1 → employee@company.com<br>
+                        • Q2 → CTI-FLAG-EXAMPLE-1234<br>
+                        • Q3 → example.com<br>
+                        • Q4 → P@ssw0rd123
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<hr class="border-secondary" />
-
-<h3>🧠 Questions</h3>
-
-<!-- Question 1 -->
-<form method="post" asp-action="SubmitForensicsEasy" class="mb-4">
-    <div class="mb-3">
-        <label class="form-label text-light">1. What is the email address of the employee who was compromised?</label>
-        <input type="text" name="q1" class="form-control bg-dark text-light border-secondary" />
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between mt-4">
+        <a href="/Challenges/Forensics" class="btn btn-outline-light">← Back to Forensics</a>
+        <a href="/Challenges/ForensicsMedium" class="btn btn-outline-info">Next Category → Medium</a>
     </div>
 
-    <div class="mb-3">
-        <label class="form-label text-light">2. What flag was compromised?</label>
-        <input type="text" name="q2" class="form-control bg-dark text-light border-secondary" placeholder="CTI-XXXX-1234" />
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label text-light">3. What service provider had additional compromised credentials?</label>
-        <input type="text" name="q3" class="form-control bg-dark text-light border-secondary" />
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label text-light">4. What was the password for that compromised account?</label>
-        <input type="text" name="q4" class="form-control bg-dark text-light border-secondary" />
-    </div>
-
-    <button type="submit" class="btn btn-outline-light w-100">Submit Answers</button>
-</form>
-
-@if (TempData["Success"] != null)
-{
-    <div class="alert alert-success">@TempData["Success"]</div>
-}
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger">@TempData["Error"]</div>
-}
-
-@if (TempData["Success"] != null)
-{
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            markChallengeComplete("ForensicsEasy");
-        });
-    </script>
-}
-
-<hr class="border-secondary" />
-
-<a href="/Challenges/Forensics" class="btn btn-secondary me-2">⬅ Back to Forensics</a>
-<a href="/Challenges/ForensicsMedium" class="btn btn-primary">Next Challenge ➡</a>
-
-<p class="mt-4 text-center text-info">Created by Mohammed Asad Khan</p>

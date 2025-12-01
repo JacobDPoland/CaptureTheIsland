@@ -697,41 +697,67 @@ public class ChallengesController : Controller
         [ValidateAntiForgeryToken]
         public IActionResult SubmitCryptoHard(string q1, string q2, string q3, string q4)
         {
-            // Correct answers (keep these in sync with your RSA design)
-            string a1 = "9471284";                  // example smaller prime p
-            string a2 = "8989999999999999999999";   // example φ(n)
-            string a3 = "43210987654321098765";     // example d
-            string a4 = "CTI{RSA_Mastered_2025}";   // example final flag
+            // Correct answers
+            string a1 = "9471284";                  // p (smaller prime)
+            string a2 = "8989999999999999999999";   // φ(n)
+            string a3 = "43210987654321098765";     // d
+            string a4 = "CTI{RSA_Mastered_2025}";   // flag
 
             int correct = 0;
+            int answered = 0;
 
-            if (!string.IsNullOrWhiteSpace(q1) &&
-                q1.Trim() == a1)
-                correct++;
+            bool correct1 = false, correct2 = false, correct3 = false, correct4 = false;
 
-            if (!string.IsNullOrWhiteSpace(q2) &&
-                q2.Trim() == a2)
-                correct++;
+            if (!string.IsNullOrWhiteSpace(q1))
+            {
+                answered++;
+                if (q1.Trim() == a1) { correct++; correct1 = true; }
+            }
 
-            if (!string.IsNullOrWhiteSpace(q3) &&
-                q3.Trim() == a3)
-                correct++;
+            if (!string.IsNullOrWhiteSpace(q2))
+            {
+                answered++;
+                if (q2.Trim() == a2) { correct++; correct2 = true; }
+            }
 
-            if (!string.IsNullOrWhiteSpace(q4) &&
-                q4.Trim() == a4)
-                correct++;
+            if (!string.IsNullOrWhiteSpace(q3))
+            {
+                answered++;
+                if (q3.Trim() == a3) { correct++; correct3 = true; }
+            }
+
+            if (!string.IsNullOrWhiteSpace(q4))
+            {
+                answered++;
+                if (q4.Trim() == a4) { correct++; correct4 = true; }
+            }
+
+            if (answered == 0)
+            {
+                TempData["Error"] = "⚠ Please answer at least one question before submitting.";
+                return RedirectToAction("CryptoHard");
+            }
 
             if (correct > 0)
             {
                 TempData["Success"] = $"✔ You answered {correct} question(s) correctly!";
             }
-            else
+
+            int wrong = answered - correct;
+            if (wrong > 0)
             {
-                TempData["Error"] = "❌ None of your answers were correct. Try again!";
+                TempData["Error"] = "❌ One or more answers are incorrect. Re-check the parameters and math, then try again.";
             }
+
+            // Optional: tell them which questions were correct/incorrect
+            TempData["CorrectQ1"] = correct1;
+            TempData["CorrectQ2"] = correct2;
+            TempData["CorrectQ3"] = correct3;
+            TempData["CorrectQ4"] = correct4;
 
             return RedirectToAction("CryptoHard");
         }
+
 
 
         public IActionResult CryptoHard()
@@ -789,16 +815,87 @@ public class ChallengesController : Controller
             return RedirectToAction("ForensicsEasy");
         }
 
-
+        //Forensics medium 
+        [HttpGet]
         public IActionResult ForensicsMedium()
         {
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitForensicsMedium(string q1, string q2, string q3, string q4)
+        {
+            string a1 = "10.0.0.42";                                    // Source IP
+            string a2 = "c2.evil-domain.net";                           // Host header
+            string a3 = "CTI-FORENSICS-MEDIUM-2025";                    // Double Base64 flag
+            string a4 = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 attacker-bot";  // Full User-Agent
+
+
+            int correct = 0, answered = 0;
+
+            if (!string.IsNullOrWhiteSpace(q1)) { answered++; if (q1.Trim() == a1) correct++; }
+            if (!string.IsNullOrWhiteSpace(q2)) { answered++; if (q2.Trim() == a2) correct++; }
+            if (!string.IsNullOrWhiteSpace(q3)) { answered++; if (q3.Trim() == a3) correct++; }
+            if (!string.IsNullOrWhiteSpace(q4)) { answered++; if (q4.Trim() == a4) correct++; }
+
+            if (answered == 0)
+            {
+                TempData["Error"] = "⚠ Please answer at least one question before submitting.";
+                return RedirectToAction("ForensicsMedium");
+            }
+
+            if (correct > 0)
+                TempData["Success"] = $"✔ You answered {correct} question(s) correctly!";
+
+            if (answered - correct > 0)
+                TempData["Error"] = "❌ One or more answers are incorrect. Re-check the PCAP and try again.";
+
+            return RedirectToAction("ForensicsMedium");
+        }
+
+
+
+        // Forensics Hard
+        [HttpGet]
         public IActionResult ForensicsHard()
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitForensicsHard(string q1, string q2, string q3, string q4)
+        {
+            string a1 = "6172";                          // Suspicious PID (svch0st.exe)
+            string a2 = "185.234.217.42:443";            // C2 connection (ForeignAddress)
+            string a3 = "CTI{EXPLOIT-MEMORY-2025}";      // Flag from memory strings
+            string a4 = "certutil.exe";                  // Download cradle process
+
+            int correct = 0, answered = 0;
+
+            if (!string.IsNullOrWhiteSpace(q1)) { answered++; if (q1.Trim() == a1) correct++; }
+            if (!string.IsNullOrWhiteSpace(q2)) { answered++; if (q2.Trim() == a2) correct++; }
+            if (!string.IsNullOrWhiteSpace(q3)) { answered++; if (q3.Trim() == a3) correct++; }
+            if (!string.IsNullOrWhiteSpace(q4)) { answered++; if (q4.Trim() == a4) correct++; }
+
+            if (answered == 0)
+            {
+                TempData["Error"] = "⚠ Please answer at least one question before submitting.";
+                return RedirectToAction("ForensicsHard");
+            }
+
+            if (correct > 0)
+                TempData["Success"] = $"✔ You answered {correct} question(s) correctly!";
+
+            if (answered - correct > 0)
+                TempData["Error"] = "❌ One or more answers are incorrect. Re-check Volatility output.";
+
+            return RedirectToAction("ForensicsHard");
+        }
+
+
+
 
 
         public IActionResult OSINT()

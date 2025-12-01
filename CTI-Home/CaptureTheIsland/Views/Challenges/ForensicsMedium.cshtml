@@ -1,20 +1,137 @@
 ﻿@{
-    ViewData["Title"] = "Forensics – Medium (Coming Soon)";
+    ViewData["Title"] = "Medium Forensics — PCAP Analysis";
 }
 
-<h2 class="mb-3">🧪 Forensics – Medium</h2>
+<div class="card bg-secondary bg-opacity-25 border-light shadow-lg p-4">
+    <h2 class="text-center mb-4" style="color:white;">
+        🟧 Medium — PCAP Analysis
+    </h2>
 
-<div class="card bg-secondary bg-opacity-25 border-light shadow-lg mb-4">
-    <div class="card-body text-light">
-        <h3 class="text-center mb-2" style="color:white;">Coming Soon</h3>
-        <p class="text-center">
-            This challenge is currently under construction.<br />
-            New forensic puzzles will be added shortly—stay tuned!
-        </p>
-    </div>
-</div>
+    <p class="text-light">
+        Network defenders captured suspicious traffic from a compromised workstation.
+        Analyze the packet capture data below to reconstruct the attacker's actions.
+    </p>
 
-<a href="/Challenges/Forensics" class="btn btn-outline-light me-2">⬅ Back to Forensics</a>
-<a href="/Challenges/ForensicsHard" class="btn btn-primary">Next: Hard ➜</a>
+    <hr />
 
-<p class="mt-4 text-center text-info">Created by Mohammed Asad Khan</p>
+    <h4 class="text-light mt-4">📊 PCAP Data</h4>
+    <pre class="bg-dark p-3 border rounded small" style="max-height: 400px; overflow-y: auto;">
+<span class="text-white">Filter: http.request.method == "POST"</span>
+
+<span class="text-white">Packet 12:</span> <span class="text-info">10.0.0.42</span><span class="text-white">:49273 → 192.168.1.1:80</span>
+<span class="text-warning">POST /upload.php HTTP/1.1</span>
+
+<span class="text-success">Host:</span> <span class="text-danger">c2.evil-domain.net</span><br>
+<span class="text-success">User-Agent:</span> <span class="text-warning">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 attacker-bot</span><br>
+<span class="text-success">Content-Length:</span> <span class="text-primary">28</span>
+
+<span class="text-danger">Base64:</span> <span class="text-info">RGVjb2RlIHRoZSBmbGlnIGZyb20gdGhpcyBwYXlsb2Fk</span><br>
+<span class="text-success">Decoded:</span> <span class="text-primary">CTI-FORENSICS-MEDIUM-2025</span>
+</pre>
+
+
+    <p class="text-light">
+        Complete all 4 steps below to identify the forensic artifacts.
+    </p>
+
+    <form asp-action="SubmitForensicsMedium" method="post" class="mt-3">
+        <label class="mt-3">
+            <strong>1. Source IP address of attacker (source column):</strong>
+        </label>
+        <input name="q1" class="form-control" placeholder="Example: 192.168.1.100" />
+
+        <label class="mt-3">
+            <strong>2. C2 domain from Host header:</strong>
+        </label>
+        <input name="q2" class="form-control" placeholder="Example: Good.net" />
+
+        <label class="mt-3">
+            <strong>3. Base64 decoded payload from POST body:</strong>
+        </label>
+        <input name="q3" class="form-control" placeholder="Example: secret-flag" />
+
+        <label class="mt-3">
+            <strong>4. Complete User-Agent string:</strong>
+        </label>
+        <input name="q4" class="form-control" placeholder="Example: Mozilla/5.0..." />
+
+        <button type="submit" class="btn btn-primary mt-3">Submit Answers</button>
+    </form>
+
+    <!-- Results -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success mt-4">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger mt-4">@TempData["Error"]</div>
+    }
+
+    <!-- Hints / Walkthrough Accordion -->
+    <div class="accordion mt-4" id="forensicsAccordion">
+
+        <!-- Hint -->
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light collapsed"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#hint1">
+                    Need a hint?
+                </button>
+            </h2>
+            <div id="hint1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    • Filter: <code>http.request.method == "POST"</code><br>
+                    • Packet #12 (scroll down)<br>
+                    • **Double Base64 decode** POST body payload (**decode twice**)<br>
+                    • Check Host + User-Agent headers
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Full Walkthrough -->
+        <div class="accordion-item bg-dark text-light border-secondary mt-3">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light collapsed"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#walkthrough">
+                    Stuck? View walk-through tips.
+                </button>
+            </h2>
+
+            <div id="walkthrough" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <h4 class="text-info">PCAP Analysis Walk-Through</h4>
+
+                    <ol>
+                        <li><strong>Source IP:</strong> <code class="text-info">10.0.0.42</code> (attacker workstation)</li>
+                        <li><strong>C2 Domain:</strong> <code class="text-danger">c2.evil-domain.net</code> (Host header)</li>
+                        <li>
+                            <strong>Payload:</strong> <span class="text-danger">**Double Base64 decode**</span><br>
+                            <code>RGVjb2RlIHRoZSBmbGlnIGZyb20gdGhpcyBwYXlsb2Fk</code> → Decode1 → Decode2 → <code class="text-primary">CTI-FORENSICS-MEDIUM-2025</code>
+                        </li>
+                        <li><strong>User-Agent:</strong> <code class="text-warning">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 attacker-bot</code></li>
+                    </ol>
+
+                    <p><strong>Tools:</strong> Wireshark + <a href="https://www.dcode.fr/base64-decoder" target="_blank">Base64 Decoder</a> (**decode twice**)</p>
+
+                    <hr />
+                    <h5 class="text-warning">Example format:</h5>
+                    <div class="alert alert-info mt-3">
+                        • Q1 → 192.168.1.100<br>
+                        • Q2 → good.net<br>
+                        • Q3 → **DOUBLE BASE64 FLAG**<br>
+                        • Q4 → Mozilla/5.0...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Navigation -->
+        <div class="d-flex justify-content-between mt-4">
+            <a href="/Challenges/Forensics" class="btn btn-outline-light">← Back to Forensics</a>
+            <a href="/Challenges/ForensicsHard" class="btn btn-outline-info">Next Category → Hard</a>
+        </div>
+
+
