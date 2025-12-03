@@ -142,18 +142,35 @@
     </header>
 
     <script>
+        // Get user Id from server
+        const CTI_USER = "@UserManager.GetUserId(User)";
+
+        function getKey() {
+            return "completedChallenges-" + (CTI_USER || "guest");
+        }
+
         function markChallengeComplete(name) {
-            let completed = JSON.parse(localStorage.getItem("completedChallenges") || "[]");
+            if (!CTI_USER) return; // Ignore if not logged in
+
+            let key = getKey();
+            let completed = JSON.parse(localStorage.getItem(key) || "[]");
+
             if (!completed.includes(name)) {
                 completed.push(name);
-                localStorage.setItem("completedChallenges", JSON.stringify(completed));
+                localStorage.setItem(key, JSON.stringify(completed));
             }
         }
 
         function getCompletedChallenges() {
-            return JSON.parse(localStorage.getItem("completedChallenges") || "[]");
+            if (!CTI_USER) return [];
+            let key = getKey();
+            return JSON.parse(localStorage.getItem(key) || "[]");
         }
+
+        // Clean legacy storage (shared key)
+        localStorage.removeItem("completedChallenges");
     </script>
+
 
 
     <main id="main-content" class="container my-5">
