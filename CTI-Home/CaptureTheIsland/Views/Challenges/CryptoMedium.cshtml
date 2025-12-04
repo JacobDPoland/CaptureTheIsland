@@ -44,7 +44,9 @@
     @if (TempData["Success"] != null)
     {
         <script>
-            markChallengeComplete("CryptoMedium");
+            document.addEventListener("DOMContentLoaded", () => {
+                markChallengeComplete("CryptoMedium");
+            });
         </script>
     }
 
@@ -141,9 +143,9 @@
 
     <!-- Navigation -->
     <div class="d-flex justify-content-between mt-4">
-        <a href="/Challenges/Cryptography" class="btn btn-outline-light">← Back to Cryptography</a>
-
+        <a href="/Challenges/CryptoEasy" class="btn btn-outline-info">← Back to Easy</a>
         <a href="/Challenges/CryptoHard" class="btn btn-outline-info">Next Challenge →</a>
     </div>
+
 </div>
 

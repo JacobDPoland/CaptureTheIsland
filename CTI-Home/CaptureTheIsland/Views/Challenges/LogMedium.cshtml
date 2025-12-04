@@ -71,20 +71,19 @@ Nov 29 02:16:57 island sshd: Failed password for invalid user ubuntu from 198.51
             @if (TempData["Success"] != null)
             {
                 <script>
-                    markChallengeComplete("LogMedium");
+                    document.addEventListener("DOMContentLoaded", () => {
+                        markChallengeComplete("LogMedium");
+                    });
                 </script>
             }
 
             
             <!-- Back & Next -->
-            <div class="mt-4 d-flex justify-content-between">
-                <a href="/Challenges/LogEasy" class="btn btn-outline-light">
-                    ← Back to Easy Apache Logs
-                </a>
-                <a href="/Challenges/LogHard" class="btn btn-outline-light">
-                    Next Challenge → Hard Incident Investigation
-                </a>
+            <div class="d-flex justify-content-between mt-4">
+                <a href="/Challenges/LogEasy" class="btn btn-outline-info">← Back to Easy</a>
+                <a href="/Challenges/LogHard" class="btn btn-outline-info">Next Challenge →</a>
             </div>
+
 
 
             <!-- Hints -->

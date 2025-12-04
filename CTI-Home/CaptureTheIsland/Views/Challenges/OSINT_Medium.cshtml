@@ -87,7 +87,9 @@
     @if (TempData["Success"] != null)
     {
         <script>
-            markChallengeComplete("OSINT_Medium");
+            document.addEventListener("DOMContentLoaded", () => {
+                markChallengeComplete("OSINT_Medium");
+            });
         </script>
     }
 
@@ -124,8 +126,11 @@
     </details>
 
     <div class="d-flex justify-content-between mt-4">
-        <a href="/Challenges/OSINT_Easy" class="btn btn-outline-light">← Back</a>
-        <a href="/Challenges/OSINT_Hard" class="btn btn-primary">Next Challenge →</a>
+        <a href="/Challenges/OSINT_Easy" class="btn btn-outline-info">← Back to Easy</a>
+        <a href="/Challenges/OSINT_Hard" class="btn btn-outline-info">Next Challenge →</a>
     </div>
+
+
+
 
 </div>

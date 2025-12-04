@@ -84,7 +84,9 @@ hollie:$y$j9T$/WzixhAsn8sdXhCquYzh01$KZlio78LilItobsx/17ecFf1e2SbsduhP1sZEWuHrL4
 @if (TempData["Success"] != null)
 {
             <script>
-                markChallengeComplete("KaliShadow");
+                document.addEventListener("DOMContentLoaded", () => {
+                    markChallengeComplete("KaliShadow");
+                });
             </script>
 }
 
@@ -189,16 +191,10 @@ hollie:$y$j9T$/WzixhAsn8sdXhCquYzh01$KZlio78LilItobsx/17ecFf1e2SbsduhP1sZEWuHrL4
                     </div>
                 </div>
             </div>
-            <div class="mt-4 d-flex justify-content-between">
-
-                <!-- Back to Password Cracking -->
-                <a href="/Challenges/PasswordCracking" class="btn btn-outline-light">
-                    ⬅ Back to Password Cracking
-                </a>
-
-                <!-- Next Challenge -->
-                <a href="/Challenges/LogAnalysis" class="btn btn-primary float-end">
-                    Next Challenge →
-                </a>
-
+            <div class="d-flex justify-content-between mt-4">
+                <a href="/Challenges/WindowsHashes" class="btn btn-outline-info">← Back to Medium</a>
+                <a href="/Challenges/LogAnalysis" class="btn btn-outline-info">Next Challenge → LogAnalysis</a>
             </div>
+
+
+

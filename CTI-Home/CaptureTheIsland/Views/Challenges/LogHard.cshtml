@@ -87,20 +87,20 @@ Nov 29 03:02:17 island sudo:   root : TTY=pts/0 ; PWD=/root ; USER=root ; COMMAN
 
             @if (TempData["Success"] != null)
             {
-            <script>
-                markChallengeComplete("LogHard");
-            </script>
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                        markChallengeComplete("LogHard");
+                    });
+                </script>
             }
 
             <!-- Back & Next -->
-            <div class="mt-4 d-flex justify-content-between">
-                <a href="/Challenges/LogMedium" class="btn btn-outline-light">
-                    ← Back to Medium SSH Logs
-                </a>
-                <a href="/Challenges/Cryptography" class="btn btn-outline-light">
-                    Next Category → Cryptography Challenges
-                </a>
+            <div class="d-flex justify-content-between mt-4">
+                <a href="/Challenges/LogMedium" class="btn btn-outline-info">← Back to Medium</a>
+                <a href="/Challenges/Cryptography" class="btn btn-outline-info">Next Challenge → Cryptography</a>
             </div>
+
+
 
 
             <!-- Hints -->

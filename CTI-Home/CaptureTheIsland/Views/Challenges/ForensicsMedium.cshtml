@@ -68,13 +68,6 @@
         <div class="alert alert-danger mt-4">@TempData["Error"]</div>
     }
 
-@if (TempData["Success"] != null)
-{
-        <script>
-            markChallengeComplete("ForensicsMedium");
-        </script>
-}
-
     <!-- Hints / Walkthrough Accordion -->
     <div class="accordion mt-4" id="forensicsAccordion">
 
@@ -137,8 +130,9 @@
 
         <!-- Navigation -->
         <div class="d-flex justify-content-between mt-4">
-            <a href="/Challenges/Forensics" class="btn btn-outline-light">← Back to Forensics</a>
-            <a href="/Challenges/ForensicsHard" class="btn btn-outline-info">Next Category → Hard</a>
+            <a href="/Challenges/ForensicsEasy" class="btn btn-outline-info">← Back to Easy</a>
+            <a href="/Challenges/ForensicsHard" class="btn btn-outline-info">Next Challenge →</a>
         </div>
+
 
 

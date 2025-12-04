@@ -68,14 +68,6 @@
         </div>
     }
 
-    @if (TempData["Success"] != null)
-    {
-        <script>
-            markChallengeComplete("OSINT_Hard");
-        </script>
-    }
-
-
     <hr class="border-secondary" />
 
     <!-- Walkthrough -->
@@ -104,8 +96,10 @@
     </details>
 
     <div class="d-flex justify-content-between mt-4">
-        <a href="/Challenges/OSINT_Medium" class="btn btn-outline-light">← Back</a>
-        <a href="/Challenges" class="btn btn-primary">Back to All Challenges</a>
+        <a href="/Challenges/OSINT_Medium" class="btn btn-outline-info">← Back to medium</a>
+        <a href="/Challenges/Networking" class="btn btn-outline-info">Next Category → Networking</a>
     </div>
+
+
 
 </div>

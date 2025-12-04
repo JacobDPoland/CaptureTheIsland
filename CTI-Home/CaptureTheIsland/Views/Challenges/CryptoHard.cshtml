@@ -66,12 +66,14 @@
         <div class="alert alert-danger mt-4">@TempData["Error"]</div>
     }
 
-@if (TempData["Success"] != null)
-{
+    @if (TempData["Success"] != null)
+    {
         <script>
-            markChallengeComplete("CryptoHard");
+            document.addEventListener("DOMContentLoaded", () => {
+                markChallengeComplete("CryptoHard");
+            });
         </script>
-}
+    }
 
     <!-- Hints / Walkthrough Accordion -->
     <div class="accordion mt-4" id="rsaAccordion">
@@ -160,11 +162,8 @@
 
     <!-- Navigation -->
     <div class="d-flex justify-content-between mt-4">
-        <a href="/Challenges/Cryptography" class="btn btn-outline-light">
-            ← Back to Cryptography
-        </a>
-        <a href="/Challenges/Forensics" class="btn btn-outline-info">
-            Next Category → Forensics Challenges
-        </a>
+        <a href="/Challenges/CryptoMedium" class="btn btn-outline-info">← Back to Medium</a>
+        <a href="/Challenges/Forensics" class="btn btn-outline-info">Next Challenge → Forensics</a>
     </div>
+
 

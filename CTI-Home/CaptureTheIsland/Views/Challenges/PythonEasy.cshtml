@@ -77,7 +77,9 @@ if __name__ == "__main__":
 @if (TempData["Success"] != null)
 {
     <script>
-        markChallengeComplete("PythonEasy");
+        document.addEventListener("DOMContentLoaded", () => {
+            markChallengeComplete("PythonEasy");
+        });
     </script>
 }
 
@@ -89,12 +91,11 @@ if __name__ == "__main__":
 <hr />
 
 <!-- NAV BUTTONS -->
-<div class="mt-4 d-flex justify-content-between">
-    <a href="/Challenges/Scripting" class="btn btn-secondary">← Back to Scripting</a>
-    <a href="/Challenges/PythonMedium" class="btn btn-info">Next Challenge →</a>
+<div class="d-flex justify-content-between mt-4">
+    <a href="/Challenges/Scripting" class="btn btn-outline-info">← Back to Scripting</a>
+    <a href="/Challenges/PythonMedium" class="btn btn-outline-info">Next Challenge →</a>
 </div>
 
-<p class="mt-4 text-center text-info">
-    Created by Mohammed Asad Khan
-</p>
+
+
 

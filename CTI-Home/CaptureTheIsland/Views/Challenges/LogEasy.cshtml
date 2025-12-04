@@ -70,19 +70,18 @@
             @if (TempData["Success"] != null)
             {
                 <script>
-                    markChallengeComplete("LogEasy");
+                    document.addEventListener("DOMContentLoaded", () => {
+                        markChallengeComplete("LogEasy");
+                    });
                 </script>
             }
 
             <!-- Back & Next -->
-            <div class="mt-4 d-flex justify-content-between">
-                <a href="/Challenges/LogAnalysis" class="btn btn-outline-light">
-                    ← Back to Log Analysis
-                </a>
-                <a href="/Challenges/LogMedium" class="btn btn-outline-light">
-                    Next Challenge → Medium (SSH Brute-force)
-                </a>
+            <div class="d-flex justify-content-between mt-4">
+                <a href="/Challenges/LogAnalysis" class="btn btn-outline-info">← Back to Log Analysis</a>
+                <a href="/Challenges/LogMedium" class="btn btn-outline-info">Next Challenge →</a>
             </div>
+
 
 
 

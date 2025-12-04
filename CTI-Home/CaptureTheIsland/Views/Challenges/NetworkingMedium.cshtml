@@ -104,13 +104,18 @@
 @if (TempData["Success"] != null)
 {
     <script>
-        markChallengeComplete("NetworkingMedium");
+        document.addEventListener("DOMContentLoaded", () => {
+            markChallengeComplete("NetworkingHard");
+        });
     </script>
 }
 
 <hr class="border-secondary" />
 
-<a href="/Challenges/NetworkingEasy" class="btn btn-secondary me-2">⬅ Back to Easy</a>
-<a href="/Challenges/NetworkingHard" class="btn btn-primary">Next Challenge ➡</a>
+<div class="d-flex justify-content-between mt-4">
+    <a href="/Challenges/NetworkingEasy" class="btn btn-outline-info">← Back to Easy</a>
+    <a href="/Challenges/NetworkingHard" class="btn btn-outline-info">Next Challenge →</a>
+</div>
 
-<p class="mt-4 text-center text-info">Created by Mohammed Asad Khan</p>
+
+
