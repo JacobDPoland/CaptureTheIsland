@@ -68,6 +68,14 @@
         </div>
     }
 
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            markChallengeComplete("OSINT_Hard");
+        </script>
+    }
+
+
     <hr class="border-secondary" />
 
     <!-- Walkthrough -->
